@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `address1` VARCHAR(45) NOT NULL,
-  `address2` VARCHAR(45) NULL,
+  `address1` VARCHAR(100) NOT NULL,
+  `address2` VARCHAR(100) NULL,
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip_code` VARCHAR(20) NOT NULL,
@@ -47,12 +47,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(200) NULL,
   `date_created` DATETIME NULL,
   `enabled` TINYINT NOT NULL,
-  `active` TINYINT NULL,
   `role` VARCHAR(45) NULL,
   `profile_img_url` VARCHAR(2000) NULL,
   `banner_img_url` VARCHAR(2000) NULL,
   `biography` TEXT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_address1_idx` (`address_id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -72,19 +71,29 @@ DROP TABLE IF EXISTS `an_event` ;
 CREATE TABLE IF NOT EXISTS `an_event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `event_date` DATE NOT NULL,
-  `title` VARCHAR(45) NOT NULL,
-  `capacity` VARCHAR(45) NOT NULL,
-  `purpose` VARCHAR(45) NULL,
+  `title` VARCHAR(200) NOT NULL,
+  `capacity` INT NOT NULL,
+  `purpose` VARCHAR(200) NULL,
   `description` TEXT NOT NULL,
   `start_time` TIME NOT NULL,
   `end_time` TIME NULL,
-  `cover_img_url` VARCHAR(45) NULL,
+  `cover_img_url` VARCHAR(2000) NULL,
   `address_id` INT NOT NULL,
+  `active` TINYINT NOT NULL,
+  `host_id` INT NOT NULL,
+  `created_date` DATETIME NULL,
+  `last_updated` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_an_event_address1_idx` (`address_id` ASC),
+  INDEX `fk_an_event_user1_idx` (`host_id` ASC),
   CONSTRAINT `fk_an_event_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_an_event_user1`
+    FOREIGN KEY (`host_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -101,11 +110,25 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
   `content` TEXT NULL,
   `comment_date` DATETIME NULL,
   `user_id` INT NOT NULL,
+  `an_event_id` INT NOT NULL,
+  `in_reply_to_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_comment_user1_idx` (`user_id` ASC),
+  INDEX `fk_user_comment_an_event1_idx` (`an_event_id` ASC),
+  INDEX `fk_user_comment_user_comment1_idx` (`in_reply_to_id` ASC),
   CONSTRAINT `fk_user_comment_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_comment_an_event1`
+    FOREIGN KEY (`an_event_id`)
+    REFERENCES `an_event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_comment_user_comment1`
+    FOREIGN KEY (`in_reply_to_id`)
+    REFERENCES `user_comment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -131,16 +154,10 @@ DROP TABLE IF EXISTS `media` ;
 CREATE TABLE IF NOT EXISTS `media` (
   `id` INT NOT NULL,
   `url` VARCHAR(2000) NULL,
-  `an_event_id` INT NOT NULL,
   `user_comment_id` INT NOT NULL,
+  `caption` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_media_an_event1_idx` (`an_event_id` ASC),
   INDEX `fk_media_user_comment1_idx` (`user_comment_id` ASC),
-  CONSTRAINT `fk_media_an_event1`
-    FOREIGN KEY (`an_event_id`)
-    REFERENCES `an_event` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_media_user_comment1`
     FOREIGN KEY (`user_comment_id`)
     REFERENCES `user_comment` (`id`)
@@ -179,20 +196,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `review` ;
 
 CREATE TABLE IF NOT EXISTS `review` (
-  `id` INT NOT NULL,
   `rating` INT NULL,
-  `review` VARCHAR(500) NULL,
-  `an_event_id` INT NOT NULL,
+  `review_content` VARCHAR(500) NULL,
   `attendee_an_event_id` INT NOT NULL,
   `attendee_user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_review_an_event1_idx` (`an_event_id` ASC),
+  `review_date` DATETIME NULL,
+  PRIMARY KEY (`attendee_an_event_id`, `attendee_user_id`),
   INDEX `fk_review_attendee1_idx` (`attendee_an_event_id` ASC, `attendee_user_id` ASC),
-  CONSTRAINT `fk_review_an_event1`
-    FOREIGN KEY (`an_event_id`)
-    REFERENCES `an_event` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_review_attendee1`
     FOREIGN KEY (`attendee_an_event_id` , `attendee_user_id`)
     REFERENCES `attendee` (`an_event_id` , `user_id`)
@@ -240,7 +250,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `neighboringworldsdb`;
-INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `country`) VALUES (1, '11111', '11', 'Denver', 'CO', '80204', 'US');
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `country`) VALUES (1, '1111 Osage Street', '', 'Denver', 'CO', '80204', 'US');
 
 COMMIT;
 
@@ -250,10 +260,70 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `neighboringworldsdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `active`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (1, 'Charli', 'Verderame', 'charli@neighboringworlds.com', '000-000-0000', 'cverderame', 'cverderame', NULL, 1, NULL, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `active`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (2, 'Paul', 'Chaffin', 'paul@neighboringworlds.com', '000-000-0000', 'pchaffin', 'pchaffin', NULL, 1, NULL, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `active`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (3, 'Erich', 'Schindler', 'arich@neighboringworlds.com', '000-000-0000', 'eschindler', 'eschindler', NULL, 1, NULL, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `active`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (4, 'Brian', 'Teets', 'brain@neighboringworlds.com', '000-000-0000', 'bteets', 'bteets', NULL, 1, NULL, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (1, 'Charli', 'Verderame', 'charli@neighboringworlds.com', '000-000-0000', 'cverderame', '$2a$10$0JIv115B9iSpADjRbMO6O.9z79b8ENhVzaY/kDgIQogagu5KSTQhK', NULL, 1, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (2, 'Paul', 'Chaffin', 'paul@neighboringworlds.com', '000-000-0000', 'pchaffin', '$2a$10$0JIv115B9iSpADjRbMO6O.9z79b8ENhVzaY/kDgIQogagu5KSTQhK', NULL, 1, 'ROLE_ADMIN', NULL, NULL, 'music enthusiast, book collector,  crossword solver and frequent pizza maker working as a software engineer in New York.', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (3, 'Erich', 'Schindler', 'arich@neighboringworlds.com', '000-000-0000', 'eschindler', '$2a$10$0JIv115B9iSpADjRbMO6O.9z79b8ENhVzaY/kDgIQogagu5KSTQhK', NULL, 1, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `phone`, `username`, `password`, `date_created`, `enabled`, `role`, `profile_img_url`, `banner_img_url`, `biography`, `address_id`) VALUES (4, 'Brian', 'Teets', 'brain@neighboringworlds.com', '000-000-0000', 'bteets', '$2a$10$0JIv115B9iSpADjRbMO6O.9z79b8ENhVzaY/kDgIQogagu5KSTQhK', NULL, 1, 'ROLE_ADMIN', NULL, NULL, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `an_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `an_event` (`id`, `event_date`, `title`, `capacity`, `purpose`, `description`, `start_time`, `end_time`, `cover_img_url`, `address_id`, `active`, `host_id`, `created_date`, `last_updated`) VALUES (1, '2022-06-22', 'Come bake my grandma\'s famous cake recipe!', 10, 'Share my grandma recipe', 'My grandma loved to bake and would always make this one particulr cake for birthdays. In honor of her on her birthday I would to share the recipe with you all.', '17:00:00', '22:00:00', 'https://www.thedailymeal.com/sites/default/files/2020/03/03/00_hed_iStock.jpg', 1, 1, 1, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `user_comment` (`id`, `title`, `content`, `comment_date`, `user_id`, `an_event_id`, `in_reply_to_id`) VALUES (1, 'Great event!', 'It was so fun to learn to bake with you!', NULL, 1, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `event_tag` (`id`, `keyword`) VALUES (1, 'culture');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `media`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `media` (`id`, `url`, `user_comment_id`, `caption`) VALUES (1, 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F1542062283%2Fchocolate-and-cream-layer-cake-1812-cover.jpg%3Fitok%3DrEWL7AIN', 1, 'great cake');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `attendee`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `attendee` (`an_event_id`, `user_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `review`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `review` (`rating`, `review_content`, `attendee_an_event_id`, `attendee_user_id`, `review_date`) VALUES (5, 'Excellent event!', 1, 1, NULL);
 
 COMMIT;
 
