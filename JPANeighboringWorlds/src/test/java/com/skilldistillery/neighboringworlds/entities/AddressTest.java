@@ -14,11 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class AddressTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Address a;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,29 +33,28 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-			user = em.find(User.class, 1);
+		a = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		a = null;
 	}
 
 	@Test
 	@DisplayName("Basic mapping")
 	void t1() {
-		assertNotNull(user);
-		assertEquals("cverderame", user.getUsername());
-		assertEquals("Charli", user.getfName());
-		assertEquals("Verderame", user.getlName());
-		assertEquals("charli@neighboringworlds.com", user.getEmail()); 
-		assertEquals("000-000-0000", user.getPhone()); 
-		
+		assertNotNull(a);
+		assertEquals("1111 Osage Street", a.getAddress1()); 
+		assertEquals("", a.getAddress2()); 
+		assertEquals("Denver", a.getCity()); 
+		assertEquals("CO", a.getState()); 
+		assertEquals("80204", a.getZipCode()); 
 	}
-	
+
 //	@Test
-//	@DisplayName("User - ..... mapping")
+//	@DisplayName("Address - ..... mapping")
 //	void t2() {
 //		assertNotNull(user);
 //		assertEquals("Go round Mum's", user.getTodos().get(0).getTask());

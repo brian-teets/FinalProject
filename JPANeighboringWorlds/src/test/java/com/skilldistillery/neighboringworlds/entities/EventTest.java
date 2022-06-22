@@ -2,6 +2,7 @@ package com.skilldistillery.neighboringworlds.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class EventTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Event e;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,27 +34,27 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-			user = em.find(User.class, 1);
+		e = em.find(Event.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		e = null;
 	}
 
 	@Test
 	@DisplayName("Basic mapping")
 	void t1() {
-		assertNotNull(user);
-		assertEquals("cverderame", user.getUsername());
-		assertEquals("Charli", user.getfName());
-		assertEquals("Verderame", user.getlName());
-		assertEquals("charli@neighboringworlds.com", user.getEmail()); 
-		assertEquals("000-000-0000", user.getPhone()); 
+		assertNotNull(e);
+		assertEquals("Come bake my grandma's famous cake recipe!", e.getTitle()); 
+		assertEquals(2022, e.getEventDate().getYear()); 
+		assertEquals(6, e.getEventDate().getMonthValue());
+		assertEquals(10, e.getCapacity()); 
+		assertTrue(e.getActive());  
 		
 	}
-	
+
 //	@Test
 //	@DisplayName("User - ..... mapping")
 //	void t2() {

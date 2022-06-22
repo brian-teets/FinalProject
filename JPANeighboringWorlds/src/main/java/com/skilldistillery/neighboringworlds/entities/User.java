@@ -1,31 +1,48 @@
 package com.skilldistillery.neighboringworlds.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class User {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-//	private String fName;
-//	private String lName;
-//	private String email;
-//	private String phone;
+
+	@Column(name = "first_name")
+	private String fName;
+
+	@Column(name = "last_name")
+	private String lName;
+
+	private String email;
+	private String phone;
 	private String username;
 	private String password;
-//	private DateTime dateCreated;
-	private boolean enabled;
+
+	@Column(name = "date_created")
+	@CreationTimestamp
+	private LocalDateTime dateCreated;
+
+	private Boolean enabled;
 	private String role;
-//	private String profileImgUrl;
-//	private String bannerImgUrl;
-	
+
+	@Column(name = "profile_img_url")
+	private String profileImgUrl;
+
+	@Column(name = "banner_img_url")
+	private String bannerImgUrl;
+
+	private String biography;
 
 	public User() {
 		super();
@@ -37,6 +54,38 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getUsername() {
@@ -54,14 +103,20 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
-	public boolean isEnabled() {
+	public LocalDateTime getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(LocalDateTime dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -71,6 +126,30 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getProfileImgUrl() {
+		return profileImgUrl;
+	}
+
+	public void setProfileImgUrl(String profileImgUrl) {
+		this.profileImgUrl = profileImgUrl;
+	}
+
+	public String getBannerImgUrl() {
+		return bannerImgUrl;
+	}
+
+	public void setBannerImgUrl(String bannerImgUrl) {
+		this.bannerImgUrl = bannerImgUrl;
+	}
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
 	}
 
 	@Override
@@ -92,8 +171,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+		return "User [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", phone=" + phone
+				+ ", username=" + username + ", password=" + password + ", dateCreated=" + dateCreated + ", enabled="
+				+ enabled + ", role=" + role + ", profileImgUrl=" + profileImgUrl + ", bannerImgUrl=" + bannerImgUrl
+				+ ", biography=" + biography + "]";
 	}
 
 }
