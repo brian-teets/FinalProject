@@ -15,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class EventTest {
+class CultureEventTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Event e;
+	private CultureEvent e;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,7 +34,7 @@ class EventTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		e = em.find(Event.class, 1);
+		e = em.find(CultureEvent.class, 1);
 	}
 
 	@AfterEach

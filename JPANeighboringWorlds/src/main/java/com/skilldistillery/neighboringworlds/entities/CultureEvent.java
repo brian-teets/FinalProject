@@ -17,7 +17,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "an_event")
-public class Event {
+public class CultureEvent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +50,7 @@ public class Event {
 	@UpdateTimestamp
 	private LocalDateTime lastUpdated;
 
-	public Event() {
+	public CultureEvent() {
 		super();
 	}
 
@@ -163,7 +163,7 @@ public class Event {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Event other = (Event) obj;
+		CultureEvent other = (CultureEvent) obj;
 		return id == other.id;
 	}
 

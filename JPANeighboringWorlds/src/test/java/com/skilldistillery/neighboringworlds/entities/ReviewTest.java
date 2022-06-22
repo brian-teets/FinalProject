@@ -18,6 +18,7 @@ class ReviewTest {
 	private EntityManager em;
 	private Review review;
 	
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPANeighboringWorlds");
@@ -31,7 +32,8 @@ class ReviewTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		review = em.find(Review.class, 1);
+		ReviewId revId = new ReviewId(1, 1);
+		review = em.find(Review.class, revId);
 	}
 
 	@AfterEach
@@ -45,6 +47,20 @@ class ReviewTest {
 		assertNotNull(review);
 		assertEquals(5, review.getRating());
 		assertEquals("Excellent event!", review.getReviewContent());
+	}
+	
+	@Test
+	void test_review_user_mapping() {
+		assertNotNull(review);
+		assertNotNull(review.getUser());
+		assertEquals("cverderame", review.getUser().getUsername());
+	}
+	
+	@Test
+	void test_review_event_mapping() {
+		assertNotNull(review);
+		assertNotNull(review.getCultureEvent());
+		assertEquals("Come bake my grandma's famous cake recipe!", review.getCultureEvent().getTitle());
 	}
 
 }
