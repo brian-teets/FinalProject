@@ -47,5 +47,11 @@ class MediaTest {
 		assertEquals(1, media.getId());
 		assertEquals("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F1542062283%2Fchocolate-and-cream-layer-cake-1812-cover.jpg%3Fitok%3DrEWL7AIN", media.getUrl());
 	}
+	@Test
+	void test_comment_entity_mapping() {
+		assertNotNull(media);
+		assertNotNull(media.getUserComment());
+		assertEquals("Great event!", media.getUserComment().getTitle());
+	}
 
 }

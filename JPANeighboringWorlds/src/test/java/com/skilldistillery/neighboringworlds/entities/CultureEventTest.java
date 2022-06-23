@@ -61,4 +61,21 @@ class CultureEventTest {
 		assertTrue(e.getAttendees().size() > 0);
 		assertEquals("charli@neighboringworlds.com", e.getAttendees().get(0).getEmail());
 	}
+	
+	@Test
+	@DisplayName("CultureEvent - Tag mapping")
+	void t3() {
+		assertNotNull(e);
+		assertTrue(e.getTags().size() > 0);
+		assertEquals("culture", e.getTags().get(0).getKeyword());
+	}
+	
+	@Test
+	@DisplayName("CultureEvent - Review mapping")
+	void t4() {
+		assertNotNull(e);
+		assertNotNull(e.getReviews());
+		assertTrue(e.getReviews().size() > 0);
+		assertEquals("Excellent event!", e.getReviews().get(0).getReviewContent());
+	}
 }

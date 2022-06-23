@@ -2,6 +2,7 @@ package com.skilldistillery.neighboringworlds.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +47,13 @@ class EventTagTest {
 		assertNotNull(eventTag);
 		assertEquals(1, eventTag.getId());
 		assertEquals("culture", eventTag.getKeyword());
+	}
+	@Test
+	void test_eventTag_to_Event_mapping() {
+		assertNotNull(eventTag);
+		assertEquals(1, eventTag.getId());
+		assertTrue(eventTag.getEvents().size() > 0);
+		assertEquals("Come bake my grandma's famous cake recipe!", eventTag.getEvents().get(0).getTitle());
 	}
 
 }

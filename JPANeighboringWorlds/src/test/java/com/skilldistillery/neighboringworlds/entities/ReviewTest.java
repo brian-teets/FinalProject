@@ -63,4 +63,5 @@ class ReviewTest {
 		assertEquals("Come bake my grandma's famous cake recipe!", review.getCultureEvent().getTitle());
 	}
 
+
 }

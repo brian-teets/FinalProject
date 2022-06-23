@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 public class Media {
@@ -17,6 +20,10 @@ public class Media {
 	//TODO fk user_comment_id
 	
 	private String caption;
+	
+	@ManyToOne
+	@JoinColumn(name="user_comment_id")
+	private UserComment userComment;
 
 	public int getId() {
 		return id;
@@ -40,6 +47,16 @@ public class Media {
 
 	public void setCaption(String caption) {
 		this.caption = caption;
+	}
+	
+	
+
+	public UserComment getUserComment() {
+		return userComment;
+	}
+
+	public void setUserComment(UserComment userComment) {
+		this.userComment = userComment;
 	}
 
 	@Override

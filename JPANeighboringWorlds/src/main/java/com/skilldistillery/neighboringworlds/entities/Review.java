@@ -37,6 +37,9 @@ public class Review {
 	@JoinColumn(name="attendee_an_event_id")
 	@MapsId(value="eventId")
 	private CultureEvent cultureEvent;
+	
+	
+	
 			
 	public ReviewId getId() {
 		return Id;

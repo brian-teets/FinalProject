@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -44,6 +45,15 @@ public class CultureEvent {
 	@ManyToMany
 	@JoinTable(name = "attendee", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> attendees;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "event_tag_has_an_event", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "event_tag_id"))
+	private List<EventTag> tags;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "cultureEvent")
+	private List<Review> reviews;
 
 	@Column(name = "event_date")
 	private LocalDate eventDate;
@@ -71,6 +81,7 @@ public class CultureEvent {
 	@Column(name = "last_updated")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdated;
+	
 
 	public CultureEvent() {
 		super();
@@ -195,10 +206,28 @@ public class CultureEvent {
 	public void setLastUpdated(LocalDateTime lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
+	
+
+	public List<EventTag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<EventTag> tags) {
+		this.tags = tags;
+	}
+	
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(attendees, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -210,16 +239,18 @@ public class CultureEvent {
 		if (getClass() != obj.getClass())
 			return false;
 		CultureEvent other = (CultureEvent) obj;
-		return Objects.equals(attendees, other.attendees) && id == other.id;
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "CultureEvent [id=" + id + ", address=" + address + ", host=" + host + ", attendees=" + attendees
-				+ ", eventDate=" + eventDate + ", title=" + title + ", capacity=" + capacity + ", purpose=" + purpose
-				+ ", description=" + description + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", coverImgUrl=" + coverImgUrl + ", active=" + active + ", createdDate=" + createdDate
-				+ ", lastUpdated=" + lastUpdated + "]";
+		return "CultureEvent [id=" + id + ", address=" + address + ", host=" + host + ", eventDate=" + eventDate
+				+ ", title=" + title + ", capacity=" + capacity + ", purpose=" + purpose + ", description="
+				+ description + ", startTime=" + startTime + ", endTime=" + endTime + ", coverImgUrl=" + coverImgUrl
+				+ ", active=" + active + ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
 	}
+
+
+
 
 }

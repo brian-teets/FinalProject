@@ -1,12 +1,16 @@
 package com.skilldistillery.neighboringworlds.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Table(name="event_tag")
 @Entity
@@ -17,6 +21,10 @@ public class EventTag {
 	private int id;
 	
 	private String keyword;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "tags")
+	private List<CultureEvent> events;
 
 	public int getId() {
 		return id;
@@ -33,10 +41,21 @@ public class EventTag {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+	
+	
+
+	public List<CultureEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<CultureEvent> events) {
+		this.events = events;
+	}
+
 
 	@Override
 	public String toString() {
-		return "EventTag [id=" + id + ", keyword=" + keyword + "]";
+		return "EventTag [id=" + id + ", keyword=" + keyword + ", events=" + events + "]";
 	}
 
 	@Override
