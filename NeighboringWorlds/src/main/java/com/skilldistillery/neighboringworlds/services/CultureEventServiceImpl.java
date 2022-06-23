@@ -32,8 +32,9 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Override
 	public CultureEvent create(CultureEvent cEvt) {
-		// TODO Auto-generated method stub
-		return null;
+		// Do we want to set any defaults or just handle on front end form? 
+		
+		return cultureEvtRepo.saveAndFlush(cEvt);
 	}
 
 	@Override
