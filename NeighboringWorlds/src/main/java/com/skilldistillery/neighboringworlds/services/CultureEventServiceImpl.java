@@ -39,8 +39,41 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Override
 	public CultureEvent modify(CultureEvent cEvt, int cid, String username) {
-		// TODO Auto-generated method stub
-		return null;
+		CultureEvent existing = cultureEvtRepo.findByIdAndHost_Username(cid, username);
+		if (cEvt.getAddress() != null) {
+			existing.setAddress(cEvt.getAddress());
+		}
+		if (cEvt.getTags() != null) {
+			existing.setTags(cEvt.getTags());
+		}
+		if (cEvt.getEventDate() != null) {
+			existing.setEventDate(cEvt.getEventDate());
+		}
+		if (cEvt.getTitle() != null) {
+			existing.setTitle(cEvt.getTitle());
+		}
+		if (cEvt.getCapacity() != 0) {
+			existing.setCapacity(cEvt.getCapacity());
+		}
+		if (cEvt.getPurpose() != null) {
+			existing.setPurpose(cEvt.getPurpose());
+		}
+		if (cEvt.getDescription() != null) {
+			existing.setDescription(cEvt.getDescription());
+		}
+		if (cEvt.getStartTime() != null) {
+			existing.setStartTime(cEvt.getStartTime());
+		}
+		if (cEvt.getEndTime() != null) {
+			existing.setEndTime(cEvt.getEndTime());
+		}
+		if (cEvt.getCoverImgUrl() != null) {
+			existing.setCoverImgUrl(cEvt.getCoverImgUrl());
+		}
+		if (cEvt.getActive() != null) {
+			existing.setActive(cEvt.getActive()); 
+		}
+		return existing;
 	}
 
 	@Override
