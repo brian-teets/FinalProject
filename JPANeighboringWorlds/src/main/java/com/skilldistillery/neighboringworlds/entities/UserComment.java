@@ -1,38 +1,54 @@
 package com.skilldistillery.neighboringworlds.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-@Table(name="user_comment")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Table(name = "user_comment")
 @Entity
 public class UserComment {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String title;
-	
+
 	private String content;
-	
-	@Column(name="comment_date")
+
+	@Column(name = "comment_date")
 	@CreationTimestamp
 	private LocalDateTime commentDate;
-	
-	//TODO fk user_id
-	//TODO fk an_event_id
-	
-	@Column(name="in_reply_to_id")
-	private Integer inReplyToId;
+
+	// TODO fk user_id
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	// TODO fk an_event_id
+	@ManyToOne
+	@JoinColumn(name = "an_event_id")
+	private CultureEvent cultureEvent;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "inReplyTo")
+	private List<UserComment> replies;
+
+	@ManyToOne
+	@JoinColumn(name = "in_reply_to_id")
+	private UserComment inReplyTo;
 
 	public int getId() {
 		return id;
@@ -66,20 +82,42 @@ public class UserComment {
 		this.commentDate = commentDate;
 	}
 
-	public int getInReplyToId() {
-		return inReplyToId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setInReplyToId(int inReplyToId) {
-		this.inReplyToId = inReplyToId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public CultureEvent getCultureEvent() {
+		return cultureEvent;
+	}
+
+	public void setCultureEvent(CultureEvent cultureEvent) {
+		this.cultureEvent = cultureEvent;
+	}
+
+	public List<UserComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<UserComment> replies) {
+		this.replies = replies;
+	}
+
+	public UserComment getInReplyTo() {
+		return inReplyTo;
+	}
+
+	public void setInReplyTo(UserComment inReplyTo) {
+		this.inReplyTo = inReplyTo;
 	}
 
 	@Override
 	public String toString() {
 		return "UserComment [id=" + id + ", title=" + title + ", content=" + content + ", commentDate=" + commentDate
-				+ ", inReplyToId=" + inReplyToId + "]";
+				+ ", user=" + user + ", cultureEvent=" + cultureEvent + ", inReplyTo=" + inReplyTo + "]";
 	}
-	
-	
 
 }

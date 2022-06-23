@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -52,6 +53,10 @@ public class User {
 	private String bannerImgUrl;
 
 	private String biography;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
 
 	public User() {
 		super();
@@ -167,6 +172,14 @@ public class User {
 
 	public void setBiography(String biography) {
 		this.biography = biography;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override

@@ -47,5 +47,22 @@ class UserCommentTest {
 		assertEquals(1, uC.getId());
 		assertEquals("Great event!", uC.getTitle());
 	}
+	
+	@Test
+	void test_userComment_MTO_to_User_mapping() {
+		assertNotNull(uC);
+		assertNotNull(uC.getUser());
+		assertEquals(1, uC.getUser().getId());
+	}
+	
+	@Test
+	void test_userComment_MTO_to_CultureEvent() {
+		assertNotNull(uC);
+		assertNotNull(uC.getCultureEvent());
+		assertEquals(1, uC.getCultureEvent().getId());
+	}
+	
+//	@Test
+//	void test_userComment_MTO_replyTo
 
 }

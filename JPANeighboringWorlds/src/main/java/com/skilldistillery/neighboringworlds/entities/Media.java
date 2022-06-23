@@ -21,10 +21,11 @@ public class Media {
 	
 	private String caption;
 	
+	// mapped relationships should be complete on this side
 	@ManyToOne
 	@JoinColumn(name="user_comment_id")
 	private UserComment userComment;
-
+	
 	public int getId() {
 		return id;
 	}

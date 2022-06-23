@@ -10,8 +10,9 @@
     <class>com.skilldistillery.neighboringworlds.entities.EventTag</class>
     <class>com.skilldistillery.neighboringworlds.entities.Media</class>
     <class>com.skilldistillery.neighboringworlds.entities.Review</class>
+    <class>com.skilldistillery.neighboringworlds.entities.ReviewId</class>
     <class>com.skilldistillery.neighboringworlds.entities.UserComment</class>
-    <class>com.skilldistillery.neighboringworlds.entities.Event</class>
+    <class>com.skilldistillery.neighboringworlds.entities.CultureEvent</class>
     <class>com.skilldistillery.neighboringworlds.entities.Address</class>
      
     

@@ -62,5 +62,13 @@ class UserTest {
 		assertTrue(user.getEvents().size() > 0);
 		assertEquals(10, user.getEvents().get(0).getCapacity());
 	}
+	
+	@Test
+	@DisplayName("User to Review mapping")
+	void t3() {
+		assertNotNull(user);
+		assertNotNull(user.getReviews());
+		assertTrue(user.getReviews().size() > 0);
+	}
 
 }
