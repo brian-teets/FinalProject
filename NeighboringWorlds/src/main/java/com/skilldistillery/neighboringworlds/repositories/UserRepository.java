@@ -1,7 +1,5 @@
 package com.skilldistillery.neighboringworlds.repositories;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.neighboringworlds.entities.User;
