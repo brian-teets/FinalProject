@@ -78,8 +78,11 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Override
 	public Boolean delete(int cid, String username) {
-		// TODO Auto-generated method stub
-		return null;
+		CultureEvent evtToDelete = cultureEvtRepo.findByIdAndHost_Username(cid, username);
+		if(evtToDelete != null) {
+			cultureEvtRepo.deleteById(cid);
+		}
+		return !cultureEvtRepo.existsById(cid); 
 	}
 
 }

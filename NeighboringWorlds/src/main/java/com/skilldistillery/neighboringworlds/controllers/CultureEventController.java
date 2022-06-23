@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,6 +79,24 @@ public class CultureEventController {
 		
 		
 		return modEvt; 
+	}
+	
+	@DeleteMapping("culture-events/{cid}")
+	public Boolean delete(@PathVariable int cid, HttpServletResponse res,
+			Principal principal) {
+		Boolean deleted = false;
+		try {
+			deleted = cEvtServ.delete(cid, principal.getName());
+			if(deleted) {
+				res.setStatus(204);
+			} else {
+				res.setStatus(403); // status for forbidden access
+			}
+		} catch (Exception e) {
+			res.setStatus(500);
+			e.printStackTrace();
+		}
+		return deleted; 
 	}
 
 }
