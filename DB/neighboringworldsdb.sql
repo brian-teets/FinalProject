@@ -327,3 +327,13 @@ INSERT INTO `review` (`rating`, `review_content`, `attendee_an_event_id`, `atten
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `event_tag_has_an_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighboringworldsdb`;
+INSERT INTO `event_tag_has_an_event` (`event_tag_id`, `an_event_id`) VALUES (1, 1);
+
+COMMIT;
+
