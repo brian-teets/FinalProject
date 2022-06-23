@@ -284,6 +284,7 @@ COMMIT;
 START TRANSACTION;
 USE `neighboringworldsdb`;
 INSERT INTO `user_comment` (`id`, `title`, `content`, `comment_date`, `user_id`, `an_event_id`, `in_reply_to_id`) VALUES (1, 'Great event!', 'It was so fun to learn to bake with you!', NULL, 1, 1, NULL);
+INSERT INTO `user_comment` (`id`, `title`, `content`, `comment_date`, `user_id`, `an_event_id`, `in_reply_to_id`) VALUES (2, 'Agreed!', 'Thanks for sharing!', NULL, 2, 1, 1);
 
 COMMIT;
 
