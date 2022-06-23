@@ -1,6 +1,6 @@
 package com.skilldistillery.neighboringworlds.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -62,7 +62,13 @@ class UserCommentTest {
 		assertEquals(1, uC.getCultureEvent().getId());
 	}
 	
-//	@Test
-//	void test_userComment_MTO_replyTo
+	@Test
+	void test_userComment_MTO_replyTo() {
+		assertNotNull(uC);
+		assertNotNull(uC.getReplies());
+		assertTrue(uC.getReplies().size() > 0);
+		assertEquals(2, uC.getReplies().get(0).getId());
+		assertEquals(1, uC.getReplies().get(0).getInReplyTo().getId());
+	}
 
 }
