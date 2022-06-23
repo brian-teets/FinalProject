@@ -1,24 +1,33 @@
 export class User {
-  id: number | null;
-  username: string | null;
-  password: string | null;
-  email: string | null;
-  role: string | null;
+  fName: string;
+  lName: string;
+  email: string;
+  phone: string;
+  profileImgUrl: string;
+  bannerImgUrl: string;
+  biography: string;
+  username: string;
+  password: string;
 
-constructor(
-  id: number | null = 0,
-  username: string | null = '',
-  password: string | null = '',
-  email: string | null = '',
-  role: string | null = ''
-){
-  this.id = id;
-  this.username = username;
-  this.password = password;
-  this.email = email;
-  this.role = role;
+  constructor(
+    fName: string = '',
+    lName: string = '',
+    email: string = '',
+    phone: string = '',
+    profileImgUrl: string = '',
+    bannerImgUrl: string = '',
+    biography: string = '',
+    username: string = '',
+    password: string = ''
+  ) {
+    this.fName = fName;
+    this.lName = lName;
+    this.email = email;
+    this.phone = phone;
+    this.profileImgUrl = profileImgUrl;
+    this.bannerImgUrl = bannerImgUrl;
+    this.biography = biography;
+    this.username = username;
+    this.password = password;
+  }
 }
-
-
-}
-
