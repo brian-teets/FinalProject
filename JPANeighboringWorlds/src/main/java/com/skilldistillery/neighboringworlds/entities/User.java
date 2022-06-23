@@ -57,6 +57,10 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<UserComment> comments;
 
 	public User() {
 		super();
@@ -180,6 +184,16 @@ public class User {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+	
+	
+
+	public List<UserComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<UserComment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

@@ -70,5 +70,13 @@ class UserTest {
 		assertNotNull(user.getReviews());
 		assertTrue(user.getReviews().size() > 0);
 	}
+	
+	@Test
+	@DisplayName("User to UserComment mapping")
+	void t4() {
+		assertNotNull(user.getComments());
+		assertTrue(user.getComments().size() > 0);
+		assertEquals("It was so fun to learn to bake with you!", user.getComments().get(0).getContent());
+	}
 
 }
