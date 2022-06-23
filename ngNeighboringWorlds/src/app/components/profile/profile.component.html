@@ -1,0 +1,74 @@
+<h3>Your user profile</h3>
+<br /><br /><br />
+<hr />
+<p></p>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-4"><h3>Profile</h3>
+  <br>
+  <div class="card" style="width: 18rem;">
+    <img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{currentUser.fName}} {{currentUser.lName}}</h5>
+      <p class="card-text">{{currentUser.biography}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{currentUser.username}}</li>
+      <li class="list-group-item">{{currentUser.email}}</li>
+      <li class="list-group-item">{{currentUser.phone}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Edit Profile</a>
+      <a href="#" class="card-link">Deactivate Profile</a>
+    </div>
+  </div>
+
+
+  </div>
+  <div class="col-sm-8"><h3>Events</h3>
+  <br>
+
+  <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+
+
+
+
+  </div>
+</div>
+</div>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Edit Profile</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
