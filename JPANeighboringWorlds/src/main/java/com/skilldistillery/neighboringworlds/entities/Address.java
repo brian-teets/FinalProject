@@ -1,6 +1,5 @@
 package com.skilldistillery.neighboringworlds.entities;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.CreationTimestamp;
+// Relational mapping complete 
 
 @Entity
 public class Address {

@@ -1,6 +1,7 @@
 package com.skilldistillery.neighboringworlds.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -17,6 +21,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	// User - CultureEvent Join Table mapping
+	@JsonIgnore
+	@ManyToMany(mappedBy = "attendees")
+	private List<CultureEvent> events;
 
 	@Column(name = "first_name")
 	private String fName;
@@ -54,6 +63,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<CultureEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<CultureEvent> events) {
+		this.events = events;
 	}
 
 	public String getfName() {
@@ -154,7 +171,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(events, id);
 	}
 
 	@Override
@@ -166,15 +183,15 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return id == other.id;
+		return Objects.equals(events, other.events) && id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", phone=" + phone
-				+ ", username=" + username + ", password=" + password + ", dateCreated=" + dateCreated + ", enabled="
-				+ enabled + ", role=" + role + ", profileImgUrl=" + profileImgUrl + ", bannerImgUrl=" + bannerImgUrl
-				+ ", biography=" + biography + "]";
+		return "User [id=" + id + ", events=" + events + ", fName=" + fName + ", lName=" + lName + ", email=" + email
+				+ ", phone=" + phone + ", username=" + username + ", password=" + password + ", dateCreated="
+				+ dateCreated + ", enabled=" + enabled + ", role=" + role + ", profileImgUrl=" + profileImgUrl
+				+ ", bannerImgUrl=" + bannerImgUrl + ", biography=" + biography + "]";
 	}
 
 }

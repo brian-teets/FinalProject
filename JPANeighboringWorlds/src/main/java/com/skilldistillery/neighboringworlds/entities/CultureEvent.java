@@ -3,6 +3,7 @@ package com.skilldistillery.neighboringworlds.entities;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,10 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "an_event")
@@ -22,6 +30,20 @@ public class CultureEvent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@ManyToOne
+	@JoinColumn(name = "host_id")
+	private User host;
+
+	// CultureEvent - User Join Table mapping 
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "attendee", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> attendees;
 
 	@Column(name = "event_date")
 	private LocalDate eventDate;
@@ -60,6 +82,30 @@ public class CultureEvent {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public User getHost() {
+		return host;
+	}
+
+	public void setHost(User host) {
+		this.host = host;
+	}
+
+	public List<User> getAttendees() {
+		return attendees;
+	}
+
+	public void setAttendees(List<User> attendees) {
+		this.attendees = attendees;
 	}
 
 	public LocalDate getEventDate() {
@@ -152,7 +198,7 @@ public class CultureEvent {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(attendees, id);
 	}
 
 	@Override
@@ -164,14 +210,15 @@ public class CultureEvent {
 		if (getClass() != obj.getClass())
 			return false;
 		CultureEvent other = (CultureEvent) obj;
-		return id == other.id;
+		return Objects.equals(attendees, other.attendees) && id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", eventDate=" + eventDate + ", title=" + title + ", capacity=" + capacity
-				+ ", purpose=" + purpose + ", description=" + description + ", startTime=" + startTime + ", endTime="
-				+ endTime + ", coverImgUrl=" + coverImgUrl + ", active=" + active + ", createdDate=" + createdDate
+		return "CultureEvent [id=" + id + ", address=" + address + ", host=" + host + ", attendees=" + attendees
+				+ ", eventDate=" + eventDate + ", title=" + title + ", capacity=" + capacity + ", purpose=" + purpose
+				+ ", description=" + description + ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", coverImgUrl=" + coverImgUrl + ", active=" + active + ", createdDate=" + createdDate
 				+ ", lastUpdated=" + lastUpdated + "]";
 	}
 

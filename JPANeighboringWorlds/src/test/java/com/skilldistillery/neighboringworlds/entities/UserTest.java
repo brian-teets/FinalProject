@@ -2,6 +2,7 @@ package com.skilldistillery.neighboringworlds.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-	
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
@@ -33,7 +34,7 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-			user = em.find(User.class, 1);
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
@@ -49,17 +50,17 @@ class UserTest {
 		assertEquals("cverderame", user.getUsername());
 		assertEquals("Charli", user.getfName());
 		assertEquals("Verderame", user.getlName());
-		assertEquals("charli@neighboringworlds.com", user.getEmail()); 
-		assertEquals("000-000-0000", user.getPhone()); 
-		
+		assertEquals("charli@neighboringworlds.com", user.getEmail());
+		assertEquals("000-000-0000", user.getPhone());
+
 	}
-	
-//	@Test
-//	@DisplayName("User - ..... mapping")
-//	void t2() {
-//		assertNotNull(user);
-//		assertEquals("Go round Mum's", user.getTodos().get(0).getTask());
-//		assertTrue(user.getTodos().size() > 0);
-//	}
+
+	@Test
+	@DisplayName("User - CultureEvent mapping")
+	void t2() {
+		assertNotNull(user);
+		assertTrue(user.getEvents().size() > 0);
+		assertEquals(10, user.getEvents().get(0).getCapacity());
+	}
 
 }

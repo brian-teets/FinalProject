@@ -47,20 +47,18 @@ class CultureEventTest {
 	@DisplayName("Basic mapping")
 	void t1() {
 		assertNotNull(e);
-		assertEquals("Come bake my grandma's famous cake recipe!", e.getTitle()); 
-		assertEquals(2022, e.getEventDate().getYear()); 
+		assertEquals("Come bake my grandma's famous cake recipe!", e.getTitle());
+		assertEquals(2022, e.getEventDate().getYear());
 		assertEquals(6, e.getEventDate().getMonthValue());
-		assertEquals(10, e.getCapacity()); 
-		assertTrue(e.getActive());  
-		
+		assertEquals(10, e.getCapacity());
+		assertTrue(e.getActive());
 	}
 
-//	@Test
-//	@DisplayName("User - ..... mapping")
-//	void t2() {
-//		assertNotNull(user);
-//		assertEquals("Go round Mum's", user.getTodos().get(0).getTask());
-//		assertTrue(user.getTodos().size() > 0);
-//	}
-
+	@Test
+	@DisplayName("CultureEvent - User mapping")
+	void t2() {
+		assertNotNull(e);
+		assertTrue(e.getAttendees().size() > 0);
+		assertEquals("charli@neighboringworlds.com", e.getAttendees().get(0).getEmail());
+	}
 }
