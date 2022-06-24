@@ -58,4 +58,9 @@ public class UserCommentServiceImpl implements UserCommentService {
 		return !userCmtRepo.existsById(ucid);
 	}
 
+	@Override
+	public List<UserComment> indexEventComments(int cid) {
+	return userCmtRepo.findAllByCultureEvent_Id(cid);
+	}
+
 }

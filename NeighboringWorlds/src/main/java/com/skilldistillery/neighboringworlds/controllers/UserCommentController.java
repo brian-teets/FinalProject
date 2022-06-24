@@ -49,6 +49,12 @@ public class UserCommentController {
 	public UserComment show(@PathVariable int ucid) {
 		return uCmtServ.show(ucid);
 	}
+	
+	@GetMapping("culture-events/{cid}/comments")
+	public List<UserComment> indexEventComments(@PathVariable Integer cid, HttpServletResponse res,
+			HttpServletRequest req) {
+		return uCmtServ.indexEventComments(cid);
+	}
 
 	@PostMapping("culture-events/{cid}/comments")
 	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res,
@@ -116,9 +122,9 @@ public class UserCommentController {
 //		}
 //		
 //		
-//		return modEvt; 
-//	}
-//	
+////		return modEvt; 
+////	}
+////	
 //	@DeleteMapping("culture-events/{cid}")
 //	public Boolean delete(@PathVariable int cid, HttpServletResponse res,
 //			Principal principal) {

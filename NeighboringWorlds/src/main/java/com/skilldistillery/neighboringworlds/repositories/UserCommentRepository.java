@@ -11,5 +11,6 @@ public interface UserCommentRepository extends JpaRepository<UserComment, Intege
 	UserComment findById(int ucid);
 	UserComment findByIdAndUser_Username(int ucid, String username);
 	List<UserComment> findAllByUser_Username(String username);
+	List<UserComment> findAllByCultureEvent_Id(int cid);
 	
 }
