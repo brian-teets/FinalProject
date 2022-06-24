@@ -3,6 +3,7 @@ package com.skilldistillery.neighboringworlds.entities;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,10 +65,10 @@ public class CultureEvent {
 	private String description;
 
 	@Column(name = "start_time")
-	private Time startTime;
+	private LocalTime startTime;
 
 	@Column(name = "end_time")
-	private Time endTime;
+	private LocalTime endTime;
 
 	@Column(name = "cover_img_url")
 	private String coverImgUrl;
@@ -159,19 +160,19 @@ public class CultureEvent {
 		this.description = description;
 	}
 
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 

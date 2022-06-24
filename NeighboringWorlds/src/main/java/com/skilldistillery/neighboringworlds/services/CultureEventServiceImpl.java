@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.repositories.AddressRepository;
 import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
 
 @Service
 public class CultureEventServiceImpl implements CultureEventService {
-	
+
 	@Autowired
 	private CultureEventRepository cultureEvtRepo;
+
+	@Autowired
+	private AddressRepository ar;
 
 	@Override
 	public List<CultureEvent> index() {
@@ -22,9 +26,9 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Override
 	public CultureEvent show(int cid) {
-		Optional <CultureEvent> eventOpt = cultureEvtRepo.findById(cid);
+		Optional<CultureEvent> eventOpt = cultureEvtRepo.findById(cid);
 		CultureEvent event = null;
-		if(eventOpt.isPresent()) {
+		if (eventOpt.isPresent()) {
 			event = eventOpt.get();
 		}
 		return event;
@@ -32,9 +36,15 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Override
 	public CultureEvent create(CultureEvent cEvt) {
-		// Do we want to set any defaults or just handle on front end form? 
-		
-		return cultureEvtRepo.saveAndFlush(cEvt);
+		// Do we want to set any defaults or just handle on front end form?
+		if (cEvt.getAddress() != null) {
+			cEvt.setActive(true);
+			ar.saveAndFlush(cEvt.getAddress());
+
+			return cultureEvtRepo.saveAndFlush(cEvt);
+		}
+		return null;
+
 	}
 
 	@Override
@@ -71,7 +81,7 @@ public class CultureEventServiceImpl implements CultureEventService {
 			existing.setCoverImgUrl(cEvt.getCoverImgUrl());
 		}
 		if (cEvt.getActive() != null) {
-			existing.setActive(cEvt.getActive()); 
+			existing.setActive(cEvt.getActive());
 		}
 		return existing;
 	}
@@ -79,10 +89,10 @@ public class CultureEventServiceImpl implements CultureEventService {
 	@Override
 	public Boolean delete(int cid, String username) {
 		CultureEvent evtToDelete = cultureEvtRepo.findByIdAndHost_Username(cid, username);
-		if(evtToDelete != null) {
+		if (evtToDelete != null) {
 			cultureEvtRepo.deleteById(cid);
 		}
-		return !cultureEvtRepo.existsById(cid); 
+		return !cultureEvtRepo.existsById(cid);
 	}
 
 }
