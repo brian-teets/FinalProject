@@ -45,6 +45,9 @@ public class MediaServiceImpl implements MediaService {
 		comment = uComtRepo.findByIdAndUser_Username(ucid, username);
 		if(comment != null) {
 			med.setUserComment(comment); 
+			// FOR TESTING ONLY - WE NEED MEDIA ID TO AUTOINCREMENT
+				med.setId(900);
+			
 			medRepo.saveAndFlush(med);
 		} else {
 			return null;
