@@ -36,9 +36,9 @@ public class UserCommentController {
 		return uCmtServ.index(principal.getName());
 	}
 	
-	@GetMapping("comments/{cid}")
-	public CultureEvent show(@PathVariable int cid) {
-		return cEvtServ.show(cid);
+	@GetMapping("comments/{ucid}")
+	public UserComment show(@PathVariable int ucid) {
+		return uCmtServ.show(ucid);
 	}
 	
 //	@PostMapping("culture-events")
