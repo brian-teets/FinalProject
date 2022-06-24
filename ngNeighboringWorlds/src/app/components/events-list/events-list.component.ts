@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EventsListComponent implements OnInit {
 
-  eventList: CultureEvent[] = [];
+  allEvents: CultureEvent[] = [];
   selected: CultureEvent | null = null;
   newEvent: CultureEvent = new CultureEvent();
   newEventAddress: Address = new Address();
@@ -32,7 +32,7 @@ export class EventsListComponent implements OnInit {
   reload() {
     this.es.index().subscribe({
       next: (data) => {
-        this.eventList = data;
+        this.allEvents = data;
       },
       error: (wrong) => {
         console.error('Culture-EventComponent.reload: error loading list');
@@ -42,7 +42,7 @@ export class EventsListComponent implements OnInit {
   }
 
   getEventCount(): number {
-    return this.eventList.length;
+    return this.allEvents.length;
   }
 
   displayEventInfo(event: CultureEvent): void {

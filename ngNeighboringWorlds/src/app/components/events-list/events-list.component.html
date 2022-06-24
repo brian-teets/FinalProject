@@ -1,16 +1,22 @@
 <div id="eventsList">
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Event</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <!-- <td (click)="displayEventInfo(event)">{{ event.title }}</td>
-        <td> <button class="btn btn-danger" (click)="deleteEvent(event.id)">X</button> </td> -->
-      </tr>
-    </tbody>
-  </table>
+  <h1 *ngIf="!selected"> All Events </h1>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" integrity="sha512-YzwGgFdO1NQw1CZkPoGyRkEnUTxPSbGWXvGiXrWk8IeSqdyci0dEDYdLLjMxq1zCoU0QBa4kHAFiRhUL3z2bow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <div id="eventList" *ngIf="!selected">
+    <table class="table table-striped table-hover" *ngIf="!selected">
+      <thead class="table-dark">
+	  		<tr><th>image</th><th>Title</th><th>Date</th><th>Location</th>
+			</thead>
+      <tbody>
+        <tr *ngFor="let event of allEvents">
+          <td class="id" (click)="displayEventInfo(event)">{{ event.coverImgUrl }}</td>
+          <td class="id" (click)="displayEventInfo(event)">{{ event.title }}</td>
+          <td class="location" (click)="displayEventInfo(event)">{{ event.eventDate }}</td>
+          <td class="date" (click)="displayEventInfo(event)">{{ event.address?.city }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <br><br><br>
+  </div>
 </div>
