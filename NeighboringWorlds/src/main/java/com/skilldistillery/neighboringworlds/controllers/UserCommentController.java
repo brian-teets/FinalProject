@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -106,26 +107,26 @@ public class UserCommentController {
 		}
 		return reply;
 	}
-//	
-//	@PutMapping("culture-events/{cid}")
-//	public CultureEvent modify(@RequestBody CultureEvent cEvt, @PathVariable int cid, HttpServletResponse res, 
-//			HttpServletRequest req, Principal principal) {
-//		CultureEvent modEvt;
-//		try {
-//			modEvt = cEvtServ.modify(cEvt, cid, principal.getName());
-//			if(modEvt != null) {
-//				res.setStatus(200);
-//			}
-//		} catch (Exception e) {
-//			res.setStatus(404);
-//			e.printStackTrace();
-//			modEvt = null;
-//		}
-//		
-//		
-////		return modEvt; 
-////	}
-////	
+	
+	@PutMapping("comments/{ucid}")
+	public UserComment modify(@RequestBody UserComment uCmt, @PathVariable int ucid, HttpServletResponse res, 
+			HttpServletRequest req, Principal principal) {
+		UserComment modCmt;
+		try {
+			modCmt = uCmtServ.modify(uCmt, ucid, principal.getName());
+			if(modCmt != null) {
+				res.setStatus(200);
+			}
+		} catch (Exception e) {
+			res.setStatus(404);
+			e.printStackTrace();
+			modCmt = null;
+		}
+		
+		
+		return modCmt; 
+	}
+
 	@DeleteMapping("comments/{ucid}")
 	public Boolean delete(@PathVariable int ucid, HttpServletResponse res,
 			Principal principal) {
