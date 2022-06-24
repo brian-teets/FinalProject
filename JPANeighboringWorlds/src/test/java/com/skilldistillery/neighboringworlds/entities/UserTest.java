@@ -78,5 +78,12 @@ class UserTest {
 		assertTrue(user.getComments().size() > 0);
 		assertEquals("It was so fun to learn to bake with you!", user.getComments().get(0).getContent());
 	}
+	
+	@Test
+	@DisplayName("User to Address mapping")
+	void t5() {
+		assertNotNull(user.getAddress());
+		assertEquals("1111 Osage Street", user.getAddress().getAddress1());
+	}
 
 }

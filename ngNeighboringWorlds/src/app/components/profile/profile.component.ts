@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
 
   currentUser: User = new User();
+  editUser: User | null = null;
+
 
   constructor(
     private userService: UserService,
@@ -54,8 +56,39 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  reload() {
+    this.userService.index().subscribe({
+      next: (data) => {
+      },
+      error: (wrong) => {
+        console.error('FlightComponent.reload: error loading list');
+        console.error(wrong);
+      },
+    });
+  }
+
   displayUser(user: User): void {
     this.currentUser = user;
+  }
+
+  setEditUser(): void {
+    this.editUser = Object.assign({}, this.currentUser);
+  }
+
+  updateUser(user: User, setSelected: boolean = true): void {
+    this.userService.updateProfile(user).subscribe({
+      next: (updatedUser) => {
+        this.displayUser(user);
+        this.editUser = null;
+        if (setSelected) {
+          this.currentUser = updatedUser;
+        }
+      },
+      error: (fail) => {
+        console.error('error completing todo');
+        console.error(fail);
+      },
+    });
   }
 
 }

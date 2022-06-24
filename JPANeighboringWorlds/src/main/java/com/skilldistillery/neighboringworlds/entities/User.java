@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -61,6 +63,10 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<UserComment> comments;
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public User() {
 		super();
@@ -194,6 +200,16 @@ public class User {
 
 	public void setComments(List<UserComment> comments) {
 		this.comments = comments;
+	}
+	
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override
