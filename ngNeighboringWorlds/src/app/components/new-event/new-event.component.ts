@@ -1,87 +1,103 @@
+import { User } from './../../models/user';
+import { UserService } from './../../services/user.service';
+import { AddressService } from './../../services/address.service';
+import { Address } from './../../models/address';
+import { EventService } from './../../services/event.service';
+import { CultureEvent } from './../../models/culture-event';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
-  styleUrls: ['./new-event.component.css']
+  styleUrls: ['./new-event.component.css'],
 })
 export class NewEventComponent implements OnInit {
-
   eventList: CultureEvent[] = [];
-  selected: cult | null = null;
-  newFlight: Event = new Flight();
-  editFlight: Flight | null = null;
+  selected: CultureEvent | null = null;
+  newEvent: CultureEvent = new CultureEvent();
+  newEventAddress: Address = new Address();
+  editEvent: CultureEvent | null = null;
+  eventAddress: Address = new Address();
 
-  constructor(private flightSvc: FlightsService) {}
+  constructor(
+    private es: EventService,
+    private as: AddressService,
+    private us: UserService
+  ) {}
 
   ngOnInit(): void {
     this.reload();
   }
 
   reload() {
-    this.flightSvc.index().subscribe({
+    this.es.index().subscribe({
       next: (data) => {
-        this.flightList = data;
+        this.eventList = data;
       },
       error: (wrong) => {
-        console.error('FlightComponent.reload: error loading list');
+        console.error('Culture-EventComponent.reload: error loading list');
         console.error(wrong);
       },
     });
   }
 
-  getFlightCount(): number {
-    return this.flightList.length;
+  getEventCount(): number {
+    return this.eventList.length;
   }
 
-  displayFlightInfo(flight: Flight): void {
-    this.selected = flight;
+  displayEventInfo(event: CultureEvent): void {
+    this.selected = event;
   }
 
-  addFlight(flight: Flight): void {
-    this.flightSvc.create(flight).subscribe({
+  addEvent(event: CultureEvent, eventAddress: Address): void {
+    event.address = eventAddress;
+
+    this.es.create(event).subscribe({
+      next: (createdEvent) => {
+      this.selected = createdEvent;
+      this.reload();
+      },
       error: (wrong) => {
-        console.error('error creating flight');
+        console.error('error creating event');
         console.error(wrong);
       },
     });
     this.reload();
-    this.newFlight = new Flight();
-    this.displayFlightInfo(flight);
+    this.newEvent = new CultureEvent();
+    this.displayEventInfo(event);
   }
 
-  setEditFlight(): void {
-    this.editFlight = Object.assign({}, this.selected);
+  setEditEvent(): void {
+    this.editEvent = Object.assign({}, this.selected);
   }
-  updateFlight(flight: Flight, setSelected: boolean = true): void {
-    if (flight.id != null) {
-      this.flightSvc.update(flight.id, flight).subscribe({
-        next: (updatedFlight) => {
+  updateEvent(event: CultureEvent, setSelected: boolean = true): void {
+    if (event.id != null) {
+      this.es.update(event).subscribe({
+        next: (updatedEvent) => {
           this.reload();
-          this.editFlight = null;
+          this.editEvent = null;
           if (setSelected) {
-            this.selected = updatedFlight;
+            this.selected = updatedEvent;
           }
         },
         error: (wrong) => {
-          console.error('error completing flight');
+          console.error('error completing event');
           console.error(wrong);
         },
       });
     }
   }
 
-  deleteFlight(id: number): void {
+  deleteEvent(id: number): void {
     console.log('in delete');
-    this.flightSvc.destroy(id).subscribe({
+    this.es.destroy(id).subscribe({
       next: () => {
         this.reload();
       },
       error: (wrong) => {
-        console.error('error deleting flight');
+        console.error('error deleting event');
         console.error(wrong);
       },
     });
   }
 }
-
