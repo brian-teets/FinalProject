@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Media {
 	
@@ -17,11 +19,10 @@ public class Media {
 	
 	private String url;
 	
-	//TODO fk user_comment_id
-	
 	private String caption;
 	
 	// mapped relationships should be complete on this side
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_comment_id")
 	private UserComment userComment;

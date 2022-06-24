@@ -33,11 +33,10 @@ public class UserComment {
 	@CreationTimestamp
 	private LocalDateTime commentDate;
 
-	// TODO fk user_id
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	// TODO fk an_event_id
+	
 	@ManyToOne
 	@JoinColumn(name = "an_event_id")
 	private CultureEvent cultureEvent;
@@ -49,6 +48,8 @@ public class UserComment {
 	@ManyToOne
 	@JoinColumn(name = "in_reply_to_id")
 	private UserComment inReplyTo;
+	
+	//TODO media field and relationship mapping
 
 	public int getId() {
 		return id;
