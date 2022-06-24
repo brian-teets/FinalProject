@@ -1,10 +1,9 @@
-import { User } from './../../models/user';
-import { UserService } from './../../services/user.service';
-import { AddressService } from './../../services/address.service';
-import { Address } from './../../models/address';
-import { EventService } from './../../services/event.service';
-import { CultureEvent } from './../../models/culture-event';
 import { Component, OnInit } from '@angular/core';
+import { Address } from './../../models/address';
+import { CultureEvent } from './../../models/culture-event';
+import { AddressService } from './../../services/address.service';
+import { EventService } from './../../services/event.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-new-event',
