@@ -2,64 +2,77 @@ package com.skilldistillery.neighboringworlds.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
 import com.skilldistillery.neighboringworlds.entities.UserComment;
+import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
+import com.skilldistillery.neighboringworlds.repositories.UserRepository;
 import com.skilldistillery.neighboringworlds.services.UserCommentService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost"})
+@CrossOrigin({ "*", "http://localhost" })
 @RequestMapping("api")
 public class UserCommentController {
-	
+
 	@Autowired
 	private UserCommentService uCmtServ;
+
+	@Autowired
+	private CultureEventRepository cEvtRepo;
 	
-	
-	
+	@Autowired
+	private UserRepository userRepo;
+
 	@GetMapping("comments/all")
-	public List<UserComment> index(Principal principal){
+	public List<UserComment> index(Principal principal) {
 		return uCmtServ.index(principal.getName());
 	}
-	
+
 	@GetMapping("comments/{ucid}")
 	public UserComment show(@PathVariable int ucid) {
 		return uCmtServ.show(ucid);
 	}
-	
-//	@PostMapping("culture-events")
-//	public CultureEvent create(@RequestBody CultureEvent cEvt, HttpServletResponse res, 
-//			HttpServletRequest req, Principal principal) {
-//		
-//		try {
-//			cEvt.setHost(  userService.findByUsername(principal.getName()) );
-//			cEvt = cEvtServ.create(cEvt);
-//			res.setStatus(201);
+
+	@PostMapping("culture-events/{cid}/comments")
+	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res, HttpServletRequest req,
+			Principal principal) {
+
+		try {
+
+			Optional<CultureEvent> evtOpt = cEvtRepo.findById(cid);
+			if (evtOpt != null) {
+				CultureEvent evtEvt = evtOpt.get();
+				uCmt.setCultureEvent(evtEvt);
+				uCmt.setUser(userRepo.findByUsername(principal.getName()));
+			}
+			uCmt = uCmtServ.create(uCmt);
+			res.setStatus(201);
+			
+//	TODO		Modify to redirect to user's new comment on event page?
 //			StringBuffer url = req.getRequestURL();
 //			url.append("/").append(cEvt.getId());
-//			res.setHeader("Location", url.toString()); 
-//		} catch (Exception e) {
-//			res.setStatus(400); 
-//			e.printStackTrace();
-//			cEvt = null;
-//		}
-//		
-//		return cEvt;
-//	}
+//			res.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+			uCmt = null;
+		}
+
+		return uCmt;
+	}
 //	
 //	@PutMapping("culture-events/{cid}")
 //	public CultureEvent modify(@RequestBody CultureEvent cEvt, @PathVariable int cid, HttpServletResponse res, 
