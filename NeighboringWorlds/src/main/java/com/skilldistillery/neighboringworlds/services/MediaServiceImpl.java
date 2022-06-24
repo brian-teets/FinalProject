@@ -21,8 +21,7 @@ public class MediaServiceImpl implements MediaService {
 
 	@Override
 	public List<Media> indexEventMedia(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return medRepo.findAllByUserComment_CultureEvent_Id(cid);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,12 @@ public class MediaController {
 	public List<Media> index(Principal principal){
 		
 		return medServ.index(principal.getName());
+	}
+	
+	//TODO lockdown to owner?
+	@GetMapping("culture-events/{cid}/media")
+	public List<Media> indexEventMedia(@PathVariable Integer cid) {
+		return medServ.indexEventMedia(cid);
 	}
 	
 }
