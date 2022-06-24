@@ -152,7 +152,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `media` ;
 
 CREATE TABLE IF NOT EXISTS `media` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(2000) NULL,
   `user_comment_id` INT NOT NULL,
   `caption` VARCHAR(200) NULL,
