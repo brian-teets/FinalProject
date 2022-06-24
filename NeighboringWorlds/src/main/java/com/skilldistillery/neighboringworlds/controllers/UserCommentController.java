@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
 import com.skilldistillery.neighboringworlds.entities.UserComment;
 import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
+import com.skilldistillery.neighboringworlds.repositories.UserCommentRepository;
 import com.skilldistillery.neighboringworlds.repositories.UserRepository;
 import com.skilldistillery.neighboringworlds.services.UserCommentService;
 
@@ -32,9 +33,12 @@ public class UserCommentController {
 
 	@Autowired
 	private CultureEventRepository cEvtRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private UserCommentRepository uCmtRepo;
 
 	@GetMapping("comments/all")
 	public List<UserComment> index(Principal principal) {
@@ -47,8 +51,8 @@ public class UserCommentController {
 	}
 
 	@PostMapping("culture-events/{cid}/comments")
-	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res, HttpServletRequest req,
-			Principal principal) {
+	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res,
+			HttpServletRequest req, Principal principal) {
 
 		try {
 
@@ -60,7 +64,7 @@ public class UserCommentController {
 			}
 			uCmt = uCmtServ.create(uCmt);
 			res.setStatus(201);
-			
+
 //	TODO		Modify to redirect to user's new comment on event page?
 //			StringBuffer url = req.getRequestURL();
 //			url.append("/").append(cEvt.getId());
@@ -72,6 +76,28 @@ public class UserCommentController {
 		}
 
 		return uCmt;
+	}
+
+	@PostMapping("comments/{ucid}/reply")
+	public UserComment createReply(@RequestBody UserComment reply, @PathVariable Integer ucid, HttpServletResponse res,
+			HttpServletRequest req, Principal principal) {
+
+		try {
+			Optional<UserComment> parentCmt = uCmtRepo.findById(ucid);
+			if (parentCmt != null) {
+				reply.setInReplyTo(parentCmt.get());
+				reply.setCultureEvent(parentCmt.get().getCultureEvent());
+				reply.setUser(userRepo.findByUsername(principal.getName()));
+			}
+			reply = uCmtServ.create(reply);
+			res.setStatus(201);
+
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+			reply = null;
+		}
+		return reply;
 	}
 //	
 //	@PutMapping("culture-events/{cid}")
