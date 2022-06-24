@@ -1,0 +1,42 @@
+
+<div>
+  <br>
+  <h3 class="container">Host an Event</h3>
+  <br>
+  <br>
+    <div class ="container" id="newEventForm">
+      <form name="newEventForm">
+
+        <label for="location">Title</label><br>
+        <input required type="text" name="title" placeholder="" [(ngModel)]="newEvent.title"><br>
+
+        <label for="location">Purpose</label><br>
+        <input type="text" name="purpose" placeholder="" [(ngModel)]="newEvent.purpose"><br>
+
+
+        <label for="location">Description</label><br>
+        <input required type="text" name="description" placeholder="" [(ngModel)]="newEvent.description"><br>
+
+        <label for="location">Capacity</label><br>
+        <input required type="text" name="capacity" placeholder="" [(ngModel)]="newEvent.capacity"><br>
+
+        <label for="date">Date</label><br>
+        <input required type="text" name="date" placeholder="MM/DD/YYYY" [(ngModel)]="newEvent.date"><br>
+
+        <label for="date">Start Time</label><br>
+        <input required type="text" name="startTime" placeholder="17:00:00" [(ngModel)]="newEvent.startTime"><br>
+
+        <label for="date">End Time</label><br>
+        <input type="text" name="endTime" placeholder="22:00:00" [(ngModel)]="newEvent.endTime"><br>
+
+        <label for="date">Cover Image URL</label><br>
+        <input required type="text" name="coverImgUrl" placeholder="" [(ngModel)]="newEvent.coverImgUrl"><br>
+
+        <br>
+        <button (click)="addEvent(newEvent)" name="addEventButton">Post Event</button>
+
+    <br><br><br>
+      </form>
+      <br> <br>
+    </div>
+    </div>

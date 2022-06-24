@@ -16,6 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NewEventComponent } from './components/new-event/new-event.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     NotFoundComponent,
     EventsListComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewEventComponent
   ],
   imports: [
     BrowserModule,
