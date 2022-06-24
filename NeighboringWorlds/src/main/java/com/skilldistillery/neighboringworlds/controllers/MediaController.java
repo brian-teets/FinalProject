@@ -34,4 +34,6 @@ public class MediaController {
 		return medServ.indexEventMedia(cid);
 	}
 	
+	
+	
 }

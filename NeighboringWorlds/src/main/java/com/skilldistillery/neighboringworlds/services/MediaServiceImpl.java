@@ -13,7 +13,7 @@ public class MediaServiceImpl implements MediaService {
 
 	@Autowired
 	private MediaRepository medRepo;
-	
+
 	@Override
 	public List<Media> index(String username) {
 		return medRepo.findAllByUserComment_User_Username(username);
@@ -30,6 +30,11 @@ public class MediaServiceImpl implements MediaService {
 		return null;
 	}
 
+	/*
+	 * NOTE: user_comment is child object so it must be persisted first, then return
+	 * new persisted Id to media create for persist This will likely be handled on
+	 * Angular side, one call to UC service followed by one call to Media service
+	 */
 	@Override
 	public Media create(Media med) {
 		// TODO Auto-generated method stub
