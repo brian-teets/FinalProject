@@ -46,7 +46,7 @@ public class MediaServiceImpl implements MediaService {
 		if(comment != null) {
 			med.setUserComment(comment); 
 			// FOR TESTING ONLY - WE NEED MEDIA ID TO AUTOINCREMENT
-				med.setId(900);
+			//	med.setId(900);
 			
 			medRepo.saveAndFlush(med);
 		} else {
