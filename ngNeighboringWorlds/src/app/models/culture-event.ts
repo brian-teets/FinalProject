@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Address } from './address';
 
 export class CultureEvent {
@@ -13,6 +14,7 @@ export class CultureEvent {
   active: boolean;
   createdDate: String;
   lastUpdated: String;
+  host: User | null;
   address: Address | null;
 
   constructor(
@@ -28,6 +30,7 @@ export class CultureEvent {
     active: boolean = true,
     createdDate: String = '',
     lastUpdated: String = '',
+    host: User | null = new User(),
     address: Address | null = new Address()
   ) {
     this.id = id;
@@ -42,6 +45,7 @@ export class CultureEvent {
     this.active = active;
     this.createdDate = createdDate;
     this.lastUpdated = lastUpdated;
+    this.host = host;
     this.address = address;
   }
 }
