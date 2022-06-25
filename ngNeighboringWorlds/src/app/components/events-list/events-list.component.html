@@ -1,22 +1,30 @@
 <div id="eventsList">
-  <h1 *ngIf="!selected"> All Events </h1>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" integrity="sha512-YzwGgFdO1NQw1CZkPoGyRkEnUTxPSbGWXvGiXrWk8IeSqdyci0dEDYdLLjMxq1zCoU0QBa4kHAFiRhUL3z2bow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <div id="eventList" *ngIf="!selected">
-    <table class="table table-striped table-hover" *ngIf="!selected">
-      <thead class="table-dark">
-	  		<tr><th>image</th><th>Title</th><th>Date</th><th>Location</th>
-			</thead>
-      <tbody>
-        <tr *ngFor="let event of allEvents">
-          <td class="id" (click)="displayEventInfo(event)">{{ event.coverImgUrl }}</td>
-          <td class="id" (click)="displayEventInfo(event)">{{ event.title }}</td>
-          <td class="location" (click)="displayEventInfo(event)">{{ event.eventDate }}</td>
-          <td class="date" (click)="displayEventInfo(event)">{{ event.address?.city }}</td>
+  <h1>All Events</h1>
 
-        </tr>
-      </tbody>
-    </table>
-    <br><br><br>
+  <div class="event-types">
+    <button type="button" class="btn btn-outline-secondary btn-lg">All events</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-secondary btn-lg">My events</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-secondary btn-lg">Past events</button>
+  </div>
+
+  <br>
+
+  <div class="row card-group">
+      <div class="col-5"  *ngFor="let event of allEvents">
+        <div class="card" style="width: 18rem">
+          <img src="{{ event.coverImgUrl }}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">Date: {{ event.eventDate }}</p>
+            <p class="card-text">City: {{ event.address?.city }}</p>
+            <p class="card-text">{{ event.description }}</p>
+            <a href="#" class="btn btn-primary" (click)="displayEventInfo(event)">View details</a>
+          </div>
+      </div>
+      <br>
+  </div>
+
+    <br />
   </div>
 </div>
+
