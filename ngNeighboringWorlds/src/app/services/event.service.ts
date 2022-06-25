@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { CultureEvent } from './../models/culture-event';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,7 +22,8 @@ export class EventService {
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private us: UserService
     ) {}
 
   getHttpOptions() {
