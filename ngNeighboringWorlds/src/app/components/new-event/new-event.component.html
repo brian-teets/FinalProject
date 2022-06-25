@@ -4,58 +4,55 @@
   <h3 class="container">Host an Event</h3>
   <br>
   <br>
+
+
+  <div class="container">
     <div class ="container" id="newEventForm">
+
       <form name="newEventForm">
 
-        <label for="location">Title</label><br>
-        <input required type="text" name="title" placeholder="" [(ngModel)]="newEvent.title"><br>
+    <div class="row">
+      <div class="col">
+        <h4>Event details</h4>
 
-        <label for="location">Purpose</label><br>
-        <input type="text" name="purpose" placeholder="" [(ngModel)]="newEvent.purpose"><br>
+        <input type="text" name="title" placeholder="Title" [(ngModel)]="newEvent.title" required><br><br>
+        <input type="text" name="purpose" placeholder="Purpose" [(ngModel)]="newEvent.purpose"><br><br>
+        <input type="text" name="description" placeholder="Description" [(ngModel)]="newEvent.description" required><br><br>
 
-        <label for="location">Description</label><br>
-        <input required type="text" name="description" placeholder="" [(ngModel)]="newEvent.description"><br>
-
-        <label for="location">Capacity</label><br>
-        <input required type="number" name="capacity" placeholder="" [(ngModel)]="newEvent.capacity"><br>
+        <label for="date">Capacity</label><br>
+        <input type="number" name="capacity" placeholder="Capacity" [(ngModel)]="newEvent.capacity" required><br><br>
 
         <label for="date">Date</label><br>
-        <input required type="date" name="date" placeholder="MM/DD/YYYY" [(ngModel)]="newEvent.eventDate"><br>
+        <input type="date" name="date" placeholder="MM/DD/YYYY" [(ngModel)]="newEvent.eventDate" required><br>
 
         <label for="date">Start Time</label><br>
-        <input required type="time" name="startTime" placeholder="17:00:00" [(ngModel)]="newEvent.startTime"><br>
+        <input type="time" name="startTime" placeholder="17:00:00" [(ngModel)]="newEvent.startTime" required><br>
 
         <label for="date">End Time</label><br>
         <input type="time" name="endTime" placeholder="22:00:00" [(ngModel)]="newEvent.endTime"><br>
 
         <label for="date">Cover Image URL</label><br>
-        <input required type="text" name="coverImgUrl" placeholder="" [(ngModel)]="newEvent.coverImgUrl"><br>
+        <input type="text" name="coverImgUrl" placeholder="" [(ngModel)]="newEvent.coverImgUrl" required>
+        <br><br>
+    </div>
 
-
-        <!-- Event address creation -->
-        <label for="address1">Street address</label><br>
-        <input type="text" name="address1" placeholder="Street address" [(ngModel)]="newEventAddress.address1"><br>
-
-        <label for="address1">Street address 2</label><br>
-        <input type="text" name="address2" placeholder="Street address 2" [(ngModel)]="newEventAddress.address2"><br>
-
-        <label for="address1">City</label><br>
-        <input type="text" name="city" placeholder="City" [(ngModel)]="newEventAddress.city"><br>
-
-        <label for="address1">State</label><br>
-        <input type="text" name="state" placeholder="State" [(ngModel)]="newEventAddress.state"><br>
-
-        <label for="address1">Zip code</label><br>
-        <input type="text" name="zipCode" placeholder="Zip code" [(ngModel)]="newEventAddress.zipCode"><br>
-
-        <label for="address1">Country</label><br>
-        <input type="text" name="country" placeholder="Country" [(ngModel)]="newEventAddress.country"><br>
-
+      <div class="col">
+        <h4>Event location</h4>
+        <input type="text" name="address1" placeholder="Street address" [(ngModel)]="newEventAddress.address1" required><br><br>
+        <input type="text" name="address2" placeholder="Street address 2" [(ngModel)]="newEventAddress.address2" required><br><br>
+        <input type="text" name="city" placeholder="City" [(ngModel)]="newEventAddress.city" required><br><br>
+        <input type="text" name="state" placeholder="State" [(ngModel)]="newEventAddress.state" required><br><br>
+        <input type="text" name="zipCode" placeholder="Zip code" [(ngModel)]="newEventAddress.zipCode" required><br><br>
+        <input type="text" name="country" placeholder="Country" [(ngModel)]="newEventAddress.country" required><br><br>
         <br>
-        <button (click)="addEvent(newEvent, newEventAddress)" name="addEventButton">Post Event</button>
+        <button class="btn-outline-info btn-lg" (click)="addEvent(newEvent, newEventAddress)" name="addEventButton">Post Event</button>
+          <br>
 
-        <br><br><br>
-      </form>
-      <br> <br>
+      </div>
+
     </div>
-    </div>
+  </form>
+
+  </div>
+</div>
+</div>
