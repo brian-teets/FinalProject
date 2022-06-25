@@ -1,8 +1,30 @@
-<h3>Register</h3>
+<div class="hero-image">
+  <div class="sneakyRegisterBox">
+    <form action="Register" class="sneakyRegister">
+      <br><br><br>
+      <label for="Register" style="font-size: 20px">Enter your addres and discover new worlds!</label><br>
+        <label type="text" style="margin-right:1em">First Name: </label>
+         <input [(ngModel)]="newUser.fName" type="text" name="username" placeholder="first name"
+                required style="margin-right:1em; width: 200px;"><br>
+        <label type="text" style="margin-right:1em">Last Name: </label>
+         <input [(ngModel)]="newUser.lName" type="text" name="username" placeholder="last name"
+                required style="margin-right:1em; width: 200px;"><br>
+        <label type="text" style="margin-right:1em">Username: </label>
+         <input [(ngModel)]="newUser.username" type="text" name="username" placeholder="Username"
+                required style="margin-right:1em; width: 200px;"><br>
+        <label type="text" style="margin-right:1em">Password: </label>
+         <input [(ngModel)]="newUser.password" type="password" name="username" placeholder="password"
+                required style="margin-right:1em; width: 200px;"><br>
 
-<form class="form" name="register">
-  <input [(ngModel)]="newUser.username" type="text" name="username" placeholder="Username" required><br>
-  <input [(ngModel)]="newUser.password" type="password" name="password" placeholder="Password" required><br>
-  <input [(ngModel)]="newUser.email" type="text" name="email" placeholder="Email"><br>
-  <button class="button" type="submit" (click)="register(newUser)">Register</button>
-</form>
+                <input type="text" name="address1" placeholder="Street address" [(ngModel)]="newAddress.address1">
+        <input type="text" name="address2" placeholder="Apt" [(ngModel)]="newAddress.address2" style="margin-right:1em; width: 50px;"><br>
+        <input type="text" name="city" placeholder="City" [(ngModel)]="newAddress.city" style="margin-right:1em; width: 100px;">
+        <input type="text" name="state" placeholder="State" [(ngModel)]="newAddress.state" style="margin-right:1em; width: 50px;">
+        <input type="text" name="zipCode" placeholder="Zip code" [(ngModel)]="newAddress.zipCode"style="margin-right:1em; width: 100px;"><br>
+        <input type="text" name="country" placeholder="Country" [(ngModel)]="newAddress.country" style="margin-right:1em; width: 50px;"><br>
+
+
+      <button class="btn-outline-secondary" style="width: 75px;">Explore</button>
+    </form>
+  </div>
+</div>
