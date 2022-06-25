@@ -1,1 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+
+input:invalid {
+  border: 2px solid darkred;
+}
+
+input:invalid:required {
+  background-color: pink;
+}
+
+input:valid {
+  border: 2px solid black;
+}
