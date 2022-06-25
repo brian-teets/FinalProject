@@ -14,7 +14,8 @@
             <p class="card-text">Date: {{ event.eventDate }}</p>
             <p class="card-text">City: {{ event.address?.city }}</p>
             <p class="card-text">{{ event.description }}</p>
-            <a href="#" class="btn btn-primary" (click)="displayEventInfo(event)">View details</a>
+            <button type="button" class="btn btn-primary" (click)="displayEventInfo(event)">View details</button>
+
           </div>
       </div>
       <br>
@@ -26,13 +27,13 @@
   <div class="row card-group" *ngIf="menuToggle == 'mine'">
     <div class="col-5" *ngFor="let myEvent of myEvents">
       <div class="card" style="width: 18rem">
-        <img src="{{ myEvent?.coverImgUrl }}" class="card-img-top" alt="..." />
+        <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ myEvent?.title }}</h5>
-          <p class="card-text">Date: {{ myEvent?.eventDate }}</p>
-          <p class="card-text">City: {{ myEvent?.address?.city }}</p>
-          <p class="card-text">{{ myEvent?.description }}</p>
-          <a href="#" class="btn btn-primary" (click)="displayEventInfo(myEvent)">View details</a>
+          <h5 class="card-title">{{ myEvent.title }}</h5>
+          <p class="card-text">Date: {{ myEvent.eventDate }}</p>
+          <p class="card-text">City: {{ myEvent.address?.city }}</p>
+          <p class="card-text">{{ myEvent.description }}</p>
+          <button type="button" class="btn btn-primary" (click)="displayEventInfo(myEvent)">View details</button>
         </div>
     </div>
     <br>
@@ -49,7 +50,7 @@
         <p class="card-text">Date: {{ selected.eventDate }}</p>
         <p class="card-text">City: {{ selected.address?.city }}</p>
         <p class="card-text">{{ selected.description }}</p>
-        <a href="#" class="btn btn-primary" (click)="menuToggleShowAll()">Back</a>
+        <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
         <br>
         <br />
 </div>

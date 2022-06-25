@@ -50,6 +50,7 @@ export class EventsListComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
+    this.menuToggle = 'selected';
   }
 
   addEvent(event: CultureEvent, eventAddress: Address): void {
@@ -113,7 +114,7 @@ export class EventsListComponent implements OnInit {
             this.myEvents.push(event);
           }
         });
-        this.menuToggleShowMine()
+        this.menuToggle = 'mine';
         console.log(this.myEvents);
       },
       error: (wrong) => {
@@ -131,12 +132,6 @@ export class EventsListComponent implements OnInit {
 
   menuToggleShowAll() {
     this.menuToggle = 'all';
-    console.log(this.menuToggle);
-    this.reload;
-  }
-
-  menuToggleShowMine() {
-    this.menuToggle = 'mine';
     console.log(this.menuToggle);
     this.reload;
   }
