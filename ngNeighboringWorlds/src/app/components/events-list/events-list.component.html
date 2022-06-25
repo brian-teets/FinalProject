@@ -1,15 +1,11 @@
-<div id="eventsList">
-  <h1>All Events</h1>
-
-  <div class="event-types">
-    <button type="button" class="btn btn-outline-secondary btn-lg">All events</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-outline-secondary btn-lg">My events</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-outline-secondary btn-lg">Past events</button>
+  <div class="events-list">
+    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowAll()">All events</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >My events</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowPast()">Past events</button>
   </div>
-
   <br>
 
-  <div class="row card-group">
+  <div class="row card-group" *ngIf="menuToggle == 'all'">
       <div class="col-5"  *ngFor="let event of allEvents">
         <div class="card" style="width: 18rem">
           <img src="{{ event.coverImgUrl }}" class="card-img-top" alt="..." />
@@ -23,8 +19,37 @@
       </div>
       <br>
   </div>
-
     <br />
   </div>
+
+
+  <div class="row card-group" *ngIf="menuToggle == 'mine'">
+    <div class="col-5" *ngFor="let myEvent of myEvents">
+      <div class="card" style="width: 18rem">
+        <img src="{{ myEvent?.coverImgUrl }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ myEvent?.title }}</h5>
+          <p class="card-text">Date: {{ myEvent?.eventDate }}</p>
+          <p class="card-text">City: {{ myEvent?.address?.city }}</p>
+          <p class="card-text">{{ myEvent?.description }}</p>
+          <a href="#" class="btn btn-primary" (click)="displayEventInfo(myEvent)">View details</a>
+        </div>
+    </div>
+    <br>
+</div>
+  <br />
 </div>
 
+
+<!-- SINGLE EVENT VIEW -->
+
+<div class="row card-group" *ngIf="selected">
+
+        <h5 class="card-title">{{ selected.title }}</h5>
+        <p class="card-text">Date: {{ selected.eventDate }}</p>
+        <p class="card-text">City: {{ selected.address?.city }}</p>
+        <p class="card-text">{{ selected.description }}</p>
+        <a href="#" class="btn btn-primary" (click)="menuToggleShowAll()">Back</a>
+        <br>
+        <br />
+</div>

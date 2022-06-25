@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
 import { AddressService } from 'src/app/services/address.service';
@@ -8,21 +9,23 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.css']
+  styleUrls: ['./events-list.component.css'],
 })
 export class EventsListComponent implements OnInit {
-
   allEvents: CultureEvent[] = [];
+  myEvents: CultureEvent[] = [];
   selected: CultureEvent | null = null;
   newEvent: CultureEvent = new CultureEvent();
   newEventAddress: Address = new Address();
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
+  menuToggle: string = 'all';
 
   constructor(
     private es: EventService,
     private as: AddressService,
-    private us: UserService
+    private us: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,8 +57,8 @@ export class EventsListComponent implements OnInit {
 
     this.es.create(event).subscribe({
       next: (createdEvent) => {
-      this.selected = createdEvent;
-      this.reload();
+        this.selected = createdEvent;
+        this.reload();
       },
       error: (wrong) => {
         console.error('error creating event');
@@ -99,5 +102,48 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+  }
+
+  getMyEvents() {
+    this.myEvents = [];
+    this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        this.allEvents.forEach((event) => {
+          if (loggedInUser.id == event.host?.id) {
+            this.myEvents.push(event);
+          }
+        });
+        this.menuToggleShowMine()
+        console.log(this.myEvents);
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
+  }
+
+  setSelectedEvent(): void {
+    this.selected = Object.assign({}, this.selected);
+  }
+
+  menuToggleShowAll() {
+    this.menuToggle = 'all';
+    console.log(this.menuToggle);
+    this.reload;
+  }
+
+  menuToggleShowMine() {
+    this.menuToggle = 'mine';
+    console.log(this.menuToggle);
+    this.reload;
+  }
+
+  menuToggleShowPast() {
+    this.menuToggle = 'past';
+    console.log(this.menuToggle);
+    this.reload;
   }
 }
