@@ -1,0 +1,20 @@
+.navbar-custom {
+  background-color: rgb(32, 67, 46);
+}
+/* Modify brand and text color */
+
+
+.navbar-custom .navbar-text {
+  color: whitesmoke;
+  font-size: x-large;
+  margin: 0px;
+  padding: 0em;
+}
+
+a {
+  color: rgb(235, 234, 208);
+  display: inline;
+  margin-right: 150px;
+  font-family: 'Helvetica-bold', serif;
+
+}

@@ -1,12 +1,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div>
   <nav class="navbar navbar-expand-lg navbar-custom">
-    <a [routerLink]="['/home']"> <img src="" alt="" width="90"></a>
+    <a [routerLink]="['/home']"> <img src="../../../assets/logo.png" alt="" width="150" height="100"></a>
     <br><br><br>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="!loggedIn()">
-          <a class="nav-link" [routerLink]="['/register']">Register</a>
+        <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']">Neighboring World's</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']">About</a>
         </li>
 
         <li class="nav-item active" *ngIf="loggedIn()">
@@ -24,8 +27,9 @@
         </li>
 
       </ul>
-    <form class="d-flex" >
-        <input class="form-control me-2" type="search" placeholder="search term" aria-label="Search">
+
+    <form class="navbar-nav ml-auto" >
+        <input class="form-control me-2" type="search" placeholder="discover" aria-label="Search">
         <button class="btn btn-outline-secondary" type="submit">Search</button>
     </form>
     </div>
