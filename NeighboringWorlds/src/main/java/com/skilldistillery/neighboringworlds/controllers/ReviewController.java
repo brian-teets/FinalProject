@@ -20,9 +20,11 @@ public class ReviewController {
 	private ReviewService revServ;
 	
 	// currently viewable by all - later could lockdown to only admin
+	
 	@GetMapping("reviews-all")
 	public List<Review> index(){
 		return revServ.index();
 	}
+	
 
 }

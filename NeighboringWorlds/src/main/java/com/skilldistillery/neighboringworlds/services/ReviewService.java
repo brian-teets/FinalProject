@@ -8,7 +8,7 @@ import com.skilldistillery.neighboringworlds.entities.ReviewId;
 public interface ReviewService {
 
 	List<Review> index();
-	Review show(int cid, int aid); // culture id and attendee id
+//	Review show(int cid, int aid); // culture id and attendee id
 	Review create(Review rev);
 	Review delete(int rid);
 	
