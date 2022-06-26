@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  background-image: url(../../../assets/colorfulpeople.png);
+  background-color: #cccccc;
+  height: 550px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text1 {
+  text-align: center;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  color: rgb(32, 67, 46);
+  font-weight: 1000;
+  font-family: "Helvetica-bold", serif;
+  -webkit-text-stroke: 2px white;
+
+}
+.hero-text2 {
+  text-align: center;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(114, 140, 175);
+  font-weight: 1000;
+  font-family: "Helvetica-bold", serif;
+  -webkit-text-stroke: 2px white;
+
+}
+.hero-text3 {
+  text-align: center;
+  position: absolute;
+  top: 15%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  color: rgb(190, 86, 38);
+  font-weight: 1000;
+  font-family: "Helvetica-bold", serif;
+  -webkit-text-stroke: 2px white;
+
+}
+
+.overview {
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-color: rgb(235, 234, 208);
+}
+
+.over-text {
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(32, 67, 46);
+  font-size: 20px;
+}
+
+.sneakyRegisterBox {
+  background-color: rgb(32, 67, 46);
+  color: #fff;
+  opacity: 0.92;
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: 600px;
+}
