@@ -32,6 +32,42 @@
 
 
 
+<div id="editProfile" *ngIf="editUser">
+
+  <form class="form">
+    <label class="form-label" for="location">First Name: </label>
+    <input class="form-control" type="text" name="location" value={{currentUser.fName}} [(ngModel)]= "editUser.fName"/>
+    <br>
+    <label class="form-label" for="date">Last Name: </label>
+    <input class="form-control" type="text" name="date" value={{currentUser.lName}} [(ngModel)]= "editUser.lName"/>
+    <br>
+    <label class="form-label" for="acftNumber">Email: </label>
+    <input class="form-control" type="text" name="acftNumber" value={{currentUser.email}} [(ngModel)]= "editUser.email"/>
+    <br>
+    <label class="form-label" for="flightType" >Phone: </label>
+    <input class="form-control" type="text" name="flightType" value={{currentUser.phone}} [(ngModel)]= "editUser.phone"/>
+    <br>
+    <label class="form-label" for="missionType" >Profile Image: </label>
+    <input class="form-control" type="text" name="missionType" value={{currentUser.profileImgUrl}} [(ngModel)]= "editUser.profileImgUrl"/>
+    <br>
+    <label class="form-label" for="dayInHours" >Banner Image: </label>
+    <input class="form-control" type="text" name="dayInHours" value={{currentUser.bannerImgUrl}} [(ngModel)]= "editUser.bannerImgUrl"/>
+    <br>
+    <label class="form-label" for="nightInHours" >About Me: </label>
+    <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
+
+    <br>
+    <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
+    <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
+  </form>
+
+</div>
+
+
+
+
+<!-- Working on a tabbed nav bar, currently not functional -->
+
     <!-- <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link" id="nav-hosting-tab" data-toggle="tab" href="#nav-hosting" role="tab" aria-controls="nav-hosting" aria-selected="false">Hosting</a>
@@ -82,38 +118,3 @@
         </div>
       </div>
     </div> -->
-
-
-
-
-
-<div id="editProfile" *ngIf="editUser">
-
-  <form class="form">
-    <label class="form-label" for="location">First Name: </label>
-    <input class="form-control" type="text" name="location" value={{currentUser.fName}} [(ngModel)]= "editUser.fName"/>
-    <br>
-    <label class="form-label" for="date">Last Name: </label>
-    <input class="form-control" type="text" name="date" value={{currentUser.lName}} [(ngModel)]= "editUser.lName"/>
-    <br>
-    <label class="form-label" for="acftNumber">Email: </label>
-    <input class="form-control" type="text" name="acftNumber" value={{currentUser.email}} [(ngModel)]= "editUser.email"/>
-    <br>
-    <label class="form-label" for="flightType" >Phone: </label>
-    <input class="form-control" type="text" name="flightType" value={{currentUser.phone}} [(ngModel)]= "editUser.phone"/>
-    <br>
-    <label class="form-label" for="missionType" >Profile Image: </label>
-    <input class="form-control" type="text" name="missionType" value={{currentUser.profileImgUrl}} [(ngModel)]= "editUser.profileImgUrl"/>
-    <br>
-    <label class="form-label" for="dayInHours" >Banner Image: </label>
-    <input class="form-control" type="text" name="dayInHours" value={{currentUser.bannerImgUrl}} [(ngModel)]= "editUser.bannerImgUrl"/>
-    <br>
-    <label class="form-label" for="nightInHours" >About Me: </label>
-    <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
-
-    <br>
-    <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
-    <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
-  </form>
-
-</div>
