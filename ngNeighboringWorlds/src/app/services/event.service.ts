@@ -9,10 +9,9 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
-
   // private baseUrl = 'http://localhost:8083/';
   private url = environment.baseUrl + 'api/culture-events';
   datePipe: any;
@@ -24,7 +23,7 @@ export class EventService {
     private router: Router,
     private datepipe: DatePipe,
     private us: UserService
-    ) {}
+  ) {}
 
   getHttpOptions() {
     let options = {
@@ -43,7 +42,8 @@ export class EventService {
         return throwError(
           () =>
             new Error(
-              'CultureEventService.index(): error retrieving list of CultureEvents: ' + err
+              'CultureEventService.index(): error retrieving list of CultureEvents: ' +
+                err
             )
         );
       })
@@ -52,48 +52,96 @@ export class EventService {
 
   create(event: CultureEvent): Observable<CultureEvent> {
     event.description = '';
-    return this.http.post<CultureEvent>(this.url, event, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('CultureEventService.create(): error creating CultureEvent: ' + err)
-        );
-      })
-    );
+    return this.http
+      .post<CultureEvent>(this.url, event, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CultureEventService.create(): error creating CultureEvent: ' +
+                  err
+              )
+          );
+        })
+      );
   }
 
   update(CultureEvent: CultureEvent): Observable<CultureEvent> {
     let completeDate = '';
 
-    return this.http.put<CultureEvent>(this.url + '/' + CultureEvent.id, CultureEvent, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('CultureEventService.update(): error updating CultureEvent: ' + err)
-        );
-      })
-    );
+    return this.http
+      .put<CultureEvent>(
+        this.url + '/' + CultureEvent.id,
+        CultureEvent,
+        this.getHttpOptions()
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CultureEventService.update(): error updating CultureEvent: ' +
+                  err
+              )
+          );
+        })
+      );
   }
 
   destroy(id: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('CultureEventService.destroy(): error deleting CultureEvent: ' + err)
-        );
-      })
-    );
+    return this.http
+      .delete<void>(this.url + '/' + id, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CultureEventService.destroy(): error deleting CultureEvent: ' +
+                  err
+              )
+          );
+        })
+      );
   }
 
   show(id: number): Observable<CultureEvent> {
-    return this.http.get<CultureEvent>(this.url + '/' + id, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('CultureEventService.show(): error retrieving CultureEvent: ' + err)
-        );
-      })
-    );
+    return this.http
+      .get<CultureEvent>(this.url + '/' + id, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CultureEventService.show(): error retrieving CultureEvent: ' +
+                  err
+              )
+          );
+        })
+      );
+  }
+
+  attend(cid: number) {
+    return this.http
+      .post(
+        environment.baseUrl + 'api/culture-events' + '/' + cid + '/attendees',
+        null,
+        this.getHttpOptions()
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'EventService.update(): error updating Addendee: ' + err
+              )
+          );
+        })
+      );
   }
 }

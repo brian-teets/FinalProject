@@ -36,7 +36,7 @@ export class UserService {
       })
     );
   }
-  index(): Observable<User>{
+  index(): Observable<User> {
     return this.http.get<User>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -75,29 +75,36 @@ export class UserService {
   }
 
   update(id: number, user: User): Observable<User> {
-
     return this.http.put<User>(this.url + '/' + id, user).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error(
-            'FlightService.update(): error updating Toedo: ' + err
-          )
+          () =>
+            new Error('UserService.update(): error updating user profile: ' + err)
         );
       })
-    )
-    }
-  updateProfile(user: User): Observable<User> {
-
-    return this.http.put<User>(environment.baseUrl + "api/profile", user, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error(
-            'UserService.update(): error updating UserProlie: ' + err
-          )
-        );
-      })
-    )
-    }
+    );
   }
+
+  updateProfile(user: User): Observable<User> {
+    return this.http
+      .put<User>(
+        environment.baseUrl + 'api/profile',
+        user,
+        this.getHttpOptions()
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'UserService.update(): error updating user profile: ' + err
+              )
+          );
+        })
+      );
+  }
+
+
+}

@@ -5,6 +5,7 @@
     <div>
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowAll()">All events</button>&nbsp;&nbsp;
     <button type="button" class="btn btn-outline-secondary btn-lg" >FILTER BY TAGS ??</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleCreateEvent()">Create new Event</button>&nbsp;&nbsp;
   </div>
   <br>
 
@@ -61,8 +62,20 @@
         <p class="card-text">Created on: {{ selected.createdDate }}</p>
         <p class="card-text">Updated on: {{ selected.lastUpdated }}</p>
         <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p>
+        <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
         <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
         <br>
         <br />
+
+      </div>
+
+<!-- SINGLE EVENT VIEW -->
+
+  <div class="row card-group" *ngIf="menuToggle == 'createEvent'">
+
+      <app-new-event></app-new-event>
+
   </div>
-  </div>
+
+
+</div>
