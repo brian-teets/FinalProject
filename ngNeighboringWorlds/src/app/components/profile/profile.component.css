@@ -1,32 +1,26 @@
 #bannerImg {
-
   background-image: url(../../../assets/colorfulpeople.png);
-  background-color: #cccccc;
+  background-color: #CCCCCC;
   height: 300px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
-
 #allcontent {
   background-color: rgb(235, 234, 208);
   position: relative;
-
 }
-
 img {
   border-radius: 50%;
   height: 390px;
   width: 400px;
   border: 4px solid  rgb(235, 234, 208);
 }
-
 #editButton {
   color:  rgb(235, 234, 208);
   left: 50px;
 }
-
 .col-sm-4{
   background-color: rgb(32, 67, 46);
   width: 30rem;

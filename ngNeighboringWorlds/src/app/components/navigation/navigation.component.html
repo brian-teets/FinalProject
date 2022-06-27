@@ -8,7 +8,11 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
-
+        <!-- <label for="User"></label><br>
+        <select name="User">
+              <option [routerLink]="['/profile']">View Profile</option>
+              <option [routerLink]="['/home']" (click)="logout()">Logout</option>
+               -->
         <li class="nav-item active" *ngIf="loggedIn()">
           <a class="nav-link" [routerLink]="['/profile']">Profile</a>
         </li>
