@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   // selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   currentUser: User = new User();
@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
   newEventAddress: Address = new Address();
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
-  menuToggle: string = 'all';
 
   constructor(
     private userService: UserService,
@@ -33,10 +32,10 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private es: EventService,
     private us: UserService,
-    private as: AddressService
   ) {}
 
   ngOnInit(): void {
+    this.reload();
     let userIdStr = this.currentRoute.snapshot.paramMap.get('userId');
     if (userIdStr) {
       let userId = Number.parseInt(userIdStr);
@@ -77,7 +76,17 @@ export class ProfileComponent implements OnInit {
     this.userService.index().subscribe({
       next: (data) => {},
       error: (wrong) => {
-        console.error('FlightComponent.reload: error loading list');
+        console.error('UserComponent.reload: error loading list');
+        console.error(wrong);
+      },
+    });
+
+    this.es.index().subscribe({
+      next: (data) => {
+        this.allEvents = data;
+      },
+      error: (wrong) => {
+        console.error('Culture-EventComponent.reload: error loading list');
         console.error(wrong);
       },
     });
@@ -119,7 +128,7 @@ export class ProfileComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
-    this.menuToggle = 'selected';
+    this.profileEditToggle = 'selected';
   }
 
   addEvent(event: CultureEvent, eventAddress: Address): void {
@@ -174,16 +183,22 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  setSelectedEvent(): void {
+    this.selected = Object.assign({}, this.selected);
+  }
+
   getMyEvents() {
-    this.myEvents = [];
+    this.reload();
+    this.profileEditToggle = 'mine';
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.allEvents.forEach((event) => {
           if (loggedInUser.id == event.host?.id) {
             this.myEvents.push(event);
+            console.log(event);
           }
         });
-        this.menuToggle = 'mine';
+        console.log(this.profileEditToggle);
         console.log(this.myEvents);
       },
       error: (wrong) => {
@@ -195,19 +210,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  setSelectedEvent(): void {
-    this.selected = Object.assign({}, this.selected);
-  }
-
-  menuToggleShowAll() {
-    this.menuToggle = 'all';
-    console.log(this.menuToggle);
+  getAttendingEvents(): void {
+    this.profileEditToggle = 'attending';
+    this.allEvents = [];
+    this.myEvents = [];
     this.reload;
   }
 
-  menuToggleShowPast() {
-    this.menuToggle = 'past';
-    console.log(this.menuToggle);
+  getPastEvents(): void {
+    this.profileEditToggle = 'past';
+    this.allEvents = [];
+    this.myEvents = [];
     this.reload;
   }
 

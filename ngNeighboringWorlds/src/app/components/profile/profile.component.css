@@ -11,7 +11,7 @@
   background-color: rgb(235, 234, 208);
   position: relative;
 }
-img {
+#profileImg {
   border-radius: 50%;
   height: 390px;
   width: 400px;
