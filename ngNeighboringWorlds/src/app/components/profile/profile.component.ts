@@ -25,6 +25,8 @@ export class ProfileComponent implements OnInit {
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
 
+  attendeesList: User[] = [];
+
   constructor(
     private userService: UserService,
     private currentRoute: ActivatedRoute,
@@ -72,18 +74,9 @@ export class ProfileComponent implements OnInit {
   }
 
   reload() {
-    // this.userService.index().subscribe({
-    //   next: (data) => {},
-    //   error: (wrong) => {
-    //     console.error('UserComponent.reload: error loading list');
-    //     console.error(wrong);
-    //   },
-    // });
-
     this.es.index().subscribe({
       next: (data) => {
         this.allEvents = data;
-        console.log(this.allEvents);
       },
       error: (wrong) => {
         console.error('Culture-EventComponent.reload: error loading list');
@@ -215,12 +208,20 @@ export class ProfileComponent implements OnInit {
 
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
-        console.log(loggedInUser.events);
         this.allEvents.forEach((event) => {
-          if (true) {
-            // this.attendingEvents.push(event);
-            console.log('Inside getAttendingEvents() ' + this.attendingEvents);
-          }
+          console.log(loggedInUser.id);
+          console.log(event.attendees);
+
+          event.attendees?.forEach((attendee) => {
+            console.log(attendee);
+            console.log(attendee.id);
+            console.log(loggedInUser.id);
+
+            if (attendee == loggedInUser)
+              this.attendingEvents.push(event);
+              console.log("I am attending " + event.title);
+
+          });
         });
       },
       error: (wrong) => {

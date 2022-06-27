@@ -76,7 +76,7 @@
           </div>
 
           <div class="row card-group" *ngIf="profileEditToggle == 'attending'">
-            <div class="col-5" *ngFor="let myEvent of this.currentUser.events">
+            <div class="col-5" *ngFor="let myEvent of attendingEvents">
               <div class="card" style="width: 18rem">
                 <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
                 <div class="card-body">

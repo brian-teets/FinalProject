@@ -16,6 +16,7 @@ export class CultureEvent {
   lastUpdated: String;
   host: User | null;
   address: Address | null;
+  attendees: User[] | null;
 
   constructor(
     id: number = 0,
@@ -31,7 +32,8 @@ export class CultureEvent {
     createdDate: String = '',
     lastUpdated: String = '',
     host: User | null = new User(),
-    address: Address | null = new Address()
+    address: Address | null = new Address(),
+    attendees: User[] = []
   ) {
     this.id = id;
     this.eventDate = eventDate;
@@ -47,5 +49,6 @@ export class CultureEvent {
     this.lastUpdated = lastUpdated;
     this.host = host;
     this.address = address;
+    this.attendees = attendees;
   }
 }

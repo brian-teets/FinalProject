@@ -36,6 +36,7 @@ export class UserService {
       })
     );
   }
+
   index(): Observable<User> {
     return this.http.get<User>(this.url).pipe(
       catchError((err: any) => {
