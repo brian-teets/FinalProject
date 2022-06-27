@@ -7,6 +7,7 @@
       <div class="col-sm-4">
       <div class="img-container"><img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
         <button (click)="setEditUser()" class="card-link"><i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+
       </div>
     <br>
   <hr>
@@ -25,12 +26,16 @@
         <!-- <a (click)="setEditUser()" class="card-link">Edit Profile</a>
         <a href="#" class="card-link">Deactivate Profile</a>
         <i id="editButton" class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> -->
-        <h3>My Interests</h3> <br>
+
+<h3>My Interests</h3> <br>
   <button class="button" style="margin-right:1em;">Nederland</button> <button class="button" style="margin-right:1em;">Food</button>
     </div><br><br>
+
     <div class="col-sm-8"><br>
 
+<div class="app-events-list" *ngIf="profileEditToggle == 'show'">
   <app-events-list></app-events-list>
+</div>
 
       <!-- <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -113,3 +118,6 @@
 
   </div>
   </div>
+
+
+

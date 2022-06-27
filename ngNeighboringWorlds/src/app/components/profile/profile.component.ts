@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -7,20 +8,17 @@ import { UserService } from 'src/app/services/user.service';
   // selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  selector: 'ngbd-nav-basic'
-  //templateUrl: './nav-basic.html'
 })
 export class ProfileComponent implements OnInit {
-
   currentUser: User = new User();
   editUser: User | null = null;
-
+  profileEditToggle: String = 'hide';
 
   constructor(
     private userService: UserService,
     private currentRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let userIdStr = this.currentRoute.snapshot.paramMap.get('userId');
@@ -32,36 +30,36 @@ export class ProfileComponent implements OnInit {
             this.currentUser = user;
           },
           error: (fail) => {
-            console.error('UserProfileComponent.ngOnit: error getting user by id:');
+            console.error(
+              'UserProfileComponent.ngOnit: error getting user by id:'
+            );
             console.error(fail);
             this.router.navigateByUrl('userIdNotFound');
-          }
+          },
         });
-
-      }
-      else {
+      } else {
         console.error('UserProfileComponent.ngOnit: invalid user id:');
-        this.router.navigateByUrl('invalidUserId')
+        this.router.navigateByUrl('invalidUserId');
       }
-    }
-    else {
+    } else {
       this.userService.getLoggedInUser().subscribe({
         next: (user) => {
           this.currentUser = user;
         },
         error: (fail) => {
-          console.error('UserProfileComponent.ngOnit: error getting logged in user:');
+          console.error(
+            'UserProfileComponent.ngOnit: error getting logged in user:'
+          );
           console.error(fail);
           this.router.navigateByUrl('notLoggedIn');
-        }
+        },
       });
     }
   }
 
   reload() {
     this.userService.index().subscribe({
-      next: (data) => {
-      },
+      next: (data) => {},
       error: (wrong) => {
         console.error('FlightComponent.reload: error loading list');
         console.error(wrong);
@@ -74,6 +72,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setEditUser(): void {
+    this.profileEditToggle = 'hide';
     this.editUser = Object.assign({}, this.currentUser);
   }
 
@@ -85,6 +84,7 @@ export class ProfileComponent implements OnInit {
         if (setSelected) {
           this.currentUser = updatedUser;
         }
+        this.profileEditToggle = 'show';
       },
       error: (fail) => {
         console.error('error completing todo');
@@ -93,4 +93,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  toggleProfileEdit() {
+    this.profileEditToggle = 'show';
+  }
 }
