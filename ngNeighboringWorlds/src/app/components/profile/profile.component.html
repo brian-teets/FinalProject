@@ -6,9 +6,8 @@
   <div>
     <div class="row">
       <div class="col-sm-4">
-      <img  class="images" id="profileImg" src="{{currentUser.profileImgUrl}}"/>
-
-        <button (click)="setEditUser()" class="card-link"><i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+      <img  class="images" id="profileImg" src="{{currentUser.profileImgUrl}}"/><br>
+      <a (click)="setEditUser()" class="card-link"> <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></a>
     <br>
   <hr>
     <h3>{{currentUser.fName}} {{currentUser.lName}}</h3>
