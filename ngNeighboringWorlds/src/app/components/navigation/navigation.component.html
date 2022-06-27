@@ -4,30 +4,35 @@
     <a [routerLink]="['/home']"> <img src="../../../assets/logo.png" alt="" width="150" height="100"></a>
     <br><br><br>
     <div class="collapse navbar-collapse" id="navbarNav">
+
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/about']">About</a>
-        </li>
+
         <!-- <label for="User"></label><br>
         <select name="User">
               <option [routerLink]="['/profile']">View Profile</option>
               <option [routerLink]="['/home']" (click)="logout()">Logout</option>
                -->
-        <li class="nav-item active" *ngIf="loggedIn()">
-          <a class="nav-link" [routerLink]="['/profile']">Profile</a>
-        </li>
-        <li class="nav-item active" *ngIf="!loggedIn()">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
+        <li class="nav-item" *ngIf="loggedIn()">
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/profile']">Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li class="nav-item" *ngIf="loggedIn()">
-          <a class="nav-link" [routerLink]="['/home']"><button class="btn btn-outline-secondary" (click)="logout()">Log out</button></a>
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/event']">Events</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/about']">About</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li class="nav-item active" *ngIf="!loggedIn()">
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/login']">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li class="nav-item" *ngIf="loggedIn()">
+          <button class="btn btn-secondary btn-lg" (click)="logout()" [routerLink]="['/home']">Log out</button>&nbsp;&nbsp;
         </li>
 
       </ul>
 
     <form class="navbar-nav ml-auto" >
         <input class="form-control me-2" type="search" placeholder="discover" aria-label="Search">
-        <button class="btn btn-outline-secondary" type="submit" [routerLink]="['/event']">Search</button>
+        <button class="btn btn-secondary btn-lg" type="submit" [routerLink]="['/event']">Search</button>
     </form>
     </div>
   </nav>
