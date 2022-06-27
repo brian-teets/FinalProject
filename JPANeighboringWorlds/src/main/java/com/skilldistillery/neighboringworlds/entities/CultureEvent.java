@@ -41,12 +41,12 @@ public class CultureEvent {
 	@JoinColumn(name = "host_id")
 	private User host;
 
-	// CultureEvent - User Join Table mapping 
+	// CultureEvent - User Join Table mapping
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "attendee", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> attendees;
-	
+
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "event_tag_has_an_event", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "event_tag_id"))
@@ -82,7 +82,6 @@ public class CultureEvent {
 	@Column(name = "last_updated")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdated;
-	
 
 	public CultureEvent() {
 		super();
@@ -207,7 +206,6 @@ public class CultureEvent {
 	public void setLastUpdated(LocalDateTime lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
-	
 
 	public List<EventTag> getTags() {
 		return tags;
@@ -216,7 +214,14 @@ public class CultureEvent {
 	public void setTags(List<EventTag> tags) {
 		this.tags = tags;
 	}
-	
+
+	public void addTag(EventTag tag) {
+		if (!this.tags.contains(tag)) {
+			System.out.println("TAG ALREADY EXISTS IN LIST");
+		} else {
+			this.tags.add(tag);
+		}
+	}
 
 	public List<Review> getReviews() {
 		return reviews;
@@ -250,8 +255,5 @@ public class CultureEvent {
 				+ description + ", startTime=" + startTime + ", endTime=" + endTime + ", coverImgUrl=" + coverImgUrl
 				+ ", active=" + active + ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
 	}
-
-
-
 
 }

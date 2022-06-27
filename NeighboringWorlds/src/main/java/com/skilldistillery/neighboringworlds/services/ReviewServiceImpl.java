@@ -13,8 +13,6 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Autowired
 	private ReviewRepository reviewRepo;
-//	@Autowired
-//	private ReviewIdRepository reviewIdRepo;
 	
 
 	
@@ -28,18 +26,12 @@ public class ReviewServiceImpl implements ReviewService {
 	// Currently getting error "The given domain class does not
 	// contain an id attribute"
 	
-//	@Override
-//	public Review show(int cid, int aid) {
-//		ReviewId thisRid = reviewIdRepo.findByEventIdAndUserId(cid, aid);
-//		Review review = null;
-//		if(thisRid != null) {
-//			Optional<Review> rev = reviewRepo.findById(thisRid);
-//			if(rev != null) {
-//				review = rev.get(); 
-//			}
-//		}
-//		return review;
-//	}
+	@Override
+	public Review show(int cid, int aid) {
+		Review review = null;
+		review = reviewRepo.findByCultureEvent_IdAndUser_Id(cid, aid);
+		return review;
+	}
 	
 
 	

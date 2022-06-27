@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
 import com.skilldistillery.neighboringworlds.entities.EventTag;
+import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
 import com.skilldistillery.neighboringworlds.services.EventTagService;
 
 @RestController
@@ -26,6 +27,9 @@ public class EventTagController {
 	
 	@Autowired
 	private EventTagService evtTagServ;
+	
+	@Autowired
+	private CultureEventRepository cEvtRepo;
 	
 	@GetMapping("tags/{keyword}")
 	public List<EventTag> showTagsByKeyword(@PathVariable String keyword, HttpServletResponse res, HttpServletRequest req){
@@ -38,25 +42,53 @@ public class EventTagController {
 	}
 	
 	
+	
 	@PostMapping("tags")
 	public EventTag create(@RequestBody EventTag newEvtTag, HttpServletResponse res, HttpServletRequest req) {
 		try {
-
+			
 			newEvtTag = evtTagServ.create(newEvtTag);
 			if (newEvtTag != null) {
 				res.setStatus(201);
 			}
-
-
+			
+			
 		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();
 			newEvtTag = null;
 		}
-
+		
 		
 		
 		return newEvtTag;
 	}
+	
+	@PostMapping("culture-events/{cid}/tags")
+	public EventTag createTagWithEvent(@RequestBody EventTag newEvtTag, @PathVariable int cid, HttpServletResponse res, HttpServletRequest req) {
+		try {
+			
+			newEvtTag = evtTagServ.create(newEvtTag);
+			if (newEvtTag != null) {
+				Optional<CultureEvent> evt = cEvtRepo.findById(cid);
+				if (evt != null) {
+					CultureEvent rEvt = evt.get();
+//					rEvt.
+				}
+				res.setStatus(201);
+			}
+			
+			
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+			newEvtTag = null;
+		}
+		
+		
+		
+		return newEvtTag;
+	}
+	
 
 }

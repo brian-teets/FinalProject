@@ -2,9 +2,13 @@ package com.skilldistillery.neighboringworlds.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,17 @@ public class ReviewController {
 	@GetMapping("reviews-all")
 	public List<Review> index(){
 		return revServ.index();
+	}
+	
+	@GetMapping("culture-events/{cid}/reviews/{uid}")
+	public Review getReview(@PathVariable int cid, @PathVariable int uid, HttpServletRequest req, HttpServletResponse res){
+		
+		Review review = revServ.show(cid, uid);
+		
+		if (review == null) {
+			res.setStatus(404);
+		}
+		return review;
 	}
 	
 
