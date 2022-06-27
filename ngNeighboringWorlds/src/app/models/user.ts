@@ -1,3 +1,4 @@
+import { CultureEvent } from 'src/app/models/culture-event';
 export class User {
   id: number;
   fName: string | null;
@@ -9,6 +10,7 @@ export class User {
   biography: string;
   username: string;
   password: string;
+  events: CultureEvent[];
 
   constructor(
     id: number = 0,
@@ -20,7 +22,8 @@ export class User {
     bannerImgUrl: string = '',
     biography: string = '',
     username: string = '',
-    password: string = ''
+    password: string = '',
+    events: CultureEvent[] = []
   ) {
     this.id = id;
     this.fName = fName;
@@ -32,5 +35,6 @@ export class User {
     this.biography = biography;
     this.username = username;
     this.password = password;
+    this.events = events;
   }
 }

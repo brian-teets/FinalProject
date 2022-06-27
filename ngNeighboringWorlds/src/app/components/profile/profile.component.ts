@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   // selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   currentUser: User = new User();
@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
 
   allEvents: CultureEvent[] = [];
   myEvents: CultureEvent[] = [];
+  attendingEvents: CultureEvent[] = [];
   selected: CultureEvent | null = null;
   newEvent: CultureEvent = new CultureEvent();
   newEventAddress: Address = new Address();
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private es: EventService,
-    private us: UserService,
+    private us: UserService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +84,6 @@ export class ProfileComponent implements OnInit {
       next: (data) => {
         this.allEvents = data;
         console.log(this.allEvents);
-
       },
       error: (wrong) => {
         console.error('Culture-EventComponent.reload: error loading list');
@@ -210,19 +210,32 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getAttendingEvents(): void {
+  getAttendingEvents() {
     this.profileEditToggle = 'attending';
-    this.allEvents = [];
-    this.myEvents = [];
-    this.reload;
+
+    this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        console.log(loggedInUser.events);
+        this.allEvents.forEach((event) => {
+          if (true) {
+            // this.attendingEvents.push(event);
+            console.log('Inside getAttendingEvents() ' + this.attendingEvents);
+          }
+        });
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
   }
 
   getPastEvents(): void {
     this.profileEditToggle = 'past';
     this.allEvents = [];
     this.myEvents = [];
-    this.reload;
+    this.reload();
   }
-
-
 }
