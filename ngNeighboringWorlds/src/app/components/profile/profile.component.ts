@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
 import { User } from 'src/app/models/user';
-import { AddressService } from 'src/app/services/address.service';
 import { EventService } from 'src/app/services/event.service';
 import { UserService } from 'src/app/services/user.service';
 
