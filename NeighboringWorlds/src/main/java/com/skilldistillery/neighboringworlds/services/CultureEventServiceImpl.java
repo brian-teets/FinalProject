@@ -1,5 +1,6 @@
 package com.skilldistillery.neighboringworlds.services;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.entities.User;
 import com.skilldistillery.neighboringworlds.repositories.AddressRepository;
 import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
+import com.skilldistillery.neighboringworlds.repositories.UserRepository;
 
 @Service
 public class CultureEventServiceImpl implements CultureEventService {
@@ -18,6 +21,9 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Autowired
 	private AddressRepository ar;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<CultureEvent> index() {
@@ -45,6 +51,17 @@ public class CultureEventServiceImpl implements CultureEventService {
 		}
 		return null;
 
+	}
+	
+	@Override
+	public void attend(Integer cid, String username) {
+		User attendee = userRepo.findByUsername(username);
+		
+		Integer attendees = userRepo.insertAttendees(cid, attendee.getId());
+		
+		System.out.println(attendees);
+		
+		//return attendees;
 	}
 
 	@Override

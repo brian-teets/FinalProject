@@ -32,10 +32,6 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.findAll();
 	}
 	
-
-	// Need to sort this out
-	// Currently getting error "The given domain class does not
-	// contain an id attribute"
 	
 	@Override
 	public Review show(int cid, int aid) {
