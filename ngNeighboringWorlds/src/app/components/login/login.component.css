@@ -1,0 +1,33 @@
+.hero-image {
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-color: rgb(235, 234, 208);
+}
+
+.hero-image::before {
+  content: "";
+  background-image: url(../../../assets/colorfulpeople.png);
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.50;
+}
+
+.form {
+  background-color: rgb(32, 67, 46);
+  color: #fff;
+  opacity: 1;
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  height: 200px;
+  width: 600px;
+}
