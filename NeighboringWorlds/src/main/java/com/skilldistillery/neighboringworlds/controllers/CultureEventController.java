@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.entities.User;
 import com.skilldistillery.neighboringworlds.services.CultureEventService;
 import com.skilldistillery.neighboringworlds.services.UserService;
 
@@ -39,8 +40,10 @@ public class CultureEventController {
 	
 	@GetMapping("culture-events/{cid}")
 	public CultureEvent show(@PathVariable int cid) {
+	
 		return cEvtServ.show(cid);
 	}
+	
 	
 	@PostMapping("culture-events")
 	public CultureEvent create(@RequestBody CultureEvent cEvt, HttpServletResponse res, 
@@ -61,6 +64,37 @@ public class CultureEventController {
 		
 		return cEvt;
 	}
+	
+	
+	
+	
+	
+	//ATTEND an event method
+	@PostMapping("culture-events/{cid}/attendees")
+	public void addAttendee(@PathVariable int cid, Principal principal, HttpServletResponse res){
+		CultureEvent evt = null;
+		try {
+//			List<User> attendees = cEvtServ.attend(cid, principal.getName());
+			cEvtServ.attend(cid, principal.getName());
+			res.setStatus(201);
+//			return attendees;
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+//		return evt;
+	}
+	
+	
+	
+	
+	
+	
+	@GetMapping("culture-events/{cid}/attendees")
+	public List<User> getAttendees(@PathVariable int cid){
+		return cEvtServ.showAttendees(cid);
+	}
+	
 	
 	@PutMapping("culture-events/{cid}")
 	public CultureEvent modify(@RequestBody CultureEvent cEvt, @PathVariable int cid, HttpServletResponse res, 

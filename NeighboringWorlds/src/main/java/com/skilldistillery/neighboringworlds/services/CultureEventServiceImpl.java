@@ -1,5 +1,6 @@
 package com.skilldistillery.neighboringworlds.services;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.entities.User;
 import com.skilldistillery.neighboringworlds.repositories.AddressRepository;
 import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
+import com.skilldistillery.neighboringworlds.repositories.UserRepository;
 
 @Service
 public class CultureEventServiceImpl implements CultureEventService {
@@ -18,6 +21,9 @@ public class CultureEventServiceImpl implements CultureEventService {
 
 	@Autowired
 	private AddressRepository ar;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<CultureEvent> index() {
@@ -33,6 +39,20 @@ public class CultureEventServiceImpl implements CultureEventService {
 		}
 		return event;
 	}
+	
+	@Override
+	public List<User> showAttendees(int cid){
+		List<User> attendees;
+		CultureEvent evt = null;
+		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
+		if (oEvt != null) {
+			evt = oEvt.get();
+		}
+		attendees = evt.getAttendees();
+		
+		
+		return attendees;
+	}
 
 	@Override
 	public CultureEvent create(CultureEvent cEvt) {
@@ -45,6 +65,34 @@ public class CultureEventServiceImpl implements CultureEventService {
 		}
 		return null;
 
+	}
+	
+	@Override
+	public void attend(Integer cid, String username) {
+		User attendee = userRepo.findByUsername(username);
+		cultureEvtRepo.createAttendee(cid, attendee.getId());
+//		
+//		List<CultureEvent> userEvents = attendee.getEvents();
+//		
+//		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
+//		
+//		CultureEvent evt = oEvt.get();
+//		
+//		if (evt != null && attendee != null) {
+//			List<User> attendees = evt.getAttendees();
+//			if (!attendees.contains(attendee)) {
+//				evt.getAttendees().add(attendee);
+//			}
+//			if (!userEvents.contains(evt)) {
+//				attendee.getEvents().add(evt);
+//			}
+//			userRepo.save(attendee);
+//			cultureEvtRepo.save(evt);
+//		}
+//		
+//		return evt;
+		
+		
 	}
 
 	@Override

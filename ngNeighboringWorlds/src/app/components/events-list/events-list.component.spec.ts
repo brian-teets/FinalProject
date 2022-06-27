@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EventsListComponent } from './events-list.component';
 
 describe('EventsListComponent', () => {
