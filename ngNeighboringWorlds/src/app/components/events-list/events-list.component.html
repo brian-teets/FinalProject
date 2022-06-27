@@ -1,18 +1,17 @@
 <div id="eventsList">
   <div class="container" id="allcontent">
     <br><br>
-    <h3>Search by</h3>
+    <h3>Events list</h3>
     <div>
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowAll()">All events</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >My events</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowPast()">Past events</button>
+    <button type="button" class="btn btn-outline-secondary btn-lg" >FILTER BY TAGS ??</button>&nbsp;&nbsp;
   </div>
   <br>
 
     <br>
 
     <div class="row card-group" *ngIf="menuToggle == 'all'">
-      <div class="col-5"  *ngFor="let event of allEvents">
+      <div class="col-4"  *ngFor="let event of allEvents">
         <div class="card" style="width: 18rem">
           <img src="{{ event.coverImgUrl }}" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -31,7 +30,7 @@
 
 
   <div class="row card-group" *ngIf="menuToggle == 'mine'">
-    <div class="col-5" *ngFor="let myEvent of myEvents">
+    <div class="col-4" *ngFor="let myEvent of myEvents">
       <div class="card" style="width: 18rem">
         <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
         <div class="card-body">
@@ -62,7 +61,7 @@
         <p class="card-text">Created on: {{ selected.createdDate }}</p>
         <p class="card-text">Updated on: {{ selected.lastUpdated }}</p>
         <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p>
-        <button type="button" class="btn btn-primary" (click)="getMyEvents()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
         <br>
         <br />
   </div>
