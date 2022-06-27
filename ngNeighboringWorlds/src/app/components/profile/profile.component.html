@@ -1,36 +1,36 @@
-<h3>Your user profile</h3>
-<br /><br /><br />
-<hr />
-<p></p>
-
-<div class="container">
-<div class="row">
-  <div class="col-sm-4"><h3>Profile</h3>
+<div id="allcontent">
+<div id="bannerImg" class="share">
+  <i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+</div>
+<div>
+  <div class="row">
+    <div class="col-sm-4">
+    <div class="img-container"><img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
+      <i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+    </div>
   <br>
-  <div class="card" style="width: 18rem;">
-    <img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{currentUser.fName}} {{currentUser.lName}}</h5>
+<hr>
+  <h3>{{currentUser.fName}} {{currentUser.lName}}</h3>
       <p class="card-text">{{currentUser.biography}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{currentUser.username}}</li>
-      <li class="list-group-item">{{currentUser.email}}</li>
-      <li class="list-group-item">{{currentUser.phone}}</li>
-    </ul>
-    <div class="card-body">
-      <a (click)="setEditUser()" class="card-link">Edit Profile</a>
+      <p>BIO HERE: oeiwnhg owfieh0ih pefihpefih fpvihf ppifhp vhiv hpifvh fpihfv pifihfv </p>
+      <br><br>
+
+<hr>
+
+      <p>Username: {{currentUser.username}}</p>
+      <p>Email: {{currentUser.email}}</p>
+      <p>Phone: {{currentUser.phone}}</p>
+
+<hr>
+      <!-- <a (click)="setEditUser()" class="card-link">Edit Profile</a>
       <a href="#" class="card-link">Deactivate Profile</a>
-    </div>
-  </div>
-
-
-  </div>
-  <div class="col-sm-8"><h3>My Events</h3>
+      <i id="editButton" class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> -->
+      <h3>My Interests</h3> <br>
+<button class="button" style="margin-right:1em;">Nederland</button> <button class="button" style="margin-right:1em;">Food</button>
+  </div><br><br>
+  <div class="col-sm-8"><br>
 
 <app-events-list></app-events-list>
-
-
 
     <!-- <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -82,11 +82,6 @@
         </div>
       </div>
     </div> -->
-
-
-
-
-
 <div id="editProfile" *ngIf="editUser">
 
   <form class="form">
@@ -116,4 +111,5 @@
     <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
   </form>
 
+</div>
 </div>

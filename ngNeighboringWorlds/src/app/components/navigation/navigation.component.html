@@ -12,22 +12,18 @@
         <li class="nav-item active" *ngIf="loggedIn()">
           <a class="nav-link" [routerLink]="['/profile']">Profile</a>
         </li>
-        <li class="nav-item active" *ngIf="loggedIn()">
-          <a class="nav-link" [routerLink]="['/new-event']">Host an Event</a>
-        </li>
-
         <li class="nav-item active" *ngIf="!loggedIn()">
           <a class="nav-link" [routerLink]="['/login']">Login</a>
         </li>
         <li class="nav-item" *ngIf="loggedIn()">
-          <a class="nav-link" [routerLink]="['/home']"><button (click)="logout()">Log out</button></a>
+          <a class="nav-link" [routerLink]="['/home']"><button class="btn btn-outline-secondary" (click)="logout()">Log out</button></a>
         </li>
 
       </ul>
 
     <form class="navbar-nav ml-auto" >
         <input class="form-control me-2" type="search" placeholder="discover" aria-label="Search">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit" [routerLink]="['/event']">Search</button>
     </form>
     </div>
   </nav>
