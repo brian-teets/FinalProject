@@ -2,26 +2,40 @@
   <div class="sneakyRegisterBox">
     <form action="Register" class="sneakyRegister">
       <br><br><br>
-      <label for="Register" style="font-size: 20px">Enter your addres and discover new worlds!</label><br>
-        <label type="text" style="margin-right:1em">First Name: </label>
+      <div class="hero-text">
+        <div class="hero-text1">
+          <h1 style="font-size: 40px">Create</h1>
+        </div>
+        <div class="hero-text2">
+          <h1 style="font-size: 40px">Community</h1>
+        </div>
+        <div class="hero-text3">
+          <h1 style="font-size: 40px">Culture</h1>
+        </div>
+      </div>
+      <br><br>
+      <hr>
+      <label for="Register" style="font-size: 20px">Account Information </label><br>
+        <!-- <label type="text" style="margin-right:1em">First Name: </label> -->
          <input [(ngModel)]="newUser.fName" type="text" name="username" placeholder="first name"
                 required style="margin-right:1em; width: 200px;"><br>
-        <label type="text" style="margin-right:1em">Last Name: </label>
+        <!-- <label type="text" style="margin-right:1em">Last Name: </label> -->
          <input [(ngModel)]="newUser.lName" type="text" name="username" placeholder="last name"
                 required style="margin-right:1em; width: 200px;"><br>
-        <label type="text" style="margin-right:1em">Username: </label>
+        <!-- <label type="text" style="margin-right:1em">Username: </label> -->
          <input [(ngModel)]="newUser.username" type="text" name="username" placeholder="Username"
                 required style="margin-right:1em; width: 200px;"><br>
-        <label type="text" style="margin-right:1em">Password: </label>
+        <!-- <label type="text" style="margin-right:1em">Password: </label> -->
          <input [(ngModel)]="newUser.password" type="password" name="username" placeholder="password"
                 required style="margin-right:1em; width: 200px;"><br>
-
-                <input type="text" name="address1" placeholder="Street address" [(ngModel)]="newAddress.address1">
-        <input type="text" name="address2" placeholder="Apt" [(ngModel)]="newAddress.address2" style="margin-right:1em; width: 50px;"><br>
-        <input type="text" name="city" placeholder="City" [(ngModel)]="newAddress.city" style="margin-right:1em; width: 100px;">
+        <hr>
+        <label for="Register" style="font-size: 20px">Connect to your Neighborhood </label><br>
+                <input type="text" name="address1" placeholder="Street address" [(ngModel)]="newAddress.address1" style="margin-right:1em;">
+        <input type="text" name="address2" placeholder="Apt" [(ngModel)]="newAddress.address2" style="margin-right:1.5em; width: 50px;"><br>
+        <input type="text" name="city" placeholder="City" [(ngModel)]="newAddress.city" style="margin-right:.5em; width: 100px;">
         <input type="text" name="state" placeholder="State" [(ngModel)]="newAddress.state" style="margin-right:1em; width: 50px;">
-        <input type="text" name="zipCode" placeholder="Zip code" [(ngModel)]="newAddress.zipCode"style="margin-right:1em; width: 100px;"><br>
-        <input type="text" name="country" placeholder="Country" [(ngModel)]="newAddress.country" style="margin-right:1em; width: 50px;"><br>
+        <input type="text" name="zipCode" placeholder="Zip code" [(ngModel)]="newAddress.zipCode"style="margin-right:.5em; width: 100px;">
+        <input type="text" name="country" placeholder="Country" [(ngModel)]="newAddress.country" style="margin-right:1em; width: 50px;"><br><br>
 
 
 
