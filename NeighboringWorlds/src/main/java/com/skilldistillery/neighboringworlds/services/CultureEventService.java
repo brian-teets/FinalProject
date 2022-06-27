@@ -14,5 +14,6 @@ public interface CultureEventService {
 	Boolean delete(int cid, String username);
 //	List<User> attend(Integer cid, String username);
 	void attend(Integer cid, String username);
+	List<User> showAttendees(int cid);
 
 }

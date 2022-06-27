@@ -40,8 +40,7 @@ public class CultureEventController {
 	
 	@GetMapping("culture-events/{cid}")
 	public CultureEvent show(@PathVariable int cid) {
-		List<User> attendees = cEvtServ.show(cid).getAttendees();
-		System.out.println(attendees.get(0));
+	
 		return cEvtServ.show(cid);
 	}
 	
@@ -66,19 +65,34 @@ public class CultureEventController {
 		return cEvt;
 	}
 	
+	
+	
+	
+	
 	//ATTEND an event method
 	@PostMapping("culture-events/{cid}/attendees")
 	public void addAttendee(@PathVariable int cid, Principal principal, HttpServletResponse res){
+		CultureEvent evt = null;
 		try {
 //			List<User> attendees = cEvtServ.attend(cid, principal.getName());
-			 cEvtServ.attend(cid, principal.getName());
+			cEvtServ.attend(cid, principal.getName());
 			res.setStatus(201);
 //			return attendees;
 		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();
 		}
-//		return null;
+//		return evt;
+	}
+	
+	
+	
+	
+	
+	
+	@GetMapping("culture-events/{cid}/attendees")
+	public List<User> getAttendees(@PathVariable int cid){
+		return cEvtServ.showAttendees(cid);
 	}
 	
 	

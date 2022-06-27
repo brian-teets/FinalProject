@@ -39,6 +39,20 @@ public class CultureEventServiceImpl implements CultureEventService {
 		}
 		return event;
 	}
+	
+	@Override
+	public List<User> showAttendees(int cid){
+		List<User> attendees;
+		CultureEvent evt = null;
+		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
+		if (oEvt != null) {
+			evt = oEvt.get();
+		}
+		attendees = evt.getAttendees();
+		
+		
+		return attendees;
+	}
 
 	@Override
 	public CultureEvent create(CultureEvent cEvt) {
@@ -56,12 +70,29 @@ public class CultureEventServiceImpl implements CultureEventService {
 	@Override
 	public void attend(Integer cid, String username) {
 		User attendee = userRepo.findByUsername(username);
+		cultureEvtRepo.createAttendee(cid, attendee.getId());
+//		
+//		List<CultureEvent> userEvents = attendee.getEvents();
+//		
+//		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
+//		
+//		CultureEvent evt = oEvt.get();
+//		
+//		if (evt != null && attendee != null) {
+//			List<User> attendees = evt.getAttendees();
+//			if (!attendees.contains(attendee)) {
+//				evt.getAttendees().add(attendee);
+//			}
+//			if (!userEvents.contains(evt)) {
+//				attendee.getEvents().add(evt);
+//			}
+//			userRepo.save(attendee);
+//			cultureEvtRepo.save(evt);
+//		}
+//		
+//		return evt;
 		
-		Integer attendees = userRepo.insertAttendees(cid, attendee.getId());
 		
-		System.out.println(attendees);
-		
-		//return attendees;
 	}
 
 	@Override
