@@ -9,7 +9,6 @@ import com.skilldistillery.neighboringworlds.entities.ReviewId;
 
 public interface ReviewRepository extends JpaRepository<Review, ReviewId> {
 	
-	Optional<Review> findById(ReviewId rid);  
-
+	Review findByCultureEvent_IdAndUser_Id(int cid, int uid);
 	
 }
