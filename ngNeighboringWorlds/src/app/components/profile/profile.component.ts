@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   currentUser: User = new User();
   editUser: User | null = null;
-  profileEditToggle: String = 'show';
+  profileEditToggle: String = 'mine';
 
   allEvents: CultureEvent[] = [];
   myEvents: CultureEvent[] = [];
@@ -71,17 +71,19 @@ export class ProfileComponent implements OnInit {
   }
 
   reload() {
-    this.userService.index().subscribe({
-      next: (data) => {},
-      error: (wrong) => {
-        console.error('UserComponent.reload: error loading list');
-        console.error(wrong);
-      },
-    });
+    // this.userService.index().subscribe({
+    //   next: (data) => {},
+    //   error: (wrong) => {
+    //     console.error('UserComponent.reload: error loading list');
+    //     console.error(wrong);
+    //   },
+    // });
 
     this.es.index().subscribe({
       next: (data) => {
         this.allEvents = data;
+        console.log(this.allEvents);
+
       },
       error: (wrong) => {
         console.error('Culture-EventComponent.reload: error loading list');
@@ -107,7 +109,7 @@ export class ProfileComponent implements OnInit {
         if (setSelected) {
           this.currentUser = updatedUser;
         }
-        this.profileEditToggle = 'show';
+        this.profileEditToggle = 'mine';
       },
       error: (fail) => {
         console.error('error completing todo');
@@ -186,14 +188,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getMyEvents() {
-    this.reload();
     this.profileEditToggle = 'mine';
+    this.reload();
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.allEvents.forEach((event) => {
           if (loggedInUser.id == event.host?.id) {
             this.myEvents.push(event);
-            console.log(event);
+            console.log(this.myEvents);
           }
         });
         console.log(this.profileEditToggle);

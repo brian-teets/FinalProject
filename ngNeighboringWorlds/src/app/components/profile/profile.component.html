@@ -156,7 +156,7 @@
               <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
 
               <br>
-              <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
+              <button class="btn btn-outline-secondary" (click)="getMyEvents()">Cancel</button>
               <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
             </form>
 
