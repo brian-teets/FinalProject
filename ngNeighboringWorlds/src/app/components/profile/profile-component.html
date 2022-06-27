@@ -1,0 +1,115 @@
+<div id="allcontent">
+  <div id="bannerImg" class="share">
+    <i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-sm-4">
+      <div class="img-container"><img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
+        <button (click)="setEditUser()" class="card-link"><i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+      </div>
+    <br>
+  <hr>
+    <h3>{{currentUser.fName}} {{currentUser.lName}}</h3>
+        <p class="card-text">{{currentUser.biography}}</p>
+        <p>BIO HERE: oeiwnhg owfieh0ih pefihpefih fpvihf ppifhp vhiv hpifvh fpihfv pifihfv </p>
+        <br><br>
+
+  <hr>
+
+        <p>Username: {{currentUser.username}}</p>
+        <p>Email: {{currentUser.email}}</p>
+        <p>Phone: {{currentUser.phone}}</p>
+
+  <hr>
+        <!-- <a (click)="setEditUser()" class="card-link">Edit Profile</a>
+        <a href="#" class="card-link">Deactivate Profile</a>
+        <i id="editButton" class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> -->
+        <h3>My Interests</h3> <br>
+  <button class="button" style="margin-right:1em;">Nederland</button> <button class="button" style="margin-right:1em;">Food</button>
+    </div><br><br>
+    <div class="col-sm-8"><br>
+
+  <app-events-list></app-events-list>
+
+      <!-- <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link" id="nav-hosting-tab" data-toggle="tab" href="#nav-hosting" role="tab" aria-controls="nav-hosting" aria-selected="false">Hosting</a>
+          <a class="nav-item nav-link active" id="nav-attending-tab" data-toggle="tab" href="#nav-attending" role="tab" aria-controls="nav-attending" aria-selected="true">Attended</a>
+          <a class="nav-item nav-link" id="nav-saved-tab" data-toggle="tab" href="#nav-saved" role="tab" aria-controls="nav-saved" aria-selected="false">Saved</a>
+          <a class="nav-item nav-link" id="nav-past-tab" data-toggle="tab" href="#nav-past" role="tab" aria-controls="nav-past" aria-selected="false">Past</a>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-attending" role="tabpanel" aria-labelledby="nav-attending-tab">
+         <br><br><br>
+          <div class="card-deck" id = "attendingEvents">
+
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Event I am hosting</h5>
+                <p class="card-text">Details about the event</p>
+                <p class="card-text"><small class="text-muted">Date time location</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-hosting" role="tabpanel" aria-labelledby="nav-hosting-tab">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">I am an event you are hosting</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-saved" role="tabpanel" aria-labelledby="nav-saved-tab">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">I am an event you saved</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-past" role="tabpanel" aria-labelledby="nav-past-tab">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">I am all your past events hosted/attended</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  <div id="editProfile" *ngIf="editUser">
+
+    <form class="form">
+      <label class="form-label" for="location">First Name: </label>
+      <input class="form-control" type="text" name="location" value={{currentUser.fName}} [(ngModel)]= "editUser.fName"/>
+      <br>
+      <label class="form-label" for="date">Last Name: </label>
+      <input class="form-control" type="text" name="date" value={{currentUser.lName}} [(ngModel)]= "editUser.lName"/>
+      <br>
+      <label class="form-label" for="acftNumber">Email: </label>
+      <input class="form-control" type="text" name="acftNumber" value={{currentUser.email}} [(ngModel)]= "editUser.email"/>
+      <br>
+      <label class="form-label" for="flightType" >Phone: </label>
+      <input class="form-control" type="text" name="flightType" value={{currentUser.phone}} [(ngModel)]= "editUser.phone"/>
+      <br>
+      <label class="form-label" for="missionType" >Profile Image: </label>
+      <input class="form-control" type="text" name="missionType" value={{currentUser.profileImgUrl}} [(ngModel)]= "editUser.profileImgUrl"/>
+      <br>
+      <label class="form-label" for="dayInHours" >Banner Image: </label>
+      <input class="form-control" type="text" name="dayInHours" value={{currentUser.bannerImgUrl}} [(ngModel)]= "editUser.bannerImgUrl"/>
+      <br>
+      <label class="form-label" for="nightInHours" >About Me: </label>
+      <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
+
+      <br>
+      <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
+      <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
+    </form>
+
+  </div>
+  </div>
