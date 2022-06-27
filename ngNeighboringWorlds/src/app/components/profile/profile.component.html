@@ -2,18 +2,17 @@
   <div id="bannerImg" class="share">
     <i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
   </div>
+
   <div>
     <div class="row">
       <div class="col-sm-4">
-      <div class="img-container"><img src="{{currentUser.profileImgUrl}}" class="card-img-top" alt="...">
-        <button (click)="setEditUser()" class="card-link"><i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+      <img  class="images" src="{{currentUser.profileImgUrl}}"/>
 
-      </div>
+        <button (click)="setEditUser()" class="card-link"><i id="editButton" class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
     <br>
   <hr>
     <h3>{{currentUser.fName}} {{currentUser.lName}}</h3>
-        <p class="card-text">{{currentUser.biography}}</p>
-        <p>BIO HERE: oeiwnhg owfieh0ih pefihpefih fpvihf ppifhp vhiv hpifvh fpihfv pifihfv </p>
+        <p class="card-text">Bio: {{currentUser.biography}}</p>
         <br><br>
 
   <hr>
@@ -29,13 +28,59 @@
 
 <h3>My Interests</h3> <br>
   <button class="button" style="margin-right:1em;">Nederland</button> <button class="button" style="margin-right:1em;">Food</button>
-    </div><br><br>
+
+</div>
+
+    <br><br>
+
 
     <div class="col-sm-8"><br>
 
 <div class="app-events-list" *ngIf="profileEditToggle == 'show'">
-  <app-events-list></app-events-list>
+  <!-- <app-events-list></app-events-list> -->
+
+  <h3>Events list</h3>
+  <div>
+  <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >Hosting</button>&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >Attending</button>&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >Past</button>
 </div>
+<br>
+
+
+</div>
+
+<div id="editProfile" *ngIf="editUser">
+
+  <form class="form">
+    <label class="form-label" for="location">First Name: </label>
+    <input class="form-control" type="text" name="location" value={{currentUser.fName}} [(ngModel)]= "editUser.fName"/>
+    <br>
+    <label class="form-label" for="date">Last Name: </label>
+    <input class="form-control" type="text" name="date" value={{currentUser.lName}} [(ngModel)]= "editUser.lName"/>
+    <br>
+    <label class="form-label" for="acftNumber">Email: </label>
+    <input class="form-control" type="text" name="acftNumber" value={{currentUser.email}} [(ngModel)]= "editUser.email"/>
+    <br>
+    <label class="form-label" for="flightType" >Phone: </label>
+    <input class="form-control" type="text" name="flightType" value={{currentUser.phone}} [(ngModel)]= "editUser.phone"/>
+    <br>
+    <label class="form-label" for="missionType" >Profile Image: </label>
+    <input class="form-control" type="text" name="missionType" value={{currentUser.profileImgUrl}} [(ngModel)]= "editUser.profileImgUrl"/>
+    <br>
+    <label class="form-label" for="dayInHours" >Banner Image: </label>
+    <input class="form-control" type="text" name="dayInHours" value={{currentUser.bannerImgUrl}} [(ngModel)]= "editUser.bannerImgUrl"/>
+    <br>
+    <label class="form-label" for="nightInHours" >About Me: </label>
+    <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
+
+    <br>
+    <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
+    <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
+  </form>
+
+</div>
+
 
       <!-- <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -87,37 +132,10 @@
           </div>
         </div>
       </div> -->
-  <div id="editProfile" *ngIf="editUser">
-
-    <form class="form">
-      <label class="form-label" for="location">First Name: </label>
-      <input class="form-control" type="text" name="location" value={{currentUser.fName}} [(ngModel)]= "editUser.fName"/>
-      <br>
-      <label class="form-label" for="date">Last Name: </label>
-      <input class="form-control" type="text" name="date" value={{currentUser.lName}} [(ngModel)]= "editUser.lName"/>
-      <br>
-      <label class="form-label" for="acftNumber">Email: </label>
-      <input class="form-control" type="text" name="acftNumber" value={{currentUser.email}} [(ngModel)]= "editUser.email"/>
-      <br>
-      <label class="form-label" for="flightType" >Phone: </label>
-      <input class="form-control" type="text" name="flightType" value={{currentUser.phone}} [(ngModel)]= "editUser.phone"/>
-      <br>
-      <label class="form-label" for="missionType" >Profile Image: </label>
-      <input class="form-control" type="text" name="missionType" value={{currentUser.profileImgUrl}} [(ngModel)]= "editUser.profileImgUrl"/>
-      <br>
-      <label class="form-label" for="dayInHours" >Banner Image: </label>
-      <input class="form-control" type="text" name="dayInHours" value={{currentUser.bannerImgUrl}} [(ngModel)]= "editUser.bannerImgUrl"/>
-      <br>
-      <label class="form-label" for="nightInHours" >About Me: </label>
-      <input class="form-control" type="text" name="nightInHours" value={{currentUser.biography}} [(ngModel)]= "editUser.biography"/>
-
-      <br>
-      <button class="btn btn-outline-secondary" (click)="editUser = this.currentUser">Cancel</button>
-      <button class="btn btn-outline-secondary" (click)="updateUser(editUser)">Save</button>
-    </form>
 
   </div>
   </div>
 
 
 
+</div>
