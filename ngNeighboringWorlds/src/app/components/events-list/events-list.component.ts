@@ -135,10 +135,4 @@ export class EventsListComponent implements OnInit {
     console.log(this.menuToggle);
     this.reload;
   }
-
-  menuToggleShowPast() {
-    this.menuToggle = 'past';
-    console.log(this.menuToggle);
-    this.reload;
-  }
 }
