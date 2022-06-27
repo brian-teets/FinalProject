@@ -42,6 +42,8 @@ public class CultureEventController {
 		return cEvtServ.show(cid);
 	}
 	
+	//ATTEND an event method
+	
 	@PostMapping("culture-events")
 	public CultureEvent create(@RequestBody CultureEvent cEvt, HttpServletResponse res, 
 			HttpServletRequest req, Principal principal) {

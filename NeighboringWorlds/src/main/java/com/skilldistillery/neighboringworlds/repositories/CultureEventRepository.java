@@ -7,5 +7,6 @@ import com.skilldistillery.neighboringworlds.entities.CultureEvent;
 public interface CultureEventRepository extends JpaRepository<CultureEvent, Integer> {
 	
 	CultureEvent findByIdAndHost_Username(Integer cid, String username);
+	CultureEvent queryById(Integer cid);
 
 }
