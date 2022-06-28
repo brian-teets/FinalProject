@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DiscussionBoardComponent } from './components/discussion-board/discussion-board.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import { FooterComponent } from './components/footer/footer.component';
     EventsListComponent,
     ProfileComponent,
     NewEventComponent,
-    FooterComponent
+    FooterComponent,
+    DiscussionBoardComponent,
+
+
   ],
   imports: [
     BrowserModule,
