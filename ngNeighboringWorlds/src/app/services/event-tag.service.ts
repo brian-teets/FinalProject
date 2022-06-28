@@ -48,7 +48,7 @@ export class EventTagService {
     }
 
     getSingleEventTags(cid: number): Observable<EventTag[]> {
-      return this.http.get<EventTag[]>(this.url + '/culture-events/' + cid + '/tags', this.getHttpOptions())
+      return this.http.get<EventTag[]>(this.url + 'culture-events/' + cid + '/tags', this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -66,7 +66,7 @@ export class EventTagService {
     create(newTag: EventTag, cid: number): Observable<EventTag> {
 
       return this.http
-        .post<EventTag>(this.url + '/culture-events/' + cid + '/tags', newTag, this.getHttpOptions())
+        .post<EventTag>(this.url + 'culture-events/' + cid + '/tags', newTag, this.getHttpOptions())
         .pipe(
           catchError((err: any) => {
             console.log(err);
@@ -83,7 +83,7 @@ export class EventTagService {
 
     destroy(cid: number, keyword: String): Observable<void> {
       return this.http
-        .delete<void>(this.url + '/culture-events/' + cid + '/tags/' + keyword, this.getHttpOptions())
+        .delete<void>(this.url + 'culture-events/' + cid + '/tags/' + keyword, this.getHttpOptions())
         .pipe(
           catchError((err: any) => {
             console.log(err);
