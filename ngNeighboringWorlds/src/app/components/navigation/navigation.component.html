@@ -12,8 +12,9 @@
               <option [routerLink]="['/profile']">View Profile</option>
               <option [routerLink]="['/home']" (click)="logout()">Logout</option>
                -->
-        <li class="nav-item" *ngIf="loggedIn()">
-          <button class="btn btn-secondary btn-lg" [routerLink]="['/profile']">Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/discussion-board']">Discussion Board</button>&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li class="nav-item" *ngIf="loggedIn()">
           <button class="btn btn-secondary btn-lg" [routerLink]="['/event']">Events</button>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../models/user';
+import { Review } from '../models/review';
 
 @Injectable({
   providedIn: 'root',
@@ -143,5 +145,25 @@ export class EventService {
           );
         })
       );
+  }
+  // culture-events/{cid}/reviews
+  postReview(review: Review, eventId: number){
+    return this.http
+    .post(
+      environment.baseUrl + 'api/culture-events' + '/' + eventId + '/reviews',
+      review,
+      this.getHttpOptions()
+    )
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'EventService.postReview(): error adding a new review: ' + err
+            )
+        );
+      })
+    );
   }
 }

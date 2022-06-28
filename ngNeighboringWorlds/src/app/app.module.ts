@@ -21,6 +21,11 @@ import { NewEventComponent } from './components/new-event/new-event.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EventtagselectorComponent } from './components/event-tag-selector/eventtagselector.component';
 
+import { ReviewComponent } from './components/review/review.component';
+
+import { DiscussionBoardComponent } from './components/discussion-board/discussion-board.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,17 @@ import { EventtagselectorComponent } from './components/event-tag-selector/event
     ProfileComponent,
     NewEventComponent,
     FooterComponent,
-    EventtagselectorComponent
+
+    EventtagselectorComponent,
+
+
+    ReviewComponent,
+
+    DiscussionBoardComponent,
+
+
+
+
   ],
   imports: [
     BrowserModule,

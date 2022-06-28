@@ -1,3 +1,4 @@
+import { DiscussionBoardComponent } from './components/discussion-board/discussion-board.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'discussion-board', component: DiscussionBoardComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

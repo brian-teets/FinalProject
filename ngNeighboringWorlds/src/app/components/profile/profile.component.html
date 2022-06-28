@@ -6,8 +6,8 @@
   <div>
     <div class="row">
       <div class="col-sm-4">
-      <img  class="images" id="profileImg" src="{{currentUser.profileImgUrl}}"/><br>
-      <a (click)="setEditUser()" class="card-link"> <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></a>
+      <img  class="images" id="profileImg" src="{{currentUser.profileImgUrl}}"/>
+
     <br>
   <hr>
     <h3>{{currentUser.fName}} {{currentUser.lName}}</h3>
@@ -76,7 +76,7 @@
           </div>
 
           <div class="row card-group" *ngIf="profileEditToggle == 'attending'">
-            <div class="col-5" *ngFor="let myEvent of attendingEvents">
+            <div class="col-5" *ngFor="let myEvent of myEvents">
               <div class="card" style="width: 18rem">
                 <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
                 <div class="card-body">
@@ -222,7 +222,6 @@
 
         </div>
       </div>
-
 
 
 

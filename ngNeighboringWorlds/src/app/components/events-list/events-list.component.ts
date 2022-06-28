@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
+import { Review } from 'src/app/models/review';
 import { AddressService } from 'src/app/services/address.service';
 import { EventService } from 'src/app/services/event.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,6 +11,23 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css'],
+  styles: [`
+    .star {
+      position: relative;
+      display: inline-block;
+      font-size: 3rem;
+      color: #d3d3d3;
+    }
+    .full {
+      color: red;
+    }
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: red;
+    }
+  `]
 })
 export class EventsListComponent implements OnInit {
   allEvents: CultureEvent[] = [];
@@ -20,6 +38,9 @@ export class EventsListComponent implements OnInit {
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
   menuToggle: string = 'all';
+  review: Review = new Review();
+  reviewContent: String | null = '';
+  currentRate = 1;
 
   constructor(
     private es: EventService,
@@ -156,4 +177,20 @@ export class EventsListComponent implements OnInit {
       },
     });
   }
+
+
+  postReview(review: Review, eventId: number): void{
+
+    this.es.postReview(review, eventId).subscribe({
+      next: (newReview) => {
+        this.currentRate = review.rating;
+        this.reviewContent = review.reviewContent;
+      },
+      error: (wrong) => {
+        console.error('error creating event');
+        console.error(wrong);
+      },
+    });
+  }
+
 }
