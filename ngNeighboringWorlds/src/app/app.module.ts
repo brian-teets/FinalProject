@@ -19,7 +19,11 @@ import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { ReviewComponent } from './components/review/review.component';
+
 import { DiscussionBoardComponent } from './components/discussion-board/discussion-board.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { DiscussionBoardComponent } from './components/discussion-board/discussi
     ProfileComponent,
     NewEventComponent,
     FooterComponent,
+
+    ReviewComponent
+
     DiscussionBoardComponent,
+
 
 
   ],
