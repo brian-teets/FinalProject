@@ -9,5 +9,6 @@ public interface EventTagService {
 	EventTag create(EventTag evtTag);
 	List<EventTag> show(String keyword);
 	List<EventTag> showAll();
+	EventTag findByKeyword(String keyword);
 
 }
