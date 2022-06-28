@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
+import { EventTag } from 'src/app/models/event-tag';
 import { Review } from 'src/app/models/review';
 import { AddressService } from 'src/app/services/address.service';
+import { EventTagService } from 'src/app/services/event-tag.service';
 import { EventService } from 'src/app/services/event.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -41,11 +43,15 @@ export class EventsListComponent implements OnInit {
   review: Review = new Review();
   reviewContent: String | null = '';
   currentRate = 1;
+  allTags: EventTag[] = [];
+  eventTags: EventTag[] = [];
+  newTag: EventTag = new EventTag;
 
   constructor(
     private es: EventService,
     private as: AddressService,
     private us: UserService,
+    private ets: EventTagService,
     private router: Router
   ) {}
 
@@ -191,6 +197,10 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+  }
+
+  createTag(cid: number, tag: EventTag): void{
+    this.ets.create(tag, cid);
   }
 
 }

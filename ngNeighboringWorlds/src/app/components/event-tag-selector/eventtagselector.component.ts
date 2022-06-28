@@ -56,7 +56,8 @@ export class EventtagselectorComponent implements OnInit {
     this.ets.create(newTagToCreate, cid).subscribe({
       next: (data) => {
         this.reload();
-        this.newTag = new EventTag;
+        this.newTag = new EventTag();
+        console.log('Success')
       },
       error: (wrong) => {
         console.error('EventTagSelector.create: error creating tag');
