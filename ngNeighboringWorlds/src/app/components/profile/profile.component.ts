@@ -209,18 +209,9 @@ export class ProfileComponent implements OnInit {
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.allEvents.forEach((event) => {
-          console.log(loggedInUser.id);
-          console.log(event.attendees);
-
           event.attendees?.forEach((attendee) => {
-            console.log(attendee);
-            console.log(attendee.id);
-            console.log(loggedInUser.id);
-
-            if (attendee == loggedInUser)
+            if (attendee.username == loggedInUser.username)
               this.attendingEvents.push(event);
-              console.log("I am attending " + event.title);
-
           });
         });
       },

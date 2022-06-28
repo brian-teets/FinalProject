@@ -24,6 +24,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "an_event")
@@ -42,7 +43,7 @@ public class CultureEvent {
 	private User host;
 
 	// CultureEvent - User Join Table mapping
-	@JsonIgnore
+	@JsonIgnoreProperties({"events"})
 	@ManyToMany
 	@JoinTable(name = "attendee", joinColumns = @JoinColumn(name = "an_event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> attendees;
