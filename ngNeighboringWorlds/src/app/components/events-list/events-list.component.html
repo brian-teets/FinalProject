@@ -55,13 +55,26 @@
         <h5 class="card-title">{{ selected.title }}</h5>
         <p class="card-text">Date: {{ selected.eventDate }}</p>
         <p class="card-text">City: {{ selected.address?.city }}</p>
-        <p class="card-text">Desctiption: {{ selected.description }}</p>
+        <p class="card-text">Description: {{ selected.description }}</p>
         <p class="card-text">Capacity: {{ selected.capacity }}</p>
         <p class="card-text">Start time: {{ selected.startTime }}</p>
         <p class="card-text">End time: {{ selected.endTime }}</p>
         <p class="card-text">Created on: {{ selected.createdDate }}</p>
         <p class="card-text">Updated on: {{ selected.lastUpdated }}</p>
         <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p>
+        <br>
+        <div id="eventTagSelector">
+          <button type="button" class="btn btn-primary" (click)="getSingleEventTags(selected.id)">Load tags</button>
+          <div class="col-4"  *ngFor="let tag of eventTags">
+            <p>{{tag.keyword}}</p>
+          </div>
+          <form>
+            <input type="text" name="keyword" [(ngModel)]="newTag.keyword"/>
+            <button class="button" style="margin-right:1em;" (click)="createTag(newTag, selected.id)">Add Tag</button>
+          </form>
+
+        </div>
+
         <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
         <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
         <br>

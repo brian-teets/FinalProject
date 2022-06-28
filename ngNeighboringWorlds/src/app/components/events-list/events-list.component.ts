@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
+import { EventTag } from 'src/app/models/event-tag';
 import { Review } from 'src/app/models/review';
 import { AddressService } from 'src/app/services/address.service';
+import { EventTagService } from 'src/app/services/event-tag.service';
 import { EventService } from 'src/app/services/event.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -41,11 +43,15 @@ export class EventsListComponent implements OnInit {
   review: Review = new Review();
   reviewContent: String | null = '';
   currentRate = 1;
+  allTags: EventTag[] = [];
+  eventTags: EventTag[] = [];
+  newTag: EventTag = new EventTag;
 
   constructor(
     private es: EventService,
     private as: AddressService,
     private us: UserService,
+    private ets: EventTagService,
     private router: Router
   ) {}
 
@@ -63,6 +69,16 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+    this.ets.index().subscribe({
+      next: (data) => {
+        this.allTags = data;
+      },
+      error: (wrong) => {
+        console.error('EventTagSelector.reload: error loading list');
+        console.error(wrong);
+      },
+    });
+
   }
 
   getEventCount(): number {
@@ -188,6 +204,34 @@ export class EventsListComponent implements OnInit {
       },
       error: (wrong) => {
         console.error('error creating event');
+        console.error(wrong);
+      },
+    });
+  }
+
+  createTag( tag: EventTag, cid: number): void{
+    this.ets.create(tag, cid).subscribe({
+      next: (data) => {
+        console.log(data)
+        this.reload();
+        this.newTag = new EventTag();
+      },
+      error: (wrong) => {
+        console.error('EventListComponent.createTag: error creating EventTag');
+        console.error(wrong);
+      },
+    });
+  }
+
+  getSingleEventTags(cid: number){
+    this.ets.getSingleEventTags(cid).subscribe({
+      next: (data) => {
+        this.eventTags = data;
+        console.log(this.eventTags.length)
+        this.reload();
+      },
+      error: (wrong) => {
+        console.error('EventListComponent.getSingleEventTags: error loading list');
         console.error(wrong);
       },
     });
