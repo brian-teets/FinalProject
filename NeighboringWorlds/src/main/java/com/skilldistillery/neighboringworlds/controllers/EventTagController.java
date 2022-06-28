@@ -48,7 +48,7 @@ public class EventTagController {
 	}
 	
 	@GetMapping("culture-events/{cid}/tags")
-	public List<EventTag> showEventTags(@PathVariable int cid) {
+	public List<EventTag> showSingleEventTags(@PathVariable int cid) {
 		return cEvtRepo.findById(cid).get().getTags();
 	}
 	
@@ -56,13 +56,13 @@ public class EventTagController {
 	public void removeTag(@PathVariable int cid, @PathVariable String keyword, Principal principal, HttpServletResponse res) {
 		CultureEvent evt = cEvtRepo.findByIdAndHost_Username(cid, principal.getName());
 		boolean removed = false;
-		System.out.println("evt is null?: " + (evt == null));
+//		System.out.println("evt is null?: " + (evt == null));
 		if (evt != null) {
 			for (EventTag tag : evt.getTags()) {
-				System.out.println(tag.getKeyword());
-				System.out.println(keyword);
+//				System.out.println(tag.getKeyword());
+//				System.out.println(keyword);
 				if (tag.getKeyword().toLowerCase().equals(keyword.toLowerCase())) {
-					System.out.println("Inside if, keyword is: " + tag.getKeyword());
+//					System.out.println("Inside if, keyword is: " + tag.getKeyword());
 					evt.getTags().remove(tag);
 					cEvtRepo.save(evt);
 					removed = true;
@@ -97,33 +97,9 @@ public class EventTagController {
 		return newEvtTag;
 	}
 
-//	@PostMapping("culture-events/{cid}/tags")
-//	public EventTag createTagWithEvent(@RequestBody EventTag newEvtTag, @PathVariable int cid, HttpServletResponse res, HttpServletRequest req) {
-//		try {
-//			
-//			newEvtTag = evtTagServ.create(newEvtTag);
-//			if (newEvtTag != null) {
-//				Optional<CultureEvent> evt = cEvtRepo.findById(cid);
-//				if (evt != null) {
-//					CultureEvent rEvt = evt.get();
-//				}
-//				res.setStatus(201);
-//			}
-//			
-//			
-//		} catch (Exception e) {
-//			res.setStatus(400);
-//			e.printStackTrace();
-//			newEvtTag = null;
-//		}
-//		
-//		
-//		
-//		return newEvtTag;
-//	}
 
 	@PostMapping("culture-events/{cid}/tags")
-	public void addTag(@PathVariable int cid, @RequestBody EventTag tag, Principal principal, HttpServletResponse res) {
+	public EventTag addTag(@PathVariable int cid, @RequestBody EventTag tag, Principal principal, HttpServletResponse res) {
 		CultureEvent evt = null;
 		// Check if tag already exists
 		boolean exists = false;
@@ -131,21 +107,24 @@ public class EventTagController {
 		for (EventTag eventTag : allTags) {
 			if (tag.getKeyword().toLowerCase().equals(eventTag.getKeyword().toLowerCase())) {
 				exists = true;
+				//Replace it with existing tag in DB if it exists
 				tag = evtTagServ.findByKeyword(tag.getKeyword());
 				break;
 			}
 		}
-
+		//Add to DB if it doesn't exist
 		if (!exists) {
 			tag = this.create(tag, null, null);
 		}
 		try {
 			evt = cEvtRepo.findByIdAndHost_Username(cid, principal.getName());
 			if (evt != null) {
+				//Check if event is missing tag
 				if (!evt.getTags().contains(tag)) {
 					evt.getTags().add(tag);
 					cEvtRepo.save(evt);
 				}
+				//Check if tag is missing event
 				if (!tag.getEvents().contains(evt)) {
 					tag.getEvents().add(evt);
 					evtTagRepo.save(tag);
@@ -157,6 +136,6 @@ public class EventTagController {
 			res.setStatus(400);
 			e.printStackTrace();
 		}
+		return tag;
 	}
-
 }
