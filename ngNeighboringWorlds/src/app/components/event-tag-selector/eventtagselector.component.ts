@@ -16,7 +16,7 @@ import { EventTag } from 'src/app/models/event-tag';
 export class EventtagselectorComponent implements OnInit {
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
-  newTag: EventTag | null = null;
+  newTag: EventTag = new EventTag;
 
 
 
@@ -47,6 +47,19 @@ export class EventtagselectorComponent implements OnInit {
       },
       error: (wrong) => {
         console.error('EventTagSelector.showSingleEventTags: error loading list');
+        console.error(wrong);
+      },
+    });
+  }
+
+  create(cid: number, newTagToCreate: EventTag){
+    this.ets.create(newTagToCreate, cid).subscribe({
+      next: (data) => {
+        this.reload();
+        this.newTag = null;
+      },
+      error: (wrong) => {
+        console.error('EventTagSelector.create: error creating tag');
         console.error(wrong);
       },
     });
