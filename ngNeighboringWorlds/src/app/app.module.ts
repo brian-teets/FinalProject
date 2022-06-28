@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
+import { EventtagselectorComponent } from './components/event-tag-selector/eventtagselector.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -36,8 +36,9 @@ import { DiscussionBoardComponent } from './components/discussion-board/discussi
     ProfileComponent,
     NewEventComponent,
     FooterComponent,
+    EventtagselectorComponent,
     ReviewComponent,
-    DiscussionBoardComponent
+    DiscussionBoardComponent,
   ],
   imports: [
     BrowserModule,

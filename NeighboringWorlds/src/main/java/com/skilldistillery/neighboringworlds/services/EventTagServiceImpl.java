@@ -28,6 +28,12 @@ public class EventTagServiceImpl implements EventTagService {
 	public List<EventTag> showAll( ) {
 		return etRepo.findAll();
 	}
+
+	@Override
+	public EventTag findByKeyword(String keyword) {
+		
+		return etRepo.findByKeyword(keyword);
+	}
 	
 	
 

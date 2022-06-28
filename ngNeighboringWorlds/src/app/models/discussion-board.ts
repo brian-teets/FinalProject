@@ -24,7 +24,7 @@ export class DiscussionBoard {
   this.commentDate = commentDate;
   this.userId = userId;
   this.cultureEventId = cultureEventId;
-  this.inReplyToId = inReplyToId;
+  this.inReplyToId = inReplyToId
  }
 
 }

@@ -22,6 +22,9 @@
         <li class="nav-item">
           <button class="btn btn-secondary btn-lg" [routerLink]="['/about']">About</button>&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
+        <li class="nav-item active" *ngIf="loggedIn()">
+          <button class="btn btn-secondary btn-lg" [routerLink]="['/profile']">Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
         <li class="nav-item active" *ngIf="!loggedIn()">
           <button class="btn btn-secondary btn-lg" [routerLink]="['/login']">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
