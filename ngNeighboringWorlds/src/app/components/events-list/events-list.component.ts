@@ -87,6 +87,7 @@ export class EventsListComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
+    this.getSingleEventTags(this.selected.id)
     this.menuToggle = 'selected';
   }
 
