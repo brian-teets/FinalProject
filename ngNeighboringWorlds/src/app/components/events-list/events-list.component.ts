@@ -135,4 +135,25 @@ export class EventsListComponent implements OnInit {
     console.log(this.menuToggle);
     this.reload;
   }
+
+  menuToggleCreateEvent() {
+    this.menuToggle = 'createEvent';
+    console.log(this.menuToggle);
+    this.reload();
+  }
+
+  attend(cid: number) {
+    console.log(cid);
+    this.es.attend(cid).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
+  }
 }
