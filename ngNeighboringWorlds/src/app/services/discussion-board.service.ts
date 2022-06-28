@@ -47,8 +47,22 @@ export class DiscussionBoardService {
     );
   }
 
+  getCommentsForEvent(eventId: number): Observable<DiscussionBoard[]> {
+    return this.http.get<DiscussionBoard[]>(this.url + `culture-events/${eventId}/comments`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'DiscussionBoardService.index(): error retrieving list of UserComment: ' +
+                err
+            )
+        );
+      })
+    );
+  }
+
   create(comment: DiscussionBoard, eventId: number): Observable<DiscussionBoard> {
-    comment.content = '';
     return this.http
       .post<DiscussionBoard>(this.url + "culture-events/" + eventId + "/comments", comment, this.getHttpOptions())
       .pipe(

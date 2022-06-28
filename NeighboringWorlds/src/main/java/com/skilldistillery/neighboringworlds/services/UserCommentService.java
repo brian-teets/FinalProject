@@ -10,7 +10,7 @@ public interface UserCommentService {
 	List <UserComment> index(String username);
 	List <UserComment> indexEventComments(int cid);
 	UserComment show(int ucid);
-	UserComment create(UserComment uCmt);
+	UserComment create(String username, UserComment uCmt);
 	UserComment modify(UserComment uCmt, int ucid, String username);
 	Boolean delete(int ucid, String username);
 

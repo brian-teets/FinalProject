@@ -21,34 +21,26 @@
         <p>Phone: {{currentUser.phone}}</p>
 
   <hr>
-        <!-- <a (click)="setEditUser()" class="card-link">Edit Profile</a>
+        <a (click)="setEditUser()" class="card-link">Edit Profile</a>
         <a href="#" class="card-link">Deactivate Profile</a>
-        <i id="editButton" class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> -->
 
 <h3>My Interests</h3> <br>
   <button class="button" style="margin-right:1em;">Nederland</button> <button class="button" style="margin-right:1em;">Food</button>
-
 </div>
 
     <br><br>
-
-
     <div class="col-sm-8"><br>
-
       <div class="container overflow-hidden">
         <div class="row gy-5">
           <div class="col-12">
             <div class="p-3">
-              <h3>Events list</h3>
               <div>
               <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >Hosting</button>&nbsp;&nbsp;
               <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getAttendingEvents()" >Attending</button>&nbsp;&nbsp;
               <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getPastEvents()" >Past</button>
             </div>
-
             </div>
           </div>
-
         </div>
       </div>
 
@@ -124,13 +116,14 @@
             <button type="button" class="btn btn-primary" (click)="getMyEvents()">Back</button>
             <br>
             <br />
+            <app-discussion-board [currentEvent]="selected"></app-discussion-board>
           </div>
           </div>
           </div>
 
 
 
-          <div id="editProfile" *ngIf="editUser">
+          <div id="editProfile" *ngIf="profileEditToggle == 'hide' && editUser">
 
             <form class="form">
               <label class="form-label" for="location">First Name: </label>

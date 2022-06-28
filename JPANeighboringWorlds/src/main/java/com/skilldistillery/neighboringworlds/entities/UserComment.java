@@ -118,7 +118,7 @@ public class UserComment {
 	@Override
 	public String toString() {
 		return "UserComment [id=" + id + ", title=" + title + ", content=" + content + ", commentDate=" + commentDate
-				+ ", user=" + user + ", cultureEvent=" + cultureEvent + ", inReplyTo=" + inReplyTo + "]";
+				+ ", user=" + user + ", inReplyTo=" + inReplyTo + "]";
 	}
 
 }
