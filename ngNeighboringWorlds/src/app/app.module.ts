@@ -60,6 +60,6 @@ import { DiscussionBoardComponent } from './components/discussion-board/discussi
     NgbModule
   ],
   providers: [AuthService, DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
