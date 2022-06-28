@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EventtagselectorComponent } from './components/event-tag-selector/eventtagselector.component';
 
 import { ReviewComponent } from './components/review/review.component';
 
@@ -40,9 +41,13 @@ import { DiscussionBoardComponent } from './components/discussion-board/discussi
     NewEventComponent,
     FooterComponent,
 
-    ReviewComponent
+    EventtagselectorComponent,
+
+
+    ReviewComponent,
 
     DiscussionBoardComponent,
+
 
 
 

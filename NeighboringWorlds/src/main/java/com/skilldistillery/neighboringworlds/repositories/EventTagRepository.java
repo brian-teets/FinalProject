@@ -9,5 +9,6 @@ import com.skilldistillery.neighboringworlds.entities.EventTag;
 public interface EventTagRepository extends JpaRepository<EventTag, Integer>{
 	
 	List<EventTag> findAllByKeyword(String keyword);
+	EventTag findByKeyword(String keyword);
 
 }
