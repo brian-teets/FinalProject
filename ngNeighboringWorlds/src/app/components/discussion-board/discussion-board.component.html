@@ -1,4 +1,24 @@
-<p>discussion-board works!</p>
+<div>
+  <div *ngFor="let comment of allComments">
+    <hr>
+
+    <div class="light p-2">
+      <div class="d-flex flex-row align-items-start">
+        <img
+              class="rounded-circle"
+              src="{{ currentUser?.profileImgUrl }}"
+              width="40"
+            />
+          <div>
+            <h6><span class="bg-white">{{comment.title}}</span></h6>
+            <h6><span class="bg-white">{{comment.content}}</span></h6>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
 
 <div class="container mt-5">
   <div class="d-flex justify-content-center row">
@@ -17,20 +37,21 @@
 
             </div>
           </div>
+
           <div class="mt-2">
-            <textarea name="capacity" placeholder="Your comment here..." cols="30" rows="5" [(ngModel)]="newComment.content"></textarea><br><br>
-            <!-- <button class="btn-outline-info btn-lg" (click)="addComment(newComment, selected.id)" >Post</button> -->
+            <form action="">
+            <input type="text" name="title" placeholder="Comment title" [(ngModel)]="newComment.title" ><br><br>
+            <textarea name="content" placeholder="Your comment here..." cols="55" rows="14" [(ngModel)]="newComment.content"></textarea><br><br>
+            <button class="btn btn-dark" (click)="addComment(newComment, currentEvent.id)">Post Comment</button>
+          </form>
           </div>
 
 
+        </div>
+          <span class="date text-black-50">Shared publicly - {{getCommentDate()}} </span>
 
 
-        <!-- </div>
-          </span
-              ><span class="date text-black-50">Shared publicly - {{getCommentDate()}} </span>
-
-
-        <div class="bg-white">
+        <!-- <div class="bg-white">
           <div class="d-flex flex-row fs-12">
             <div class="like p-2 cursor">
               <i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>
@@ -45,27 +66,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="bg-light p-2">
-          <div class="d-flex flex-row align-items-start">
-            <img
-              class="rounded-circle"
-              src="https://i.imgur.com/RpzrMR2.jpg"
-              width="40"
-            /><textarea
-              class="form-control ml-1 shadow-none textarea"
-            ></textarea>
-          </div>
-          <div class="mt-2 text-right">
-            <button class="btn btn-primary btn-sm shadow-none" type="button">
-              Post comment</button
-            ><button
-              class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
-        </div> -->
+
       </div>
     </div>
   </div>

@@ -121,7 +121,8 @@ export class ProfileComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
-    this.profileEditToggle = 'selected';
+    this.profileEditToggle = 'mine';
+    this.reload();
   }
 
   addEvent(event: CultureEvent, eventAddress: Address): void {
@@ -181,14 +182,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getMyEvents() {
+    this.myEvents = [];
     this.profileEditToggle = 'mine';
-    this.reload();
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.allEvents.forEach((event) => {
           if (loggedInUser.id == event.host?.id) {
             this.myEvents.push(event);
-            console.log(this.myEvents);
+            this.reload();
           }
         });
         console.log(this.profileEditToggle);

@@ -61,16 +61,16 @@ public class UserCommentController {
 	@PostMapping("culture-events/{cid}/comments")
 	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res,
 			HttpServletRequest req, Principal principal) {
+			System.out.println(uCmt);
 
 		try {
-
 			Optional<CultureEvent> evtOpt = cEvtRepo.findById(cid);
 			if (evtOpt != null) {
 				CultureEvent evtEvt = evtOpt.get();
 				uCmt.setCultureEvent(evtEvt);
 				uCmt.setUser(userRepo.findByUsername(principal.getName()));
 			}
-			uCmt = uCmtServ.create(uCmt);
+			uCmt = uCmtServ.create(principal.getName(), uCmt);
 			res.setStatus(201);
 
 //	TODO		Modify to redirect to user's new comment on event page?
@@ -97,7 +97,7 @@ public class UserCommentController {
 				reply.setCultureEvent(parentCmt.get().getCultureEvent());
 				reply.setUser(userRepo.findByUsername(principal.getName()));
 			}
-			reply = uCmtServ.create(reply);
+			reply = uCmtServ.create(principal.getName(), reply);
 			res.setStatus(201);
 
 		} catch (Exception e) {

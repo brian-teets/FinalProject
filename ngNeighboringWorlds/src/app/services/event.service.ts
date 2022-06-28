@@ -53,7 +53,6 @@ export class EventService {
   }
 
   create(event: CultureEvent): Observable<CultureEvent> {
-    event.description = '';
     return this.http
       .post<CultureEvent>(this.url, event, this.getHttpOptions())
       .pipe(

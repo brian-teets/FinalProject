@@ -28,12 +28,12 @@ public class UserCommentServiceImpl implements UserCommentService {
 			return comment;
 		}
 		return null;
-	}
+	} 
 
 	@Override
-	public UserComment create(UserComment uCmt) {
+	public UserComment create(String username, UserComment uCmt) {
 		// Do we want to set any defaults or just handle on front end form?
-
+		System.out.println(uCmt);
 		return userCmtRepo.saveAndFlush(uCmt);
 	}
 

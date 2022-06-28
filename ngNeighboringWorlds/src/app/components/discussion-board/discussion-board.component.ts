@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CultureEvent } from 'src/app/models/culture-event';
 import { User } from 'src/app/models/user';
@@ -11,10 +11,9 @@ import { DiscussionBoard } from '../../models/discussion-board';
 @Component({
   selector: 'app-discussion-board',
   templateUrl: './discussion-board.component.html',
-  styleUrls: ['./discussion-board.component.css']
+  styleUrls: ['./discussion-board.component.css'],
 })
 export class DiscussionBoardComponent implements OnInit {
-
   allComments: DiscussionBoard[] = [];
   myComments: DiscussionBoard[] = [];
   selected: DiscussionBoard | null = null;
@@ -22,7 +21,9 @@ export class DiscussionBoardComponent implements OnInit {
   editComment: DiscussionBoard | null = null;
   menuToggle: string = 'all';
   currentUser: User | null = new User();
-  currentEvent: CultureEvent = new CultureEvent();
+  @Input() currentEvent: CultureEvent = new CultureEvent();
+  commentEvent: CultureEvent = new CultureEvent();
+
 
   constructor(
     private commentServ: DiscussionBoardService,
@@ -31,8 +32,7 @@ export class DiscussionBoardComponent implements OnInit {
     private router: Router,
     private date: DatePipe,
     private eventServ: EventService
-  ) { }
-
+  ) {}
 
   ngOnInit(): void {
     this.reload();
@@ -73,12 +73,16 @@ export class DiscussionBoardComponent implements OnInit {
   }
 
   reload() {
-    this.commentServ.index().subscribe({
+    console.log('In reload: ');
+    this.commentServ.getCommentsForEvent(this.currentEvent.id).subscribe({
       next: (data) => {
         this.allComments = data;
+        console.log('In reload: ');
+        console.log(data);
+
       },
       error: (wrong) => {
-        console.error('Culture-EventComponent.reload: error loading list');
+        console.error('Discussion Component.reload: error loading list');
         console.error(wrong);
       },
     });
@@ -89,10 +93,8 @@ export class DiscussionBoardComponent implements OnInit {
   }
 
   getCommentDate(): String {
-    return this.newComment.commentDate
+    return this.newComment.commentDate;
   }
-
-
 
   displayComment(comment: DiscussionBoard): void {
     this.selected = comment;
@@ -100,20 +102,21 @@ export class DiscussionBoardComponent implements OnInit {
   }
 
   addComment(comment: DiscussionBoard, eventId: number): void {
-
+    console.log(comment);
+    console.log(comment.content);
     this.commentServ.create(comment, eventId).subscribe({
       next: (createdComment) => {
         this.selected = createdComment;
         this.reload();
+        this.newComment = new DiscussionBoard();
+        this.displayComment(comment);
       },
       error: (wrong) => {
         console.error('error creating comment');
         console.error(wrong);
       },
     });
-    this.reload();
-    this.newComment = new DiscussionBoard();
-    this.displayComment(comment);
+    // this.reload();
   }
 
   setEditComment(): void {
@@ -149,5 +152,4 @@ export class DiscussionBoardComponent implements OnInit {
       },
     });
   }
-
 }
