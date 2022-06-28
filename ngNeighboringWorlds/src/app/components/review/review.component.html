@@ -1,0 +1,26 @@
+<div id="reviewMainDiv">
+  <h4>Add Review</h4>
+  <form>
+    <!-- rating and review content -->
+    <ng-template #t let-fill="fill">
+      <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+      </span>
+    </ng-template>
+
+    <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+
+    <hr>
+    <pre>Rate: <b>{{currentRate}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 1">1</button>
+    <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 2">2</button>
+    <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 3">3</button>
+    <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 4">4</button>
+    <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 5">5</button>
+    <br>
+    <textarea name="reviewContent" placeholder="Please enter your review content here..." cols="30" rows="5"
+    [(ngModel)]="reviewContent"></textarea>
+    <!-- <button name="reviewBtn" (click)="postReview(review, eventId)">Submit Review</button> -->
+  </form>
+
+</div>

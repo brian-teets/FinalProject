@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
     EventsListComponent,
     ProfileComponent,
     NewEventComponent,
-    FooterComponent
+    FooterComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
