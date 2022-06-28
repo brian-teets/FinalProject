@@ -11,8 +11,8 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DiscussionBoardService {
-  private url = environment.baseUrl + 'api/discussion-board'
-
+  private url = environment.baseUrl + 'api/'
+//culture-events/{cuid}/comments
 
   constructor(
     private http: HttpClient,
@@ -47,10 +47,10 @@ export class DiscussionBoardService {
     );
   }
 
-  create(comment: DiscussionBoard): Observable<DiscussionBoard> {
+  create(comment: DiscussionBoard, eventId: number): Observable<DiscussionBoard> {
     comment.content = '';
     return this.http
-      .post<DiscussionBoard>(this.url, comment, this.getHttpOptions())
+      .post<DiscussionBoard>(this.url + "culture-events/" + eventId + "/comments", comment, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
