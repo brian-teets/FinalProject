@@ -48,7 +48,9 @@ export class EventsListComponent implements OnInit {
   currentRate = 1;
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
-  newTag: EventTag = new EventTag();
+  newTag: EventTag = new EventTag;
+  searchResults: CultureEvent[] = [];
+  searchKeyword: String = "";
   loggedInUser: User = new User();
 
   constructor(
@@ -269,4 +271,16 @@ export class EventsListComponent implements OnInit {
       },
     });
   }
+  searchByKeyword(keyword: String){
+  this.es.searchByKeyword(keyword).subscribe({
+    next: (data) => {
+      this.searchResults = data;
+    },
+    error: (wrong) => {
+      console.error('EventListComponent.getSingleEventTags: error loading list');
+      console.error(wrong);
+    },
+  });
+}
+
 }
