@@ -6,14 +6,20 @@
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowAll()">All events</button>&nbsp;&nbsp;
     <!-- <button type="button" class="btn btn-outline-secondary btn-lg" >FILTER BY TAGS ??</button>&nbsp;&nbsp; -->
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleCreateEvent()">Create new Event</button>&nbsp;&nbsp;
-    <form class="navbar-nav ml-auto" >
-      <input [(ngModel)]="searchKeyword" name="keyword" class="form-control me-2" type="search" placeholder="search by keyword" aria-label="Search">
-      <button class="btn btn-secondary btn-lg" type="submit" (click)="searchByKeyword(searchKeyword)">Search</button>
-    </form>
-  </div>
-  <br>
+  </div><br><br>
 
-    <br>
+
+      <div class="row">
+        <div class="col-4">
+            <input [(ngModel)]="searchKeyword" name="keyword" class="form-control me-2" type="search" placeholder="search by keyword" aria-label="Search">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-secondary btn" type="submit" (click)="searchByKeyword(searchKeyword)">Search</button>
+          </div>
+      </div>
+
+
+  <br><br>
 
     <div class="row card-group" *ngIf="menuToggle == 'all'">
       <div class="col-4"  *ngFor="let event of allEvents">
