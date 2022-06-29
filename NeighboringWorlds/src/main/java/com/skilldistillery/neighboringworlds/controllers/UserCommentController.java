@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.entities.User;
 import com.skilldistillery.neighboringworlds.entities.UserComment;
 import com.skilldistillery.neighboringworlds.repositories.CultureEventRepository;
 import com.skilldistillery.neighboringworlds.repositories.UserCommentRepository;
@@ -51,7 +52,7 @@ public class UserCommentController {
 	public UserComment show(@PathVariable int ucid) {
 		return uCmtServ.show(ucid);
 	}
-	
+
 	@GetMapping("culture-events/{cid}/comments")
 	public List<UserComment> indexEventComments(@PathVariable Integer cid, HttpServletResponse res,
 			HttpServletRequest req) {
@@ -61,7 +62,7 @@ public class UserCommentController {
 	@PostMapping("culture-events/{cid}/comments")
 	public UserComment create(@RequestBody UserComment uCmt, @PathVariable Integer cid, HttpServletResponse res,
 			HttpServletRequest req, Principal principal) {
-			System.out.println(uCmt);
+		System.out.println(uCmt);
 
 		try {
 			Optional<CultureEvent> evtOpt = cEvtRepo.findById(cid);
@@ -107,14 +108,14 @@ public class UserCommentController {
 		}
 		return reply;
 	}
-	
+
 	@PutMapping("comments/{ucid}")
-	public UserComment modify(@RequestBody UserComment uCmt, @PathVariable int ucid, HttpServletResponse res, 
+	public UserComment modify(@RequestBody UserComment uCmt, @PathVariable int ucid, HttpServletResponse res,
 			HttpServletRequest req, Principal principal) {
 		UserComment modCmt;
 		try {
 			modCmt = uCmtServ.modify(uCmt, ucid, principal.getName());
-			if(modCmt != null) {
+			if (modCmt != null) {
 				res.setStatus(200);
 			}
 		} catch (Exception e) {
@@ -122,27 +123,41 @@ public class UserCommentController {
 			e.printStackTrace();
 			modCmt = null;
 		}
-		
-		
-		return modCmt; 
+
+		return modCmt;
 	}
 
 	@DeleteMapping("comments/{ucid}")
-	public Boolean delete(@PathVariable int ucid, HttpServletResponse res,
-			Principal principal) {
+	public Boolean delete(@PathVariable int ucid, HttpServletResponse res, Principal principal) {
 		Boolean deleted = false;
-		try {
-			deleted = uCmtServ.delete(ucid, principal.getName());
-			if(deleted) {
-				res.setStatus(204);
-			} else {
-				res.setStatus(403); // status for forbidden access
+		User user = userRepo.findByUsername(principal.getName());
+		System.out.println(user.getRole());
+		if (user.getRole().equals("ROLE_ADMIN")) {
+			try {
+				deleted = uCmtServ.adminDelete(ucid);
+				if (deleted) {
+					res.setStatus(204);
+				} else {
+					res.setStatus(403); // status for forbidden access
+				}
+			} catch (Exception e) {
+				res.setStatus(500);
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			res.setStatus(500);
-			e.printStackTrace();
+		} else {
+			try {
+				deleted = uCmtServ.delete(ucid, principal.getName());
+				if (deleted) {
+					res.setStatus(204);
+				} else {
+					res.setStatus(403); // status for forbidden access
+				}
+			} catch (Exception e) {
+				res.setStatus(500);
+				e.printStackTrace();
+			}
 		}
-		return deleted; 
+		return deleted;
 	}
 
 }

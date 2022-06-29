@@ -12,6 +12,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class DiscussionBoardService {
   private url = environment.baseUrl + 'api/'
+  private deleteUrl = environment.baseUrl
 //culture-events/{cuid}/comments
 
   constructor(
@@ -103,7 +104,7 @@ export class DiscussionBoardService {
   }
   destroy(id: number): Observable<void> {
     return this.http
-      .delete<void>(this.url + '/' + id, this.getHttpOptions())
+      .delete<void>(this.deleteUrl + "api/comments/" + id, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

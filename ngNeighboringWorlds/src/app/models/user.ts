@@ -11,6 +11,8 @@ export class User {
   username: string;
   password: string;
   events: CultureEvent[];
+  role: String;
+
 
   constructor(
     id: number = 0,
@@ -23,7 +25,8 @@ export class User {
     biography: string = '',
     username: string = '',
     password: string = '',
-    events: CultureEvent[] = []
+    events: CultureEvent[] = [],
+    role: string = ''
   ) {
     this.id = id;
     this.fName = fName;
@@ -36,5 +39,6 @@ export class User {
     this.username = username;
     this.password = password;
     this.events = events;
+    this.role = role
   }
 }
