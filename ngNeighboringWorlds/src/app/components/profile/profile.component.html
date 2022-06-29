@@ -32,7 +32,6 @@
               <div>
               <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getMyEvents()" >Hosting</button>&nbsp;&nbsp;
               <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getAttendingEvents()" >Attending</button>&nbsp;&nbsp;
-              <button type="button" class="btn btn-outline-secondary btn-lg" (click)="getPastEvents()" >Past</button>
             </div>
             </div>
           </div>
@@ -63,7 +62,7 @@
              </div>
              <!-- Attending -->
           <div class="row card-group" *ngIf="profileEditToggle == 'attending'">
-            <div class="col-5" *ngFor="let myEvent of myEvents">
+            <div class="col-5" *ngFor="let myEvent of attendingEvents">
               <div class="card" style="width: 18rem">
                 <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
                 <div class="card-body">
@@ -98,7 +97,7 @@
           </div>
 
 
- <!-- Contained --> 
+ <!-- Contained -->
 
           <div class="row card-group" *ngIf="selected">
             <div class="container px-4 py-8 mx-auto">
