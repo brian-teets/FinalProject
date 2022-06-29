@@ -59,4 +59,4 @@ Event Tag	| POST |	http://localhost:8090/api/tags |	CREATE - a new event tag key
 * Bootstrap
 
 ### Lessons Learned
-`.equals()` is not the same as `==`, remember? Of course you do.
+* `.equals()` is not the same as `==`, remember? Of course you do.
