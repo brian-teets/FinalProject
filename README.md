@@ -41,7 +41,7 @@ List<Media>|	GET	|http://localhost:8090/api/media/all |	READ - show list of all 
 List<Media>	|GET|	http://localhost:8090/api/culture-events/media |	READ - find all media based on Culture Event Id (by traversing through User Comment). Anyone can view this list. It's not locked down based on username, but they still have to be authorized. |
 Media	|POST|	http://localhost:8090/api/comments/{cid}/media |	CREATE - add a media object onto an existing comment by comment Id.|
 List<Event Tag>	|GET|	http://localhost:8090/api/tags/{keyword} |	READ - find a list of tags based on keyword search.|
-List<Event Tag>	GET	http://localhost:8090/api/tags	READ - find a list of all tags.
+List<Event Tag>|	GET|	http://localhost:8090/api/tags	|READ - find a list of all tags.|
 Event Tag	| POST |	http://localhost:8090/api/tags |	CREATE - a new event tag keyword.|
 
 
