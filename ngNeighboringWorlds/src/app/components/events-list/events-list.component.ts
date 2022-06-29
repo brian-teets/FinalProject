@@ -1,4 +1,3 @@
-import { User } from 'src/app/models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
@@ -52,11 +51,8 @@ export class EventsListComponent implements OnInit {
   newTag: EventTag = new EventTag;
   searchResults: CultureEvent[] = [];
   searchKeyword: String = "";
-<<<<<<< HEAD
   loggedInUser: User = new User();
-=======
   searchUser: User = new User();
->>>>>>> c712183e63437e6915643afd4d86f5ff77930651
 
   constructor(
     private es: EventService,
@@ -217,14 +213,9 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
-<<<<<<< HEAD
-    this.menuToggle = 'showreview';
-    this.es.attend(cid).subscribe({
-=======
     console.log(cid);
     this.getLoggedInUser();
     this.es.attend(cid, this.searchUser.username).subscribe({
->>>>>>> c712183e63437e6915643afd4d86f5ff77930651
       next: () => {
         this.reload();
       },

@@ -170,7 +170,11 @@ public class CultureEventController {
 			res.setStatus(500);
 			e.printStackTrace();
 		}
-		results.addAll(titleResults);
+		for (CultureEvent cultureEvent : titleResults) {
+			if (!results.contains(cultureEvent)) {
+				results.add(cultureEvent);
+			}
+		};
 		return results;
 	}
 
