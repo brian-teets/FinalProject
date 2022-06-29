@@ -193,33 +193,33 @@ export class EventsListComponent implements OnInit {
 
   getLoggedInUser(): void {
 
-    // this.us.getLoggedInUser().subscribe({
-    //   next: (loggedInUser) => {
-    //     this.searchUser = loggedInUser;
-    //   },
-    //   error: (wrong) => {
-    //     console.error(
-    //       'error getting logged in user & populating array with users events'
-    //     );
-    //     console.error(wrong);
-    //   },
-    // });
+    this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        this.searchUser = loggedInUser;
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
   }
 
   attend(cid: number) {
-    // console.log(cid);
-    // this.getLoggedInUser();
-    // this.es.attend(cid, this.searchUser.username).subscribe({
-    //   next: () => {
-    //     this.reload();
-    //   },
-    //   error: (wrong) => {
-    //     console.error(
-    //       'error getting logged in user & populating array with users events'
-    //     );
-    //     console.error(wrong);
-    //   },
-    // });
+    console.log(cid);
+    this.getLoggedInUser();
+    this.es.attend(cid, this.searchUser.username).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
   }
 
 
