@@ -23,8 +23,8 @@ Click "About" to learn more about the creators of NeighboringWorlds!
 
 
 Routes:
-| Return Type | Request Type | Route | Functionality  |
-|-----------------|------------------------|-----------------------------------|
+| Return Type | Request Type | Route | Functionality                     |
+|-------------|--------------|-------|-----------------------------------|
 |List<CultureEvent>|	GET|	http://localhost:8090/api/culture-events	|READ Operation to show list of all Culture Events.|
 |Culture Event|	GET	|http://localhost:8090/api/culture-events/{cid}	|READ Operation to show an individual Culture Event by its Id.|
 |Culture Event|	POST|	http://localhost:8090/api/culture-events/	|CREATE Operation to add a new Culture Event. |
