@@ -125,10 +125,10 @@ export class EventService {
       );
   }
 
-  attend(cid: number) {
+  attend(cid: number, username: string) {
     return this.http
       .post(
-        environment.baseUrl + 'api/culture-events' + '/' + cid + '/attendees',
+        environment.baseUrl + 'api/culture-events' + '/' + cid + '/attendees/' + username,
         null,
         this.getHttpOptions()
       )
@@ -138,7 +138,7 @@ export class EventService {
           return throwError(
             () =>
               new Error(
-                'EventService.update(): error updating Addendee: ' + err
+                'EventService.update(): error updating Attendee: ' + err
               )
           );
         })

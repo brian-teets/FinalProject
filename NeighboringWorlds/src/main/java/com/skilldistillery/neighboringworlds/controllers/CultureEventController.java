@@ -70,12 +70,12 @@ public class CultureEventController {
 	
 	
 	//ATTEND an event method
-	@PostMapping("culture-events/{cid}/attendees")
-	public void addAttendee(@PathVariable int cid, Principal principal, HttpServletResponse res){
+	@PostMapping("culture-events/{cid}/attendees/{username}")
+	public void addAttendee(@PathVariable int cid, @PathVariable String username, HttpServletResponse res){
 		CultureEvent evt = null;
 		try {
 //			List<User> attendees = cEvtServ.attend(cid, principal.getName());
-			cEvtServ.attend(cid, principal.getName());
+			cEvtServ.attend(cid, username);
 			res.setStatus(201);
 //			return attendees;
 		} catch (Exception e) {
