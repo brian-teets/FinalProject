@@ -35,7 +35,7 @@
       <div class="card" style="width: 18rem">
         <img src="{{ myEvent.coverImgUrl }}" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ myEvent.title }}</h5>
+          <h3 class="card-title">{{ myEvent.title }}</h3>
           <p class="card-text">Date: {{ myEvent.eventDate }}</p>
           <p class="card-text">City: {{ myEvent.address?.city }}</p>
           <p class="card-text">{{ myEvent.description }}</p>
@@ -60,15 +60,15 @@
         <p class="card-text">Capacity: {{ selected.capacity }}</p>
         <p class="card-text">Start time: {{ selected.startTime }}</p>
         <p class="card-text">End time: {{ selected.endTime }}</p>
-        <p class="card-text">Created on: {{ selected.createdDate }}</p>
-        <p class="card-text">Updated on: {{ selected.lastUpdated }}</p>
-        <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p>
+        <!-- <p class="card-text">Created on: {{ selected.createdDate }}</p>
+        <p class="card-text">Updated on: {{ selected.lastUpdated }}</p> -->
+        <!-- <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p> -->
         <br>
         <div id="eventTagSelector">
           <!-- <button type="button" class="btn btn-primary" (click)="getSingleEventTags(selected.id)">Refresh tags</button> -->
-          <div class="col-4"  *ngFor="let tag of eventTags">
+          <div row class="col" *ngFor="let tag of eventTags">
             <span class="badge bg-primary">{{tag.keyword}}</span>
-          </div>
+        </div>
           <form>
             <input type="text" name="keyword" [(ngModel)]="newTag.keyword"/>
             <button type="button" class="btn btn-primary" (click)="createTag(newTag, selected.id)">Add Tag</button>
@@ -79,20 +79,31 @@
         </div>
         <div id="attendSelectedEventAndBackButtons">
           <br>
-          <button type="button" class="btn btn-primary" (click)="refresh()">Back</button>
-          &nbsp;
 
-          <div *ngIf="joinToggle == 'unjoined'">
-            <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
-          </div>
 
-          <div *ngIf="joinToggle == 'joined'">
-            <button type="button" class="btn btn-outline-secondary">Thanks for joining!</button>
-          </div>
+          <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary" (click)="refresh()">Back</button>&nbsp;
+              </div>
+              <div class="col">
+                <div *ngIf="menuToggle != 'showreview'">
+                  <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
+                </div>
+                <div *ngIf="menuToggle == 'showreview'">
+                  <button type="button" class="btn btn-outline-secondary">Thanks for joining!</button>
+                </div>
+              </div>
+              <div class="col-8">
 
+              </div>
+            </div>
         </div>
+
+
         <!-- REVIEW APP VIEW -->
-        <div id="reviewMainDiv">
+
+
+        <div id="reviewMainDiv" *ngIf="menuToggle == 'showreview'">
           <br><br>
           <h4>Add Review</h4>
           <form>

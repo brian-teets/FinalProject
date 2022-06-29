@@ -4,6 +4,7 @@ import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
 import { EventTag } from 'src/app/models/event-tag';
 import { Review } from 'src/app/models/review';
+import { User } from 'src/app/models/user';
 import { AddressService } from 'src/app/services/address.service';
 import { EventTagService } from 'src/app/services/event-tag.service';
 import { EventService } from 'src/app/services/event.service';
@@ -42,13 +43,13 @@ export class EventsListComponent implements OnInit {
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
   menuToggle: string = 'all';
-  joinToggle: string = 'unjoined';
   review: Review = new Review();
   reviewContent: String | null = '';
   currentRate = 1;
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
   newTag: EventTag = new EventTag();
+  loggedInUser: User = new User();
 
   constructor(
     private es: EventService,
@@ -60,7 +61,6 @@ export class EventsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
-    this.joinToggle = 'unjoined';
   }
 
   reload() {
@@ -96,6 +96,7 @@ export class EventsListComponent implements OnInit {
     this.selected = event;
     this.getSingleEventTags(this.selected.id);
     this.menuToggle = 'selected';
+    this.checkForShowReview();
   }
 
   addEvent(event: CultureEvent, eventAddress: Address): void {
@@ -178,8 +179,7 @@ export class EventsListComponent implements OnInit {
 
   menuToggleShowAll() {
     this.menuToggle = 'all';
-    console.log(this.menuToggle);
-    this.reload;
+    this.refresh();
   }
 
   menuToggleCreateEvent() {
@@ -189,7 +189,7 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
-    this.joinToggle = 'joined';
+    this.menuToggle = 'showreview';
     this.es.attend(cid).subscribe({
       next: () => {
         this.reload();
@@ -241,6 +241,29 @@ export class EventsListComponent implements OnInit {
       error: (wrong) => {
         console.error(
           'EventListComponent.getSingleEventTags: error loading list'
+        );
+        console.error(wrong);
+      },
+    });
+  }
+
+  checkForShowReview() {
+    let loggedInUser = this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        console.log(this.selected?.attendees);
+        console.log(loggedInUser);
+
+        if (this.selected?.attendees) {
+          for (let i = 0; i < this.selected?.attendees?.length; i++) {
+            if (this.selected.attendees[i].id === loggedInUser.id) {
+              this.menuToggle = 'showreview';
+            }
+          }
+        }
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
         );
         console.error(wrong);
       },
