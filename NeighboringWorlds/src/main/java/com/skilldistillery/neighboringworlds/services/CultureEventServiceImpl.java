@@ -37,7 +37,7 @@ public class CultureEventServiceImpl implements CultureEventService {
 		if (eventOpt.isPresent()) {
 			event = eventOpt.get();
 		}
-		return event;
+		return event; 
 	}
 	
 	@Override
