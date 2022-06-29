@@ -5,6 +5,7 @@ import { Address } from 'src/app/models/address';
 import { CultureEvent } from 'src/app/models/culture-event';
 import { EventTag } from 'src/app/models/event-tag';
 import { Review } from 'src/app/models/review';
+import { User } from 'src/app/models/user';
 import { AddressService } from 'src/app/services/address.service';
 import { EventTagService } from 'src/app/services/event-tag.service';
 import { EventService } from 'src/app/services/event.service';
@@ -14,23 +15,25 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css'],
-  styles: [`
-    .star {
-      position: relative;
-      display: inline-block;
-      font-size: 3rem;
-      color: #d3d3d3;
-    }
-    .full {
-      color: red;
-    }
-    .half {
-      position: absolute;
-      display: inline-block;
-      overflow: hidden;
-      color: red;
-    }
-  `]
+  styles: [
+    `
+      .star {
+        position: relative;
+        display: inline-block;
+        font-size: 3rem;
+        color: #d3d3d3;
+      }
+      .full {
+        color: red;
+      }
+      .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: red;
+      }
+    `,
+  ],
 })
 export class EventsListComponent implements OnInit {
   allEvents: CultureEvent[] = [];
@@ -49,7 +52,11 @@ export class EventsListComponent implements OnInit {
   newTag: EventTag = new EventTag;
   searchResults: CultureEvent[] = [];
   searchKeyword: String = "";
+<<<<<<< HEAD
+  loggedInUser: User = new User();
+=======
   searchUser: User = new User();
+>>>>>>> c712183e63437e6915643afd4d86f5ff77930651
 
   constructor(
     private es: EventService,
@@ -82,8 +89,10 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+  }
 
-
+  refresh() {
+    window.location.reload();
   }
 
   getEventCount(): number {
@@ -92,8 +101,9 @@ export class EventsListComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
-    this.getSingleEventTags(this.selected.id)
+    this.getSingleEventTags(this.selected.id);
     this.menuToggle = 'selected';
+    this.checkForShowReview();
   }
 
   addEvent(event: CultureEvent, eventAddress: Address): void {
@@ -117,6 +127,7 @@ export class EventsListComponent implements OnInit {
   setEditEvent(): void {
     this.editEvent = Object.assign({}, this.selected);
   }
+
   updateEvent(event: CultureEvent, setSelected: boolean = true): void {
     if (event.id != null) {
       this.es.update(event).subscribe({
@@ -175,8 +186,7 @@ export class EventsListComponent implements OnInit {
 
   menuToggleShowAll() {
     this.menuToggle = 'all';
-    console.log(this.menuToggle);
-    this.reload;
+    this.refresh();
   }
 
   menuToggleShowSearch() {
@@ -207,9 +217,14 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
+<<<<<<< HEAD
+    this.menuToggle = 'showreview';
+    this.es.attend(cid).subscribe({
+=======
     console.log(cid);
     this.getLoggedInUser();
     this.es.attend(cid, this.searchUser.username).subscribe({
+>>>>>>> c712183e63437e6915643afd4d86f5ff77930651
       next: () => {
         this.reload();
       },
@@ -222,9 +237,7 @@ export class EventsListComponent implements OnInit {
     });
   }
 
-
-  postReview(review: Review, eventId: number): void{
-
+  postReview(review: Review, eventId: number): void {
     this.es.postReview(review, eventId).subscribe({
       next: (newReview) => {
         this.currentRate = review.rating;
@@ -237,10 +250,10 @@ export class EventsListComponent implements OnInit {
     });
   }
 
-  createTag( tag: EventTag, cid: number): void{
+  createTag(tag: EventTag, cid: number): void {
     this.ets.create(tag, cid).subscribe({
       next: (data) => {
-        console.log(data)
+        console.log(data);
         // this.reload();
         this.newTag = new EventTag();
       },
@@ -252,20 +265,44 @@ export class EventsListComponent implements OnInit {
     this.getSingleEventTags(cid);
   }
 
-  getSingleEventTags(cid: number){
+  getSingleEventTags(cid: number) {
     this.ets.getSingleEventTags(cid).subscribe({
       next: (data) => {
         this.eventTags = data;
-        console.log(this.eventTags.length)
+        console.log(this.eventTags.length);
         // this.reload();
       },
       error: (wrong) => {
-        console.error('EventListComponent.getSingleEventTags: error loading list');
+        console.error(
+          'EventListComponent.getSingleEventTags: error loading list'
+        );
         console.error(wrong);
       },
     });
   }
 
+  checkForShowReview() {
+    let loggedInUser = this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        console.log(this.selected?.attendees);
+        console.log(loggedInUser);
+
+        if (this.selected?.attendees) {
+          for (let i = 0; i < this.selected?.attendees?.length; i++) {
+            if (this.selected.attendees[i].id === loggedInUser.id) {
+              this.menuToggle = 'showreview';
+            }
+          }
+        }
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
+  }
   searchByKeyword(keyword: String){
   this.es.searchByKeyword(keyword).subscribe({
     next: (data) => {
