@@ -79,6 +79,7 @@ export class EventsListComponent implements OnInit {
       },
     });
 
+
   }
 
   getEventCount(): number {
@@ -214,7 +215,7 @@ export class EventsListComponent implements OnInit {
     this.ets.create(tag, cid).subscribe({
       next: (data) => {
         console.log(data)
-        this.reload();
+        // this.reload();
         this.newTag = new EventTag();
       },
       error: (wrong) => {
@@ -222,6 +223,7 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+    this.getSingleEventTags(cid);
   }
 
   getSingleEventTags(cid: number){
@@ -229,7 +231,7 @@ export class EventsListComponent implements OnInit {
       next: (data) => {
         this.eventTags = data;
         console.log(this.eventTags.length)
-        this.reload();
+        // this.reload();
       },
       error: (wrong) => {
         console.error('EventListComponent.getSingleEventTags: error loading list');
