@@ -71,26 +71,24 @@ public class CultureEventServiceImpl implements CultureEventService {
 	public void attend(Integer cid, String username) {
 		User attendee = userRepo.findByUsername(username);
 		cultureEvtRepo.createAttendee(cid, attendee.getId());
-//		
-//		List<CultureEvent> userEvents = attendee.getEvents();
-//		
-//		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
-//		
-//		CultureEvent evt = oEvt.get();
-//		
-//		if (evt != null && attendee != null) {
-//			List<User> attendees = evt.getAttendees();
-//			if (!attendees.contains(attendee)) {
-//				evt.getAttendees().add(attendee);
-//			}
-//			if (!userEvents.contains(evt)) {
-//				attendee.getEvents().add(evt);
-//			}
-//			userRepo.save(attendee);
-//			cultureEvtRepo.save(evt);
-//		}
-//		
-//		return evt;
+		
+		List<CultureEvent> userEvents = attendee.getEvents();
+		
+		Optional<CultureEvent> oEvt = cultureEvtRepo.findById(cid);
+		
+		CultureEvent evt = oEvt.get();
+		
+		if (evt != null && attendee != null) {
+			List<User> attendees = evt.getAttendees();
+			if (!attendees.contains(attendee)) {
+				evt.getAttendees().add(attendee);
+			}
+			if (!userEvents.contains(evt)) {
+				attendee.getEvents().add(evt);
+			}
+			userRepo.save(attendee);
+			cultureEvtRepo.save(evt);
+		}
 		
 		
 	}

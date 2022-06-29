@@ -207,14 +207,17 @@ export class ProfileComponent implements OnInit {
   }
 
   getAttendingEvents() {
+    this.attendingEvents = [];
     this.profileEditToggle = 'attending';
-
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.allEvents.forEach((event) => {
           event.attendees?.forEach((attendee) => {
             if (attendee.username == loggedInUser.username)
               this.attendingEvents.push(event);
+              // console.log('Inside getAttendingEvents()');
+              // console.log(this.attendingEvents);
+
           });
         });
       },
