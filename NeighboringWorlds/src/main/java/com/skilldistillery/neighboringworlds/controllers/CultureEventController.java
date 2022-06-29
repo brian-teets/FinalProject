@@ -132,5 +132,46 @@ public class CultureEventController {
 		}
 		return deleted; 
 	}
+	
+//	@GetMapping("culture-events/search/{keyword}")
+//	public List<CultureEvent> queryByTitleOrDescription(@PathVariable String keyword, HttpServletResponse res){
+//		List<CultureEvent> results = null;
+//		System.out.println("In search method");
+//		try {
+//			results = cEvtServ.queryByDescription(keyword);
+//			if (results != null) {
+//				System.out.println(results.size());
+//				res.setStatus(201);
+//			} else {
+//				res.setStatus(403);
+//			}
+//		} catch (Exception e) {
+//			res.setStatus(500);
+//			e.printStackTrace();
+//		}
+//		return results;
+//	}
+	
+	@GetMapping("culture-events/search/{keyword}")
+	public List<CultureEvent> findByDescription(@PathVariable String keyword, HttpServletResponse res){
+		List<CultureEvent> results = null;
+		List<CultureEvent> titleResults = null;
+		System.out.println("In search method");
+		try {
+			results = cEvtServ.findByDescriptionContaining(keyword);
+			titleResults = cEvtServ.findByTitleContaining(keyword);
+			if (results != null) {
+				System.out.println(results.size());
+				res.setStatus(201);
+			} else {
+				res.setStatus(403);
+			}
+		} catch (Exception e) {
+			res.setStatus(500);
+			e.printStackTrace();
+		}
+		results.addAll(titleResults);
+		return results;
+	}
 
 }

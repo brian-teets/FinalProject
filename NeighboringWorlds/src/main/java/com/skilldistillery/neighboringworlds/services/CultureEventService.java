@@ -15,5 +15,7 @@ public interface CultureEventService {
 //	List<User> attend(Integer cid, String username);
 	void attend(Integer cid, String username);
 	List<User> showAttendees(int cid);
-
+//	List<CultureEvent> findByDescription(String keyword);
+	List<CultureEvent> findByDescriptionContaining(String pattern);
+	List<CultureEvent> findByTitleContaining(String pattern);
 }
