@@ -121,7 +121,7 @@ export class ProfileComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
-    this.profileEditToggle = 'mine';
+    this.profileEditToggle = 'hide';
     this.reload();
   }
 
@@ -145,6 +145,7 @@ export class ProfileComponent implements OnInit {
 
   setEditEvent(): void {
     this.editEvent = Object.assign({}, this.selected);
+
   }
   updateEvent(event: CultureEvent, setSelected: boolean = true): void {
     if (event.id != null) {
@@ -182,6 +183,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getMyEvents() {
+    this.selected = null;
     this.myEvents = [];
     this.profileEditToggle = 'mine';
     this.us.getLoggedInUser().subscribe({

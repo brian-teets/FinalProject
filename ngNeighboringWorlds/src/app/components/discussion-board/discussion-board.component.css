@@ -16,3 +16,105 @@ body{background: #eee}
 
 .textarea{resize: none}
 
+input {
+    border: 10px;
+    outline: 10px;
+
+}
+
+#post{
+background-color: rgb(235, 234, 208);
+}
+
+input[type="text"] {
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 15px 20px;
+}
+
+ /* your CSS goes here*/body {
+  color: #000;
+  overflow-x: hidden;
+  height: 100%;
+  background-color: rgb(235, 234, 208);
+  background-repeat: no-repeat;
+}
+
+.card {
+  border-radius: 10px;
+  width: 500px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: #E0E0E0;
+}
+
+textarea {
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #616161;
+  border: 1px solid #F5F5F5;
+  font-size: 16px;
+  letter-spacing: 1px;
+  height: 120px !important;
+  width: 100%;
+}
+
+textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  /* border: 1px solid #00C853 !important; */
+  outline-width: 0 !important;
+}
+
+select {
+  border: none;
+  font-size: 15px;
+  background-color: #fff !important;
+}
+
+select:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0 !important;
+}
+
+::placeholder {
+  color: #BDBDBD;
+}
+
+:-ms-input-placeholder {
+  color: #BDBDBD;
+}
+
+::-ms-input-placeholder {
+  color: #BDBDBD;
+}
+
+.btn-success {
+  border-radius: 50px;
+  padding: 4px 40px;
+
+}
+
+.options {
+  font-size: 23px;
+  color: #757575;
+  cursor: pointer;
+}
+
+.options:hover {
+  color: #000;
+}
+

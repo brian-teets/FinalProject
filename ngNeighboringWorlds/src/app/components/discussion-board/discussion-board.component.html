@@ -1,73 +1,45 @@
-<div>
+
+<div class="container px-4 py-8 mx-auto">
+  <div class="row d-flex justify-content-left">
   <div *ngFor="let comment of allComments">
-    <hr>
-
-    <div class="light p-2">
-      <div class="d-flex flex-row align-items-start">
-        <img
-              class="rounded-circle"
-              src="{{ currentUser?.profileImgUrl }}"
-              width="40"
-            />
-          <div>
-            <h6><span class="bg-white">{{comment.title}}</span></h6>
-            <h6><span class="bg-white">{{comment.content}}</span></h6>
-          </div>
-        </div>
+    <div class="card; w-75 p-3" style="border-radius: 10px;">
+      <div class="card-header" style="background-color: rgb(114, 140, 175);">
+        <h4>
+        <img class="rounded-circle" src="{{ currentUser?.profileImgUrl}}" width="60" height="60"/>
+        &nbsp;&nbsp;{{currentUser?.fName }}&nbsp;{{ currentUser?.lName }}
+      </h4>
     </div>
-
-  </div>
-</div>
-
-
-<div class="container mt-5">
-  <div class="d-flex justify-content-center row">
-    <div class="col-md-8">
-      <div class="d-flex flex-column comment-section">
-        <div class="bg-white p-2">
-          <div class="d-flex flex-row user-info">
-            <img
-              class="rounded-circle"
-              src="{{ currentUser?.profileImgUrl }}"
-              width="40"
-            />
-            <div class="d-flex flex-column justify-content-start ml-2">
-              <span class="d-block font-weight-bold name"
-                >{{ currentUser?.fName }}&nbsp;{{ currentUser?.lName }}</span><span class="date text-black-50"> </span>
-
-            </div>
-          </div>
-
-          <div class="mt-2">
-            <form action="">
-            <input type="text" name="title" placeholder="Comment title" [(ngModel)]="newComment.title" ><br><br>
-            <textarea name="content" placeholder="Your comment here..." cols="55" rows="14" [(ngModel)]="newComment.content"></textarea><br><br>
-            <button class="btn btn-dark" (click)="addComment(newComment, currentEvent.id)">Post Comment</button>
-          </form>
-          </div>
-
-
-        </div>
-          <span class="date text-black-50">Shared publicly - {{getCommentDate()}} </span>
-
-
-        <!-- <div class="bg-white">
-          <div class="d-flex flex-row fs-12">
-            <div class="like p-2 cursor">
-              <i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>
-            </div>
-            <div class="like p-2 cursor">
-              <i class="fa fa-commenting-o"></i
-              ><span class="ml-1">Comment</span>
-            </div>
-            <div class="like p-2 cursor">
-              <i class="fa fa-share"></i><span class="ml-1">Share</span>
-            </div>
-          </div>
-        </div> -->
-
-
+    <div class="card-body" style="background-color: white;">
+      <blockquote class="blockquote mb-0">
+        <!-- <h6><span class="bg-white">{{comment.title}}</span></h6> -->
+        <h5 style="color: rgb(114, 140, 175); font-weight: 500;">{{comment.title}}</h5><br>
+          <h6><span class="bg-white">{{comment.content}}</span></h6>
+          <br><footer class="blockquote-footer">Posted <cite title="Source Title">{{comment.commentDate}}</cite></footer>
+        </blockquote>
       </div>
     </div>
+  </div><br><br>
   </div>
+  </div>
+
+
+<br><hr><br>
+  <div class="container px-4 py-8 mx-auto">
+    <div class="row d-flex justify-content-left">
+        <div class="card; w-100 p-3" style="background-color: rgb(114, 140, 175); border-radius: 10px;">
+          <!-- <img class="rounded-circle" src="{{ currentUser?.profileImgUrl}}" width="60" height="60"/>  -->
+          <h3 class="mb-0 font-weight-normal">Create A New Post</h3>
+          <br><input type="text" name="title" placeholder="Comment title" [(ngModel)]="newComment.title" >
+            <div class="row px-3 form-group">
+                <textarea [(ngModel)]="newComment.content" class="text-muted bg-light mt-4 mb-3" placeholder="Hi {{currentUser?.fName}}, add your comment here!"></textarea>
+            </div>
+            <div class="row d-flex justify-content-center; w-25 p-3">
+                <button if="post" class="btn btn-success ml-auto" (click)="addComment(newComment, currentEvent.id)">Post</button>
+            </div>
+        </div>
+        <br><br>
+    </div>
+    <br><br>
 </div>
+
+
