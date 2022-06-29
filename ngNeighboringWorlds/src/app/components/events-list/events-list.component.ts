@@ -215,7 +215,7 @@ export class EventsListComponent implements OnInit {
     this.menuToggle = 'showreview';
     console.log(cid);
     this.getLoggedInUser();
-    this.es.attend(cid, this.searchUser.username).subscribe({
+    this.es.attend(cid).subscribe({
       next: () => {
         this.reload();
       },

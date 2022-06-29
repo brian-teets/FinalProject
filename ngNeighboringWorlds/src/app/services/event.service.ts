@@ -125,10 +125,10 @@ export class EventService {
       );
   }
 
-  attend(cid: number, username: string) {
+  attend(cid: number) {
     return this.http
       .post(
-        environment.baseUrl + 'api/culture-events' + '/' + cid + '/attendees/' + username,
+        environment.baseUrl + 'api/culture-events' + '/' + cid + '/attendees',
         null,
         this.getHttpOptions()
       )
