@@ -1,4 +1,3 @@
-import { User } from 'src/app/models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
@@ -49,14 +48,11 @@ export class EventsListComponent implements OnInit {
   currentRate = 1;
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
-  newTag: EventTag = new EventTag;
+  newTag: EventTag = new EventTag();
   searchResults: CultureEvent[] = [];
-  searchKeyword: String = "";
-<<<<<<< HEAD
+  searchKeyword: String = '';
   loggedInUser: User = new User();
-=======
   searchUser: User = new User();
->>>>>>> c712183e63437e6915643afd4d86f5ff77930651
 
   constructor(
     private es: EventService,
@@ -202,7 +198,6 @@ export class EventsListComponent implements OnInit {
   }
 
   getLoggedInUser(): void {
-
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.searchUser = loggedInUser;
@@ -217,14 +212,10 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
-<<<<<<< HEAD
     this.menuToggle = 'showreview';
-    this.es.attend(cid).subscribe({
-=======
     console.log(cid);
     this.getLoggedInUser();
     this.es.attend(cid, this.searchUser.username).subscribe({
->>>>>>> c712183e63437e6915643afd4d86f5ff77930651
       next: () => {
         this.reload();
       },
@@ -303,17 +294,19 @@ export class EventsListComponent implements OnInit {
       },
     });
   }
-  searchByKeyword(keyword: String){
-  this.es.searchByKeyword(keyword).subscribe({
-    next: (data) => {
-      this.searchResults = data;
-      this.menuToggle = 'search';
-    },
-    error: (wrong) => {
-      console.error('EventListComponent.getSingleEventTags: error loading list');
-      console.error(wrong);
-    },
-  });
-}
 
+  searchByKeyword(keyword: String) {
+    this.es.searchByKeyword(keyword).subscribe({
+      next: (data) => {
+        this.searchResults = data;
+        this.menuToggle = 'search';
+      },
+      error: (wrong) => {
+        console.error(
+          'EventListComponent.getSingleEventTags: error loading list'
+        );
+        console.error(wrong);
+      },
+    });
+  }
 }
