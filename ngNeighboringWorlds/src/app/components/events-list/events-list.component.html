@@ -74,11 +74,12 @@
           </form>
 
         </div>
-
-        <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
-        <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
-        <br>
-        <br />
+        <div id="attendSelectedEventAndBackButtons">
+          <br>
+          <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
+          &nbsp;
+          <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
+        </div>
         <!-- REVIEW APP VIEW -->
         <div id="reviewMainDiv">
           <br><br>
