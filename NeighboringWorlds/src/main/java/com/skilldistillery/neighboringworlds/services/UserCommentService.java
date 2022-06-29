@@ -13,5 +13,6 @@ public interface UserCommentService {
 	UserComment create(String username, UserComment uCmt);
 	UserComment modify(UserComment uCmt, int ucid, String username);
 	Boolean delete(int ucid, String username);
+	Boolean adminDelete(int ucid);
 
 }

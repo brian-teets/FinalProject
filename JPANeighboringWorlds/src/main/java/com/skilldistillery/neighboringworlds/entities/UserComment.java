@@ -49,6 +49,10 @@ public class UserComment {
 	@JoinColumn(name = "in_reply_to_id")
 	private UserComment inReplyTo;
 	
+	@OneToMany(mappedBy="userComment")
+	private List<Media> media;
+	
+	
 	//TODO media field and relationship mapping
 
 	public int getId() {
@@ -114,6 +118,16 @@ public class UserComment {
 	public void setInReplyTo(UserComment inReplyTo) {
 		this.inReplyTo = inReplyTo;
 	}
+	
+	public List<Media> getMedia() {
+		return media;
+	}
+	
+	public void setMedia(List<Media> media) {
+		this.media = media;
+	}
+	
+	
 
 	@Override
 	public String toString() {

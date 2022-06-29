@@ -1,13 +1,13 @@
 package com.skilldistillery.neighboringworlds.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.neighboringworlds.entities.CultureEvent;
+import com.skilldistillery.neighboringworlds.entities.Media;
 import com.skilldistillery.neighboringworlds.entities.UserComment;
+import com.skilldistillery.neighboringworlds.repositories.MediaRepository;
 import com.skilldistillery.neighboringworlds.repositories.UserCommentRepository;
 
 @Service
@@ -15,6 +15,9 @@ public class UserCommentServiceImpl implements UserCommentService {
 
 	@Autowired
 	private UserCommentRepository userCmtRepo;
+	
+	@Autowired
+	private MediaRepository mediaRepo;
 
 	@Override
 	public List<UserComment> index(String username) {
@@ -53,6 +56,22 @@ public class UserCommentServiceImpl implements UserCommentService {
 	public Boolean delete(int ucid, String username) {
 		UserComment evtToDelete = userCmtRepo.findByIdAndUser_Username(ucid, username);
 		if (evtToDelete != null) {
+			userCmtRepo.deleteById(ucid);
+		}
+		return !userCmtRepo.existsById(ucid);
+	}
+	
+	@Override
+	public Boolean adminDelete(int ucid) {
+		UserComment cmtToDelete = userCmtRepo.findById(ucid);
+		System.out.println(cmtToDelete == null);
+		for (Media media : cmtToDelete.getMedia()) {
+			mediaRepo.delete(media);
+		}
+		for (UserComment reply : cmtToDelete.getReplies()) {
+			userCmtRepo.delete(reply);
+		}
+		if (cmtToDelete != null) {
 			userCmtRepo.deleteById(ucid);
 		}
 		return !userCmtRepo.existsById(ucid);
