@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
@@ -48,6 +49,7 @@ export class EventsListComponent implements OnInit {
   newTag: EventTag = new EventTag;
   searchResults: CultureEvent[] = [];
   searchKeyword: String = "";
+  searchUser: User = new User();
 
   constructor(
     private es: EventService,
@@ -177,15 +179,37 @@ export class EventsListComponent implements OnInit {
     this.reload;
   }
 
+  menuToggleShowSearch() {
+    this.menuToggle = 'search';
+    console.log(this.menuToggle);
+    this.reload;
+  }
+
   menuToggleCreateEvent() {
     this.menuToggle = 'createEvent';
     console.log(this.menuToggle);
     this.reload();
   }
 
+  getLoggedInUser(): void {
+
+    this.us.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        this.searchUser = loggedInUser;
+      },
+      error: (wrong) => {
+        console.error(
+          'error getting logged in user & populating array with users events'
+        );
+        console.error(wrong);
+      },
+    });
+  }
+
   attend(cid: number) {
     console.log(cid);
-    this.es.attend(cid).subscribe({
+    this.getLoggedInUser();
+    this.es.attend(cid, this.searchUser.username).subscribe({
       next: () => {
         this.reload();
       },
@@ -246,6 +270,7 @@ export class EventsListComponent implements OnInit {
   this.es.searchByKeyword(keyword).subscribe({
     next: (data) => {
       this.searchResults = data;
+      this.menuToggle = 'search';
     },
     error: (wrong) => {
       console.error('EventListComponent.getSingleEventTags: error loading list');
