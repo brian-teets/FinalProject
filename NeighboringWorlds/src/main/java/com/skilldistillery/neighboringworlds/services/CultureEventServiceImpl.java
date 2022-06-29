@@ -143,4 +143,15 @@ public class CultureEventServiceImpl implements CultureEventService {
 		return !cultureEvtRepo.existsById(cid);
 	}
 
+	@Override
+	public List<CultureEvent> findByDescriptionContaining(String keyword) {
+		return cultureEvtRepo.findByDescriptionContaining(keyword);
+	}
+	
+	@Override
+	public List<CultureEvent> findByTitleContaining(String pattern){
+		return cultureEvtRepo.findByTitleContaining(pattern);
+	}
+	
+
 }
