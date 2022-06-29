@@ -13,23 +13,25 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css'],
-  styles: [`
-    .star {
-      position: relative;
-      display: inline-block;
-      font-size: 3rem;
-      color: #d3d3d3;
-    }
-    .full {
-      color: red;
-    }
-    .half {
-      position: absolute;
-      display: inline-block;
-      overflow: hidden;
-      color: red;
-    }
-  `]
+  styles: [
+    `
+      .star {
+        position: relative;
+        display: inline-block;
+        font-size: 3rem;
+        color: #d3d3d3;
+      }
+      .full {
+        color: red;
+      }
+      .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: red;
+      }
+    `,
+  ],
 })
 export class EventsListComponent implements OnInit {
   allEvents: CultureEvent[] = [];
@@ -40,12 +42,13 @@ export class EventsListComponent implements OnInit {
   editEvent: CultureEvent | null = null;
   eventAddress: Address = new Address();
   menuToggle: string = 'all';
+  joinToggle: string = 'unjoined';
   review: Review = new Review();
   reviewContent: String | null = '';
   currentRate = 1;
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
-  newTag: EventTag = new EventTag;
+  newTag: EventTag = new EventTag();
 
   constructor(
     private es: EventService,
@@ -57,6 +60,7 @@ export class EventsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
+    this.joinToggle = 'unjoined';
   }
 
   reload() {
@@ -78,8 +82,10 @@ export class EventsListComponent implements OnInit {
         console.error(wrong);
       },
     });
+  }
 
-
+  refresh() {
+    window.location.reload();
   }
 
   getEventCount(): number {
@@ -88,7 +94,7 @@ export class EventsListComponent implements OnInit {
 
   displayEventInfo(event: CultureEvent): void {
     this.selected = event;
-    this.getSingleEventTags(this.selected.id)
+    this.getSingleEventTags(this.selected.id);
     this.menuToggle = 'selected';
   }
 
@@ -113,6 +119,7 @@ export class EventsListComponent implements OnInit {
   setEditEvent(): void {
     this.editEvent = Object.assign({}, this.selected);
   }
+
   updateEvent(event: CultureEvent, setSelected: boolean = true): void {
     if (event.id != null) {
       this.es.update(event).subscribe({
@@ -182,7 +189,7 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
-    console.log(cid);
+    this.joinToggle = 'joined';
     this.es.attend(cid).subscribe({
       next: () => {
         this.reload();
@@ -196,9 +203,7 @@ export class EventsListComponent implements OnInit {
     });
   }
 
-
-  postReview(review: Review, eventId: number): void{
-
+  postReview(review: Review, eventId: number): void {
     this.es.postReview(review, eventId).subscribe({
       next: (newReview) => {
         this.currentRate = review.rating;
@@ -211,10 +216,10 @@ export class EventsListComponent implements OnInit {
     });
   }
 
-  createTag( tag: EventTag, cid: number): void{
+  createTag(tag: EventTag, cid: number): void {
     this.ets.create(tag, cid).subscribe({
       next: (data) => {
-        console.log(data)
+        console.log(data);
         // this.reload();
         this.newTag = new EventTag();
       },
@@ -226,18 +231,19 @@ export class EventsListComponent implements OnInit {
     this.getSingleEventTags(cid);
   }
 
-  getSingleEventTags(cid: number){
+  getSingleEventTags(cid: number) {
     this.ets.getSingleEventTags(cid).subscribe({
       next: (data) => {
         this.eventTags = data;
-        console.log(this.eventTags.length)
+        console.log(this.eventTags.length);
         // this.reload();
       },
       error: (wrong) => {
-        console.error('EventListComponent.getSingleEventTags: error loading list');
+        console.error(
+          'EventListComponent.getSingleEventTags: error loading list'
+        );
         console.error(wrong);
       },
     });
   }
-
 }

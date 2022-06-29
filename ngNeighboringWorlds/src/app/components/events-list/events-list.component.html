@@ -79,9 +79,17 @@
         </div>
         <div id="attendSelectedEventAndBackButtons">
           <br>
-          <button type="button" class="btn btn-primary" (click)="menuToggleShowAll()">Back</button>
+          <button type="button" class="btn btn-primary" (click)="refresh()">Back</button>
           &nbsp;
-          <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
+
+          <div *ngIf="joinToggle == 'unjoined'">
+            <button type="button" class="btn btn-primary" (click)="attend(selected.id)">Join this Event!</button>
+          </div>
+
+          <div *ngIf="joinToggle == 'joined'">
+            <button type="button" class="btn btn-outline-secondary">Thanks for joining!</button>
+          </div>
+
         </div>
         <!-- REVIEW APP VIEW -->
         <div id="reviewMainDiv">
