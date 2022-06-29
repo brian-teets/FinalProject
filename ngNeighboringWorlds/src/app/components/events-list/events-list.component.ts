@@ -46,6 +46,8 @@ export class EventsListComponent implements OnInit {
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
   newTag: EventTag = new EventTag;
+  searchResults: CultureEvent[] = [];
+  searchKeyword: String = "";
 
   constructor(
     private es: EventService,
@@ -239,5 +241,17 @@ export class EventsListComponent implements OnInit {
       },
     });
   }
+
+  searchByKeyword(keyword: String){
+  this.es.searchByKeyword(keyword).subscribe({
+    next: (data) => {
+      this.searchResults = data;
+    },
+    error: (wrong) => {
+      console.error('EventListComponent.getSingleEventTags: error loading list');
+      console.error(wrong);
+    },
+  });
+}
 
 }

@@ -1,14 +1,13 @@
-import { UserService } from 'src/app/services/user.service';
-import { CultureEvent } from './../models/culture-event';
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
-import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../models/user';
+import { catchError, Observable, throwError } from 'rxjs';
+import { CultureEvent } from 'src/app/models/culture-event';
+import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 import { Review } from '../models/review';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -165,4 +164,26 @@ export class EventService {
       })
     );
   }
+
+  searchByKeyword(keyword: String): Observable<CultureEvent[]>{
+    return this.http
+    .get<CultureEvent[]>(
+      environment.baseUrl + 'api/culture-events' + '/search/' + keyword,
+      this.getHttpOptions()
+    )
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'EventService.searchByKeyword(): error searching: ' + err
+            )
+        );
+      })
+    );
+  }
+
+
+
 }
