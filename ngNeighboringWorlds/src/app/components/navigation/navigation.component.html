@@ -7,34 +7,31 @@
 
       <ul class="navbar-nav">
 
-        <!-- <label for="User"></label><br>
-        <select name="User">
-              <option [routerLink]="['/profile']">View Profile</option>
-              <option [routerLink]="['/home']" (click)="logout()">Logout</option>
-               -->
 
         <li class="nav-item" *ngIf="loggedIn()">
-          <button class="btn btn-secondary btn-lg" [routerLink]="['/event']">Events</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [routerLink]="['/event']">Events</a>&nbsp;&nbsp;
         </li>
         <li class="nav-item">
-          <button class="btn btn-secondary btn-lg" [routerLink]="['/about']">About</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [routerLink]="['/about']">About</a>&nbsp;&nbsp;
         </li>
         <li class="nav-item active" *ngIf="loggedIn()">
-          <button class="btn btn-secondary btn-lg" [routerLink]="['/profile']">Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [routerLink]="['/profile']">Profile</a>&nbsp;&nbsp;
         </li>
+
         <li class="nav-item active" *ngIf="!loggedIn()">
-          <button class="btn btn-secondary btn-lg" [routerLink]="['/login']">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [routerLink]="['/login']">Login</a>&nbsp;&nbsp;
         </li>
+
         <li class="nav-item" *ngIf="loggedIn()">
-          <button class="btn btn-secondary btn-lg" (click)="logout()" [routerLink]="['/home']">Log out</button>&nbsp;&nbsp;
+          <a (click)="logout()" [routerLink]="['/home']">Log out</a>&nbsp;&nbsp;
         </li>
 
       </ul>
 
-    <form class="navbar-nav ml-auto" >
+    <!-- <form class="navbar-nav ml-auto" >
         <input class="form-control me-2" type="search" placeholder="discover" aria-label="Search">
         <button class="btn btn-secondary btn-lg" type="submit" [routerLink]="['/event']">Search</button>
-    </form>
+    </form> -->
     </div>
   </nav>
 </div>
