@@ -48,9 +48,9 @@ export class EventsListComponent implements OnInit {
   currentRate = 1;
   allTags: EventTag[] = [];
   eventTags: EventTag[] = [];
-  newTag: EventTag = new EventTag;
+  newTag: EventTag = new EventTag();
   searchResults: CultureEvent[] = [];
-  searchKeyword: String = "";
+  searchKeyword: String = '';
   loggedInUser: User = new User();
   searchUser: User = new User();
 
@@ -198,7 +198,6 @@ export class EventsListComponent implements OnInit {
   }
 
   getLoggedInUser(): void {
-
     this.us.getLoggedInUser().subscribe({
       next: (loggedInUser) => {
         this.searchUser = loggedInUser;
@@ -213,6 +212,7 @@ export class EventsListComponent implements OnInit {
   }
 
   attend(cid: number) {
+    this.menuToggle = 'showreview';
     console.log(cid);
     this.getLoggedInUser();
     this.es.attend(cid, this.searchUser.username).subscribe({
@@ -294,17 +294,19 @@ export class EventsListComponent implements OnInit {
       },
     });
   }
-  searchByKeyword(keyword: String){
-  this.es.searchByKeyword(keyword).subscribe({
-    next: (data) => {
-      this.searchResults = data;
-      this.menuToggle = 'search';
-    },
-    error: (wrong) => {
-      console.error('EventListComponent.getSingleEventTags: error loading list');
-      console.error(wrong);
-    },
-  });
-}
 
+  searchByKeyword(keyword: String) {
+    this.es.searchByKeyword(keyword).subscribe({
+      next: (data) => {
+        this.searchResults = data;
+        this.menuToggle = 'search';
+      },
+      error: (wrong) => {
+        console.error(
+          'EventListComponent.getSingleEventTags: error loading list'
+        );
+        console.error(wrong);
+      },
+    });
+  }
 }
