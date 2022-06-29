@@ -1,10 +1,10 @@
 <div id="eventsList">
   <div class="container" id="allcontent">
     <br><br>
-    <h3>Events list</h3>
+    <!-- <h3>Events list</h3> -->
     <div>
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleShowAll()">All events</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-outline-secondary btn-lg" >FILTER BY TAGS ??</button>&nbsp;&nbsp;
+    <!-- <button type="button" class="btn btn-outline-secondary btn-lg" >FILTER BY TAGS ??</button>&nbsp;&nbsp; -->
     <button type="button" class="btn btn-outline-secondary btn-lg" (click)="menuToggleCreateEvent()">Create new Event</button>&nbsp;&nbsp;
   </div>
   <br>
@@ -64,13 +64,15 @@
         <p class="card-text">Cover image URL: {{ selected.coverImgUrl }}</p>
         <br>
         <div id="eventTagSelector">
-          <button type="button" class="btn btn-primary" (click)="getSingleEventTags(selected.id)">Refresh tags</button>
+          <!-- <button type="button" class="btn btn-primary" (click)="getSingleEventTags(selected.id)">Refresh tags</button> -->
           <div class="col-4"  *ngFor="let tag of eventTags">
             <span class="badge bg-primary">{{tag.keyword}}</span>
           </div>
           <form>
             <input type="text" name="keyword" [(ngModel)]="newTag.keyword"/>
             <button type="button" class="btn btn-primary" (click)="createTag(newTag, selected.id)">Add Tag</button>
+            &nbsp;
+            <button type="button" class="btn btn-primary" (click)="getSingleEventTags(selected.id)">Refresh tags</button>
           </form>
 
         </div>
