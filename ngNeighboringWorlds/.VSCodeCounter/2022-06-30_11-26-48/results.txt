@@ -1,0 +1,151 @@
+Date : 2022-06-30 11:26:48
+Directory : /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds
+Total : 101 files,  24386 codes, 139 comments, 600 blanks, all 25125 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |     20,980 |          2 |          5 |     20,987 |
+| TypeScript         |         61 |      2,299 |         79 |        381 |      2,759 |
+| HTML               |         16 |        612 |         49 |        114 |        775 |
+| CSS                |         16 |        413 |          2 |         83 |        498 |
+| JavaScript         |          1 |         37 |          6 |          2 |         45 |
+| JSON with Comments |          1 |         31 |          1 |          1 |         33 |
+| Markdown           |          1 |         14 |          0 |         14 |         28 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                              |        101 |     24,386 |        139 |        600 |     25,125 |
+| src                                                                                                                            |         93 |      3,324 |        130 |        578 |      4,032 |
+| src/app                                                                                                                        |         86 |      3,263 |         68 |        550 |      3,881 |
+| src/app/components                                                                                                             |         56 |      2,234 |         57 |        407 |      2,698 |
+| src/app/components/about                                                                                                       |          4 |        181 |          1 |         28 |        210 |
+| src/app/components/discussion-board                                                                                            |          4 |        299 |          3 |         55 |        357 |
+| src/app/components/event-tag-selector                                                                                          |          4 |         83 |          1 |         25 |        109 |
+| src/app/components/events-list                                                                                                 |          4 |        442 |         14 |         66 |        522 |
+| src/app/components/footer                                                                                                      |          4 |         53 |          9 |         18 |         80 |
+| src/app/components/home                                                                                                        |          4 |        149 |          0 |         21 |        170 |
+| src/app/components/login                                                                                                       |          4 |         87 |          0 |         16 |        103 |
+| src/app/components/logout                                                                                                      |          4 |         28 |          0 |         13 |         41 |
+| src/app/components/navigation                                                                                                  |          4 |         80 |          5 |         25 |        110 |
+| src/app/components/new-event                                                                                                   |          4 |        153 |          0 |         34 |        187 |
+| src/app/components/not-found                                                                                                   |          4 |         30 |          0 |         13 |         43 |
+| src/app/components/profile                                                                                                     |          4 |        410 |         18 |         49 |        477 |
+| src/app/components/register                                                                                                    |          4 |        151 |          4 |         21 |        176 |
+| src/app/components/review                                                                                                      |          4 |         88 |          2 |         23 |        113 |
+| src/app/models                                                                                                                 |         12 |        221 |          0 |         28 |        249 |
+| src/app/services                                                                                                               |         12 |        677 |         11 |         98 |        786 |
+| src/environments                                                                                                               |          2 |          8 |         11 |          4 |         23 |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                       | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/README.md                                                                | Markdown           |         14 |          0 |         14 |         28 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/angular.json                                                             | JSON               |        104 |          0 |          1 |        105 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/karma.conf.js                                                            | JavaScript         |         37 |          6 |          2 |         45 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/package-lock.json                                                        | JSON               |     20,803 |          0 |          1 |     20,804 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/package.json                                                             | JSON               |         42 |          0 |          1 |         43 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app-routing.module.ts                                            | TypeScript         |         30 |          0 |          3 |         33 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app.component.css                                                | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app.component.html                                               | HTML               |          5 |          0 |          2 |          7 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app.component.spec.ts                                            | TypeScript         |         31 |          0 |          5 |         36 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app.component.ts                                                 | TypeScript         |         13 |          0 |          4 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/app.module.ts                                                    | TypeScript         |         52 |          0 |          2 |         54 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/about/about.component.css                             | CSS                |         77 |          0 |         15 |         92 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/about/about.component.html                            | HTML               |         75 |          1 |          2 |         78 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/about/about.component.spec.ts                         | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/about/about.component.ts                              | TypeScript         |         11 |          0 |          5 |         16 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/discussion-board/discussion-board.component.css       | CSS                |         92 |          1 |         28 |        121 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/discussion-board/discussion-board.component.html      | HTML               |         47 |          1 |          8 |         56 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/discussion-board/discussion-board.component.spec.ts   | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/discussion-board/discussion-board.component.ts        | TypeScript         |        142 |          1 |         13 |        156 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/event-tag-selector/eventtagselector.component.css     | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/event-tag-selector/eventtagselector.component.html    | HTML               |          5 |          1 |          4 |         10 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/event-tag-selector/eventtagselector.component.spec.ts | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/event-tag-selector/eventtagselector.component.ts      | TypeScript         |         60 |          0 |         14 |         74 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/events-list/events-list.component.css                 | CSS                |          7 |          0 |          3 |         10 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/events-list/events-list.component.html                | HTML               |        132 |         12 |         32 |        176 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/events-list/events-list.component.spec.ts             | TypeScript         |         18 |          0 |          5 |         23 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/events-list/events-list.component.ts                  | TypeScript         |        285 |          2 |         26 |        313 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/footer/footer.component.css                           | CSS                |          7 |          0 |          2 |          9 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/footer/footer.component.html                          | HTML               |         17 |          9 |          5 |         31 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/footer/footer.component.spec.ts                       | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/footer/footer.component.ts                            | TypeScript         |         11 |          0 |          5 |         16 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/home/home.component.css                               | CSS                |         75 |          0 |          9 |         84 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/home/home.component.html                              | HTML               |         46 |          0 |          3 |         49 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/home/home.component.spec.ts                           | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/home/home.component.ts                                | TypeScript         |         10 |          0 |          3 |         13 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/login/login.component.css                             | CSS                |         31 |          0 |          3 |         34 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/login/login.component.html                            | HTML               |          8 |          0 |          1 |          9 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/login/login.component.spec.ts                         | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/login/login.component.ts                              | TypeScript         |         30 |          0 |          6 |         36 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/logout/logout.component.css                           | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/logout/logout.component.html                          | HTML               |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/logout/logout.component.spec.ts                       | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/logout/logout.component.ts                            | TypeScript         |         10 |          0 |          5 |         15 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/navigation/navigation.component.css                   | CSS                |         15 |          1 |          5 |         21 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/navigation/navigation.component.html                  | HTML               |         26 |          4 |          8 |         38 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/navigation/navigation.component.spec.ts               | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/navigation/navigation.component.ts                    | TypeScript         |         21 |          0 |          6 |         27 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/new-event/new-event.component.css                     | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/new-event/new-event.component.html                    | HTML               |         43 |          0 |         16 |         59 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/new-event/new-event.component.spec.ts                 | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/new-event/new-event.component.ts                      | TypeScript         |         92 |          0 |         11 |        103 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/not-found/not-found.component.css                     | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/not-found/not-found.component.html                    | HTML               |          1 |          0 |          1 |          2 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/not-found/not-found.component.spec.ts                 | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/not-found/not-found.component.ts                      | TypeScript         |         11 |          0 |          5 |         16 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/profile/profile.component.css                         | CSS                |         45 |          0 |          1 |         46 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/profile/profile.component.html                        | HTML               |        133 |         15 |         19 |        167 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/profile/profile.component.spec.ts                     | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/profile/profile.component.ts                          | TypeScript         |        214 |          3 |         23 |        240 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/register/register.component.css                       | CSS                |         54 |          0 |          6 |         60 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/register/register.component.html                      | HTML               |         38 |          4 |          4 |         46 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/register/register.component.spec.ts                   | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/register/register.component.ts                        | TypeScript         |         41 |          0 |          5 |         46 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/review/review.component.css                           | CSS                |          0 |          0 |          1 |          1 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/review/review.component.html                          | HTML               |         21 |          2 |          4 |         27 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/review/review.component.spec.ts                       | TypeScript         |         18 |          0 |          6 |         24 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/components/review/review.component.ts                            | TypeScript         |         49 |          0 |         12 |         61 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/address.spec.ts                                           | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/address.ts                                                | TypeScript         |         26 |          0 |          2 |         28 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/culture-event.spec.ts                                     | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/culture-event.ts                                          | TypeScript         |         52 |          0 |          3 |         55 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/discussion-board.spec.ts                                  | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/discussion-board.ts                                       | TypeScript         |         28 |          0 |          2 |         30 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/event-tag.spec.ts                                         | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/event-tag.ts                                              | TypeScript         |         15 |          0 |          3 |         18 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/review.spec.ts                                            | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/review.ts                                                 | TypeScript         |         22 |          0 |          3 |         25 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/user.spec.ts                                              | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/models/user.ts                                                   | TypeScript         |         42 |          0 |          3 |         45 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/address.service.spec.ts                                 | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/address.service.ts                                      | TypeScript         |         54 |          1 |          8 |         63 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/auth.service.spec.ts                                    | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/auth.service.ts                                         | TypeScript         |         58 |          7 |         10 |         75 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/discussion-board.service.spec.ts                        | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/discussion-board.service.ts                             | TypeScript         |        128 |          1 |         12 |        141 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/event-tag.service.spec.ts                               | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/event-tag.service.ts                                    | TypeScript         |         91 |          0 |         12 |        103 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/event.service.spec.ts                                   | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/event.service.ts                                        | TypeScript         |        173 |          2 |         15 |        190 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/user.service.spec.ts                                    | TypeScript         |         12 |          0 |          5 |         17 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/app/services/user.service.ts                                         | TypeScript         |        101 |          0 |         11 |        112 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/environments/environment.prod.ts                                     | TypeScript         |          4 |          0 |          1 |          5 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/environments/environment.ts                                          | TypeScript         |          4 |         11 |          3 |         18 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/index.html                                                           | HTML               |         15 |          0 |          4 |         19 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/main.ts                                                              | TypeScript         |          9 |          0 |          4 |         13 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/polyfills.ts                                                         | TypeScript         |          1 |         47 |          6 |         54 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/styles.css                                                           | CSS                |         10 |          0 |          5 |         15 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/src/test.ts                                                              | TypeScript         |         18 |          4 |          5 |         27 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/tsconfig.app.json                                                        | JSON               |         14 |          1 |          1 |         16 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/tsconfig.json                                                            | JSON with Comments |         31 |          1 |          1 |         33 |
+| /Users/Erich/SD/Java/FinalProject/ngNeighboringWorlds/tsconfig.spec.json                                                       | JSON               |         17 |          1 |          1 |         19 |
+| Total                                                                                                                          |                    |     24,386 |        139 |        600 |     25,125 |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
