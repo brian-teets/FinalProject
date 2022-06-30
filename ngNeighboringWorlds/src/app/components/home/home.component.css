@@ -51,7 +51,7 @@ body {
 }
 
 .overview {
-  height: 400px;
+  height: 600px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -66,7 +66,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(32, 67, 46);
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .sneakyRegisterBox {
